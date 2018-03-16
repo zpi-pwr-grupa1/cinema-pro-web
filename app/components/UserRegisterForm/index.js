@@ -1,14 +1,7 @@
-import React, {Component} from 'react';
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-import {Form, Field} from 'simple-react-forms';
+import React from 'react';
 
-class SimpleFormDemo extends Component {
-  onClickHandler () {
-    console.log(this.refs['simpleForm'].getFormValues());
-  }
-  render () {
-    return (
+const UserRegisterForm = (props) => (
+  <div className="main_containter">
     <div>
       <Form ref='simpleForm'>
           <Field
@@ -44,8 +37,7 @@ class SimpleFormDemo extends Component {
       </Form>
       <button onClick={this.onClickHandler.bind(this)}>Submit</button>
     </div>
+  </div>
+);
 
-    );
-  }
-}
-export default App;
+export default UserRegisterForm;
