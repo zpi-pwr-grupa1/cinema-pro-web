@@ -37,7 +37,7 @@ class SimpleFormDemo extends Component {
             type='password'
           />
 		  <Field
-            name='birthDate'
+            name='dateOfBirth'
             label='Podaj datę urodzenia:'
             type='date'
           />
