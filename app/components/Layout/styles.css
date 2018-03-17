@@ -1,3 +1,14 @@
+ /*
+  TODO use SASS instead of CSS
+  TODO utilise some CSS framework i suggest bulma for this and material UI for styling react components
+ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .main_container {
   display: flex;
   flex-direction: row;
