@@ -1,27 +1,39 @@
-import React from 'react';
-import Layout from './../../components/Layout';
-import Header from './../../components/Header';
+import React, {Component} from 'react';
+import Layout from './../../components/layout/Layout';
+import Header from './../../components/layout/Header';
 import User from "../User";
 import {MuiThemeProvider} from "material-ui";
-import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
+import SideBar from "../../components/layout/Sidebar";
 
+class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			sidebarOpen: false
+		}
+	}
 
-const App = (props) => (
-	<MuiThemeProvider>
-		<Drawer width={200} open={false} >
-			<AppBar title="AppBar" />
-		</Drawer>
-		<Layout
-			header={
-				<Header />
-			}
-			content={
-				<User />
-			}
-		/>
-	</MuiThemeProvider>
+	render() {
+		return (
+			<MuiThemeProvider>
+				<div>
+					<Layout
+						sidebar={ <SideBar open={ this.state.sidebarOpen }/> }
+						header={ <Header toggleSidebar={this.toggleSidebar.bind(this)}/> }
+						content={ <User/> }
+					/>
+				</div>
+			</MuiThemeProvider>
+		)
+	}
 
-);
+	toggleSidebar() {
+		this.setState({
+			...this.state,
+			sidebarOpen: !this.state.sidebarOpen
+		})
+	}
+
+}
 
 export default App;
