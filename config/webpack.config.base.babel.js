@@ -1,14 +1,11 @@
-// konfiguracja Webpack
-
-const path = require("path");
-const webpack = require("webpack");
-const cleanWebpackPlugin = require("clean-webpack-plugin");
-const extractTextWebpackPlugin = require("extract-text-webpack-plugin");
-const htmlWebpackPlugin = require("html-webpack-plugin");
+import path from "path";
+import cleanWebpackPlugin from "clean-webpack-plugin";
+import extractTextWebpackPlugin from "extract-text-webpack-plugin";
+import htmlWebpackPlugin from "html-webpack-plugin";
 
 const appPath = path.join(__dirname, "..", "app");
 
-module.exports = {
+export default {
   target: 'web',
   resolve: {
     modules: [
@@ -55,7 +52,22 @@ module.exports = {
         test: /\.js/,
         use: 'babel-loader',
         exclude: /node_modules/,
-      }, {
+      },
+      {
+        test: /\.scss$/,
+        use: [{
+          loader: "style-loader" // creates style nodes from JS strings
+        },  {
+					loader: "css-loader", options: {
+						sourceMap: true
+					}
+				}, {
+					loader: "sass-loader", options: {
+						sourceMap: true
+					}
+				}]
+      },
+      {
         test: /\.css$/,
         use: extractTextWebpackPlugin.extract([{
           loader: 'css-loader',
