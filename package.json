@@ -1,13 +1,13 @@
 {
-  "name": "cinema-pro",
-  "version": "1.0.0",
+  "name": "cinema-pro-web",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "./node_modules/.bin/webpack-dev-server --content-base app --config config/webpack.config.dev.js",
-    "build:prod": "./node_modules/.bin/webpack --config config/webpack.config.prod.js",
-    "build:dev": "./node_modules/.bin/webpack --config config/webpack.config.dev.js",
+    "server": "webpack-dev-server --content-base app --config config/webpack.config.dev.js",
+    "build:prod": "webpack --config config/webpack.config.prod.js",
+    "build:dev": "webpack --config config/webpack.config.dev.js",
     "server:prod": "node server.prod.js",
     "postinstall": "npm run build:prod",
     "start": "npm run server:prod"
@@ -29,6 +29,7 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-forms": "^1.0.0-rc6",
     "sass-loader": "^6.0.7",
     "url-loader": "^1.0.1",
     "webpack": "^3.10.0",

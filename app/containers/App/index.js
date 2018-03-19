@@ -1,19 +1,19 @@
 import React from 'react';
 
-import Layout from 'components/Layout';
-import Header from 'components/Header';
-//import UserRegisterForm from 'components/UserRegisterForm'
+
+import Layout from './../../components/Layout';
+import Header from './../../components/Header';
+import User from "./../User";
 
 const App = (props) => (
 	<Layout 
     header={
       <Header />
     }
-	/*userregisterform = {
-		<UserRegisterForm />
-	}
+		content={
+			<User />
+		}
 	/>
-  */
 );
 
 export default App;
