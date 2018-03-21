@@ -1,11 +1,9 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './styles.scss';
-
-const title = 'CinemaPro';
 
 const Header = (props) => (
   <div className="header_container">
-    {title}
+    CinemaPro
     <button onClick={ () => props.toggleSidebar() }>toggle</button>
   </div>
 );
