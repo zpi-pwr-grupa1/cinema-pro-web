@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "webpack-dev-server --content-base app --config config/webpack.config.dev.babel.js",
+    "server": "webpack-dev-server --port 3000 --content-base app --config config/webpack.config.dev.babel.js",
     "build:prod": "webpack --config config/webpack.config.prod.babel.js",
     "build:dev": "webpack --config config/webpack.config.dev.babel.js",
     "server:prod": "node server.prod.js",
@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "bulma": "^0.6.2",
     "classnames": "^2.2.5",
     "material-ui": "^0.20.0",
