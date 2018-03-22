@@ -4,7 +4,7 @@ import './styles.scss';
 const Input = (props) => (
   <div className="input-wrapper">
     <input
-      className=`input input__${props.type}`
+      className="input"
       type={props.type}
       name={props.name}
       onChange={props.onChange}

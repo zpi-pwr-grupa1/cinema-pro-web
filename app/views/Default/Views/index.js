@@ -5,7 +5,7 @@ import './styles.scss';
 
 const Views = (props) => (
   <div>
-    Views
+    <h2>Main page</h2>
   </div>
 );
 

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-import History from "services/history";
+import History from 'services/history';
 
 // Views
 // Guest
-import HomeLayout from "views/Default/Layout";
+import HomeLayout from 'views/Default/Layout';
 
 // Admin
-import AdminLayout from "views/Admin/Layout";
+import AdminLayout from 'views/Admin/Layout';
 
 class App extends Component {
 	render() {

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 import Layout from 'components/Layout';
 import Header from 'components/Header';
-import SideBar from "components/Sidebar";
+import SideBar from 'components/Sidebar';
 
-import Views from "views/Admin/Views";
+import Views from 'views/Admin/Views';
 
 class AdminLayout extends Component {
   constructor(props) {

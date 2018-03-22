@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import { MuiThemeProvider, TextField } from "material-ui";
+
+import Page from 'components/Page';
+import Input from 'components/FormElements/Input';
+import Form from 'components/FormElements/Form';
+
 
 class CinemaList extends Component {
   constructor(props) {
@@ -7,13 +13,12 @@ class CinemaList extends Component {
     this.state = {
       cinemas: [{
         id: 1,
-        name: 'kino jakiestam',
+        name: 'kino pierwsze',
       }, {
         id: 2,
-        name: 'kino inne'
+        name: 'kino drugie'
       }],
     };
-
   }
 
   componentDidMount() {
@@ -21,16 +26,11 @@ class CinemaList extends Component {
   }
 
   render() {
-    console.log(this.state.cinemas)
+    console.log(this.state)
     return (
-      <div>
+      <Page>
         CinemaList
-        {this.state.cinemas.map((cinema) =>
-          <div key={cinema.id}>
-            {cinema.name}
-          </div>
-        )}
-      </div>
+      </Page>
     )
   }
 }

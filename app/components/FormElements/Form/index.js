@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './styles.scss';
 
-const Page = (props) => (
-  <div className="page_container">
+const Form = (props) => (
+  <div className="form_container">
     {props.children}
   </div>
 );
 
-export default Page;
+export default Form;
