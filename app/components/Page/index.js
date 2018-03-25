@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles.scss';
 
 const Page = (props) => (
-  <div className="page_container">
+  <div className="container">
     {props.children}
   </div>
 );

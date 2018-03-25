@@ -9,8 +9,8 @@ import AddCinema from 'views/Admin/AddCinema';
 
 const Views = (props) => (
   <Switch>
-    <Route exact url="/kina" component={CinemaList} />
-    <Route url="/kina/nowe_kino" component={AddCinema} />
+    <Route exact url="/kino" component={CinemaList} />
+    <Route url="/kino/new" component={AddCinema} />
     {/*<Route url="/kina/:idKina" component={Cinema} />*/}
   </Switch>
 );
