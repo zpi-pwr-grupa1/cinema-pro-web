@@ -1,39 +1,28 @@
-import React, {Component} from 'react';
-import Layout from './../../components/layout/Layout';
-import Header from './../../components/layout/Header';
-import User from "../User";
-import {MuiThemeProvider} from "material-ui";
-import SideBar from "../../components/layout/Sidebar";
+import React, { Component } from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
+import History from 'services/history';
+
+// Views
+// Guest
+import HomeLayout from 'views/Default/Layout';
+
+// Admin
+import AdminLayout from 'views/Admin/Layout';
 
 class App extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			sidebarOpen: false
-		}
-	}
-
 	render() {
 		return (
-			<MuiThemeProvider>
-				<div>
-					<Layout
-						sidebar={ <SideBar open={ this.state.sidebarOpen }/> }
-						header={ <Header toggleSidebar={this.toggleSidebar.bind(this)}/> }
-						content={ <User/> }
-					/>
-				</div>
-			</MuiThemeProvider>
+			<Router history={History}>
+				<Switch>
+					<Route path="/admin" component={AdminLayout} />
+					<Route path="/" component={HomeLayout} exact />
+					{/* <Route path="/operator" component={OperatorHome} exact />
+					<Route path="/client" component={ClientHome} exact />
+					<Route path="*" component={Page404} /> */}
+				</Switch>
+			</Router>
 		)
 	}
-
-	toggleSidebar() {
-		this.setState({
-			...this.state,
-			sidebarOpen: !this.state.sidebarOpen
-		})
-	}
-
 }
 
 export default App;

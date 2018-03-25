@@ -21,6 +21,7 @@ export default {
       utils: path.resolve(appPath, 'utils'),
       actions: path.resolve(appPath, 'actions'),
       reducers: path.resolve(appPath, 'reducers'),
+      views: path.resolve(appPath, 'views'),
     },
     extensions: ['.js', '.png'],
   },
@@ -30,7 +31,7 @@ export default {
   output: {
     path: path.join(appPath, '..', 'public'),
     publicPath: '/',
-    filename: 'bundle-[hash:8].js',
+    filename: '[name]-[hash:8].js',
   },
   plugins: [
     new cleanWebpackPlugin(
