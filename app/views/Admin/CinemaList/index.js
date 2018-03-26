@@ -57,30 +57,32 @@ class CinemaList extends Component {
 						</div>
 					</section>
 
-					{splitEvery(3, this.state.cinemas)
-						.map((threeCinemas, index) =>
-							<div key={index} className="tile is-parent">
-								{threeCinemas
-									.map(cinema =>
-										<div key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
-											<article className="tile is-child notification is-dark">
-												<p className="title">{cinema.name}</p>
-												<p className="subtitle">{cinema.description}</p>
-											</article>
+					<div className="container">
+						{splitEvery(3, this.state.cinemas)
+							.map((threeCinemas, index) =>
+								<div key={index} className="tile is-parent">
+									{threeCinemas
+										.map(cinema =>
+											<div key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
+												<article className="tile is-child notification is-dark">
+													<p className="title">{cinema.name}</p>
+													<p className="subtitle">{cinema.description}</p>
+												</article>
+											</div>
+										)}
+
+									{ Math.floor(this.state.cinemas.length/3) === index
+										&& <a className="button add-button">+</a>
+									}
+								</div>
+							)}
+
+						{ !(this.state.cinemas.length % 3)
+								&& <div className="tile is-4 is-parent cinema-tile hvr-grow">
+											<a className="button add-button">+</a>
 										</div>
-									)}
-
-								{ Math.floor(this.state.cinemas.length/3) === index
-									&& <a className="button add-button">+</a>
-								}
-							</div>
-						)}
-
-					{ !(this.state.cinemas.length % 3)
-							&& <div className="tile is-4 is-parent cinema-tile hvr-grow">
-										<a className="button add-button">+</a>
-									</div>
-					}
+						}
+					</div>
 				</div>
 			</Page>
     )

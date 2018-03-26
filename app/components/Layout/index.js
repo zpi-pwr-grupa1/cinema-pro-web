@@ -2,10 +2,11 @@ import React from 'react';
 import './styles.scss';
 
 const Layout = (props) => (
-  <div className="main_containter">
+  <div className="main-container">
     {props.sidebar}
     {props.header}
     {props.views}
+    {props.footer}
   </div>
 );
 
