@@ -5,6 +5,7 @@ import Header from 'components/Header';
 import SideBar from 'components/Sidebar';
 
 import Views from 'views/Admin/Views';
+import Footer from "components/Footer";
 
 class AdminLayout extends Component {
   constructor(props) {
@@ -22,12 +23,12 @@ class AdminLayout extends Component {
   }
 
   render() {
-    console.log(this.props.match)
     return (
       <Layout
         sidebar={ <SideBar isOpen={this.state.sidebarOpen} /> }
         header={ <Header toggleSidebar={this.toggleSidebar} /> }
         views={ <Views /> }
+        footer={ <Footer/> }
       />
     )
   }

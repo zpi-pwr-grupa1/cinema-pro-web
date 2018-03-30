@@ -10,15 +10,6 @@ import MovieList from 'views/Admin/MovieList';
 
 // /admin/*
 
-<<<<<<< Updated upstream
-const Views = (props) => (
-  <Switch>
-    <Route exact url="/kina" component={CinemaList} />
-    <Route url="/kina/nowe_kino" component={AddCinema} />
-    {/*<Route url="/kina/:idKina" component={Cinema} />*/}
-  </Switch>
-);
-=======
 const Views = (props) => {
   console.log('views props', props)
   return (
@@ -32,6 +23,5 @@ const Views = (props) => {
     </Switch>
   )
 };
->>>>>>> Stashed changes
 
 export default Views;

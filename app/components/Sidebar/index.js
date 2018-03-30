@@ -6,10 +6,10 @@ import { MuiThemeProvider ,Paper } from "material-ui";
 
 const SideBar = (props) => (
   <MuiThemeProvider>
-  	<PersistentDrawer className="sidebar" width={200} open={ props.isOpen } >
+    <PersistentDrawer className="sidebar" width={200} open={ props.isOpen } >
       <AppBar title="Menu" />
-  		<Paper/>
-  	</PersistentDrawer>
+      <Paper/>
+    </PersistentDrawer>
   </MuiThemeProvider>
 );
 

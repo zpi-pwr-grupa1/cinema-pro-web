@@ -15,7 +15,7 @@ class App extends Component {
 			<Router history={History}>
 				<Switch>
 					<Route path="/admin" component={AdminLayout} />
-					<Route path="/" component={HomeLayout} />
+					<Route path="/" component={HomeLayout} exact />
 					{/* <Route path="/operator" component={OperatorHome} exact />
 					<Route path="/client" component={ClientHome} exact />
 					<Route path="*" component={Page404} /> */}

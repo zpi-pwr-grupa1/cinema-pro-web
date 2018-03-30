@@ -3,7 +3,7 @@ import Page from 'components/Page';
 import splitEvery from "ramda/es/splitEvery";
 import './index.scss';
 
-class CinemaList extends Component {
+class MovieList extends Component {
   constructor(props) {
     super(props);
 
@@ -28,4 +28,4 @@ class CinemaList extends Component {
   }
 }
 
-export default CinemaList;
+export default MovieList;
