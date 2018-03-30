@@ -3,7 +3,7 @@ import { MuiThemeProvider, TextField } from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
 
-import { cinema } from 'services/api';
+import { movie } from 'services/api';
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
@@ -15,19 +15,22 @@ const hintStyle = {
   zIndex: '1' 
 };
 
-class AddCinema extends Component {
+class AddMovie extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       form: {
-        street: '',
-        streetNumber: '',
-        postCode: '',
-        city: '',
-        telephone: '',
-        email: '',
-        description: ''
+        title: '',
+        age: '',
+        country: '',
+        runTime: '',
+        polishReleaseDate: '',
+        worldReleaseDate: '',
+        storyline: '',
+        imgURL: '',
+        director: '',
+        movieCast: '',
       },
       error: '',
     };
@@ -38,9 +41,9 @@ class AddCinema extends Component {
   }
 
   onHandleClick = () => {
-    cinema.new(this.state.form).then((response) => {
+    movie.new(this.state.form).then((response) => {
       console.log(response)
-      alert('Nowe kino zostało dodane.');
+      alert('Nowy film został dodany.');
     }).catch((error) => {
       console.log(error)
       this.setState({ error: response.error })
@@ -59,13 +62,13 @@ class AddCinema extends Component {
     return (
       <Page>
         <Form>
-          <h1>Dodawanie kina:</h1>
+          <h1>Dodawanie nowego filmu:</h1>
           <MuiThemeProvider>
            <div>
               <TextField
-                name="street"
+                name="title"
                 defaultValue=""
-                floatingLabelText="Ulica:"
+                floatingLabelText="Tytuł:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
@@ -73,9 +76,9 @@ class AddCinema extends Component {
                 hintStyle={hintStyle} 
               />
                 <TextField
-                name="streetNumber"
+                name="age"
                 defaultValue=""
-                floatingLabelText="Nr:"
+                floatingLabelText="Rok:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
@@ -83,9 +86,9 @@ class AddCinema extends Component {
                 hintStyle={hintStyle} 
               />
                 <TextField
-                name="postCode"
+                name="country"
                 defaultValue=""
-                floatingLabelText="Kod pocztowy:"
+                floatingLabelText="Kraj:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
@@ -93,9 +96,9 @@ class AddCinema extends Component {
                 hintStyle={hintStyle} 
               />
                 <TextField
-                name="city"
+                name="runTime"
                 defaultValue=""
-                floatingLabelText="Miasto:"
+                floatingLabelText="Czas trwania:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
@@ -103,9 +106,9 @@ class AddCinema extends Component {
                 hintStyle={hintStyle} 
                 />
               <TextField
-                name="telephone"
+                name="director"
                 defaultValue=""
-                floatingLabelText="Telefon:"
+                floatingLabelText="Reżyseria:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
@@ -113,22 +116,52 @@ class AddCinema extends Component {
                 hintStyle={hintStyle} 
               />
               <TextField
-                name="email"
+                name="movieCast"
                 defaultValue=""
-                floatingLabelText="Email:"
+                floatingLabelText="Obsada:"
                 fullWidth={true}
                 floatingLabelFixed={true}
+                multiLine={true}
                 onChange={this.onInputChange}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
               <TextField
-                name="description"
+                name="storyline"
                 defaultValue=""
                 floatingLabelText="Opis:"
                 fullWidth={true}
                 floatingLabelFixed={true}
-                multiLine={true}
+                onChange={this.onInputChange}
+                inputStyle={hideAutoFillColorStyle}
+                hintStyle={hintStyle} 
+              />
+              <TextField
+                name="polishReleaseDate"
+                defaultValue=""
+                floatingLabelText="Premiera(Polska):"
+                fullWidth={true}
+                floatingLabelFixed={true}
+                onChange={this.onInputChange}
+                inputStyle={hideAutoFillColorStyle}
+                hintStyle={hintStyle} 
+              />
+              <TextField
+                name="worldReleaseDate"
+                defaultValue=""
+                floatingLabelText="Premiera(Świat):"
+                fullWidth={true}
+                floatingLabelFixed={true}
+                onChange={this.onInputChange}
+                inputStyle={hideAutoFillColorStyle}
+                hintStyle={hintStyle} 
+              />
+              <TextField
+                name="imgURL"
+                defaultValue=""
+                floatingLabelText="Plakat (url):"
+                fullWidth={true}
+                floatingLabelFixed={true}
                 onChange={this.onInputChange}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
@@ -142,4 +175,4 @@ class AddCinema extends Component {
   }
 }
 
-export default AddCinema;
+export default AddMovie;
