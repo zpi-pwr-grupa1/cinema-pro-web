@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MuiThemeProvider, TextField } from 'material-ui';
+import {MuiThemeProvider, Snackbar, TextField} from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
 
@@ -21,6 +21,7 @@ class AddCinema extends Component {
 
     this.state = {
       form: {
+        name: '',
         street: '',
         streetNumber: '',
         postCode: '',
@@ -29,22 +30,35 @@ class AddCinema extends Component {
         email: '',
         description: ''
       },
+      snackbar: false,
       error: '',
     };
   }
 
   componentDidMount() {
+    if(!this.cinemaId) {
+      return;
+    }
 
+    cinema.get(this.cinemaId)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          form: response.data
+        })
+      })
+  }
+
+  get cinemaId() {
+    return this.props.match.params.id;
   }
 
   onHandleClick = () => {
-    cinema.new(this.state.form).then((response) => {
-      console.log(response)
-      alert('Nowe kino zostało dodane.');
-    }).catch((error) => {
-      console.log(error)
-      this.setState({ error: response.error })
-    })
+    cinema.new(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+        snackbar: true
+      }))
   }
 
   onInputChange = (event) => {
@@ -59,84 +73,99 @@ class AddCinema extends Component {
     return (
       <Page>
         <Form>
-          <h1>Dodawanie kina:</h1>
-          <MuiThemeProvider>
+          <h1>{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodawanie kina'}</h1>
            <div>
+             <TextField
+               name="name"
+               floatingLabelText="Nazwa:"
+               fullWidth={true}
+               floatingLabelFixed={true}
+               onChange={this.onInputChange}
+               value={this.state.form.name}
+               inputStyle={hideAutoFillColorStyle}
+               hintStyle={hintStyle}
+             />
               <TextField
                 name="street"
-                defaultValue=""
                 floatingLabelText="Ulica:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
+                value={this.state.form.street}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
                 <TextField
                 name="streetNumber"
-                defaultValue=""
                 floatingLabelText="Nr:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
+                value={this.state.form.streetNumber}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
                 <TextField
                 name="postCode"
-                defaultValue=""
                 floatingLabelText="Kod pocztowy:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
+                value={this.state.form.postCode}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
                 <TextField
                 name="city"
-                defaultValue=""
                 floatingLabelText="Miasto:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
+                value={this.state.form.city}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
                 />
               <TextField
                 name="telephone"
-                defaultValue=""
                 floatingLabelText="Telefon:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
+                value={this.state.form.telephone}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
               <TextField
                 name="email"
-                defaultValue=""
                 floatingLabelText="Email:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
+                value={this.state.form.email}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
               <TextField
                 name="description"
-                defaultValue=""
                 floatingLabelText="Opis:"
                 fullWidth={true}
                 floatingLabelFixed={true}
                 multiLine={true}
                 onChange={this.onInputChange}
+                value={this.state.form.description}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
-              <RaisedButton className="add_button" label="DODAJ" onClick={this.onHandleClick} />
+              <RaisedButton className="add_button" label={this.cinemaId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
             </div>
-          </MuiThemeProvider>
         </Form>
+
+        <Snackbar
+          open={this.state.snackbar}
+          message={this.cinemaId ? 'Pomyślnie edytowano kino' : 'Pomyślnie dodano kino'}
+          autoHideDuration={2000}
+          onRequestClose={ () => { this.state.snackbar = false } }
+        />
       </Page>
     )
   }

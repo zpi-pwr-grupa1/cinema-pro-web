@@ -15,11 +15,13 @@ const Views = (props) => {
   return (
     <Switch>
       <Route exact path='/admin/' component={MainPage} />
+
       <Route exact path='/admin/cinemas' component={CinemaList} />
-      <Route exact path='/admin/movies' component={MovieList} />
       <Route path='/admin/cinemas/new' component={AddCinema} />
+      <Route path='/admin/cinemas/:id' component={AddCinema} />
+
+      <Route exact path='/admin/movies' component={MovieList} />
       <Route path='/admin/movies/new' component={AddMovie} />
-      {/*<Route url="/kina/:idKina" component={Cinema} />*/}
     </Switch>
   )
 };

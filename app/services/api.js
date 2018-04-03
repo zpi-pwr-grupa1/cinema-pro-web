@@ -4,6 +4,9 @@ export const cinema = {
   all: () => (
     axios.get('/cinema/get/all')
   ),
+  get: (id) => (
+    axios.get(`/cinema/get/${id}`)
+  ),
   new: (data) => (
     axios.post('/cinema/update', data)
   ),
