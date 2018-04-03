@@ -5,5 +5,3 @@ import './styles.scss'
 import 'config'
 
 render(<App />, document.getElementById('app'));
-
-// module.hot.accept();
