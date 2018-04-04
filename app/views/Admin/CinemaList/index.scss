@@ -1,0 +1,18 @@
+.cinema-list {
+
+	.cinema-tile {
+		cursor: pointer;
+		height: 200px;
+
+		&:hover article {
+			box-shadow: 0 10px 6px -6px #777;
+		}
+	}
+
+	.add-button {
+		border-radius: 50%;
+		margin: auto;
+		width: 100px;
+		height: 100px;
+	}
+}

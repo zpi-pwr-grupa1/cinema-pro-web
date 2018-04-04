@@ -1,0 +1,14 @@
+@import "~bulma";
+
+.header-container {
+  font-weight: 900;
+  font-size: 50px;
+  background: $dark;
+  color: white;
+  padding: 20px 100px;
+  text-align: right;
+
+  span {
+    right: 200px;
+  }
+}

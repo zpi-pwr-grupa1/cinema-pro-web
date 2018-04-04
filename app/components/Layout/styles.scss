@@ -1,0 +1,17 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  > div {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
