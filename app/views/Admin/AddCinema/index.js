@@ -35,6 +35,21 @@ class AddCinema extends Component {
     };
   }
 
+  cleanForm = () => {
+    this.setState({
+      form: {
+        name: '',
+        street: '',
+        streetNumber: '',
+        postCode: '',
+        city: '',
+        telephone: '',
+        email: '',
+        description: ''
+      }
+    });
+  }
+
   componentDidMount() {
     if(!this.cinemaId) {
       return;
@@ -59,6 +74,7 @@ class AddCinema extends Component {
         ...this.state,
         snackbar: true
       }))
+    this.cleanForm();
   }
 
   onInputChange = (event) => {
