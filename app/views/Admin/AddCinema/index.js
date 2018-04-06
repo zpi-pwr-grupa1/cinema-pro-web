@@ -51,17 +51,16 @@ class AddCinema extends Component {
   }
 
   componentDidMount() {
-    if(!this.cinemaId) {
-      return;
-    }
-
-    cinema.get(this.cinemaId)
-      .then(response => {
-        this.setState({
-          ...this.state,
-          form: response.data
+    if(this.cinemaId) {
+      cinema.get(this.cinemaId)
+        .then(response => {
+          console.log(response);
+          this.setState({
+            ...this.state,
+            form: response.data
+          })
         })
-      })
+    }
   }
 
   get cinemaId() {
