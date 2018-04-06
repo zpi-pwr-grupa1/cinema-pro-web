@@ -36,16 +36,32 @@ class AddMovie extends Component {
     };
   }
 
+  cleanForm = () => {
+    this.setState({
+      form: {
+        title: '',
+        age: '',
+        country: '',
+        runTime: '',
+        polishReleaseDate: '',
+        worldReleaseDate: '',
+        storyline: '',
+        imgURL: '',
+        director: '',
+        movieCast: '',
+      }
+    });
+  }
+
   componentDidMount() {
 
   }
 
   onHandleClick = () => {
     movie.new(this.state.form).then((response) => {
-      console.log(response)
       alert('Nowy film został dodany.');
+      this.cleanForm();
     }).catch((error) => {
-      console.log(error)
       this.setState({ error: response.error })
     })
   }
@@ -67,7 +83,7 @@ class AddMovie extends Component {
            <div>
               <TextField
                 name="title"
-                defaultValue=""
+                value={this.state.form.title}
                 floatingLabelText="Tytuł:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -77,7 +93,7 @@ class AddMovie extends Component {
               />
                 <TextField
                 name="age"
-                defaultValue=""
+                value={this.state.form.age}
                 floatingLabelText="Rok:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -87,7 +103,7 @@ class AddMovie extends Component {
               />
                 <TextField
                 name="country"
-                defaultValue=""
+                value={this.state.form.country}
                 floatingLabelText="Kraj:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -97,7 +113,7 @@ class AddMovie extends Component {
               />
                 <TextField
                 name="runTime"
-                defaultValue=""
+                value={this.state.form.runTime}
                 floatingLabelText="Czas trwania:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -107,7 +123,7 @@ class AddMovie extends Component {
                 />
               <TextField
                 name="director"
-                defaultValue=""
+                value={this.state.form.director}
                 floatingLabelText="Reżyseria:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -117,7 +133,7 @@ class AddMovie extends Component {
               />
               <TextField
                 name="movieCast"
-                defaultValue=""
+                value={this.state.form.movieCast}
                 floatingLabelText="Obsada:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -128,7 +144,7 @@ class AddMovie extends Component {
               />
               <TextField
                 name="storyline"
-                defaultValue=""
+                value={this.state.form.storyline}
                 floatingLabelText="Opis:"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -138,7 +154,7 @@ class AddMovie extends Component {
               />
               <TextField
                 name="polishReleaseDate"
-                defaultValue=""
+                value={this.state.form.polishReleaseDate}
                 floatingLabelText="Premiera(Polska):"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -148,7 +164,7 @@ class AddMovie extends Component {
               />
               <TextField
                 name="worldReleaseDate"
-                defaultValue=""
+                value={this.state.form.worldReleaseDate}
                 floatingLabelText="Premiera(Świat):"
                 fullWidth={true}
                 floatingLabelFixed={true}
@@ -158,7 +174,7 @@ class AddMovie extends Component {
               />
               <TextField
                 name="imgURL"
-                defaultValue=""
+                value={this.state.form.imgURL}
                 floatingLabelText="Plakat (url):"
                 fullWidth={true}
                 floatingLabelFixed={true}
