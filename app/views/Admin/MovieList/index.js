@@ -1,28 +1,72 @@
 import React, {Component} from 'react';
 import Page from 'components/Page';
-import splitEvery from "ramda/es/splitEvery";
 import './index.scss';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
+import {movie} from "services/api";
 
 class MovieList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      cinemas: [
-      ],
+      movies: [],
     };
   }
 
   componentDidMount() {
-
+		movie.all()
+			.then(response => {
+				this.setState({
+					...this.state,
+					movies: response.data
+				})
+			})
   }
 
   render() {
     return (
-      <Page>
-        <div>
-          <h1>Lista filmów</h1>
-        </div>
+      <Page class="movie-list">
+				<section className="hero is-light">
+					<div className="hero-body">
+						<div className="container">
+							<h1 className="title">
+								Lista wszystkich filmów
+							</h1>
+						</div>
+					</div>
+				</section>
+
+				<div className="container">
+					<Table className="movie-table" displaySelectAll={false} selectable={false}>
+						<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
+							<TableRow>
+								<TableHeaderColumn>ID</TableHeaderColumn>
+								<TableHeaderColumn>Tytuł</TableHeaderColumn>
+								<TableHeaderColumn>Czas trwania (h)</TableHeaderColumn>
+								<TableHeaderColumn>Premiera światowa</TableHeaderColumn>
+								<TableHeaderColumn>Reżyser</TableHeaderColumn>
+								<TableHeaderColumn>Opcje</TableHeaderColumn>
+							</TableRow>
+						</TableHeader>
+						<TableBody displayRowCheckbox={false}>
+							{
+								this.state.movies
+									.map(movie =>
+										<TableRow key={movie.id} hoverable={true}>
+											<TableRowColumn onClick={() => { console.log('dupa');}}>{movie.id}</TableRowColumn>
+											<TableRowColumn>{movie.title}</TableRowColumn>
+											<TableRowColumn>{movie.runTime / 60}</TableRowColumn>
+											<TableRowColumn>{movie.worldReleaseDate}</TableRowColumn>
+											<TableRowColumn>{movie.director}</TableRowColumn>
+											<TableRowColumn>
+												<button className="button" onClick={() => this.props.history.push(`movies/${movie.id}`)}>edytuj</button>
+											</TableRowColumn>
+										</TableRow>
+									)
+							}
+						</TableBody>
+					</Table>
+				</div>
       </Page>
     )
   }

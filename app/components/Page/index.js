@@ -4,7 +4,7 @@ import {MuiThemeProvider} from "material-ui";
 
 const Page = (props) => (
   <MuiThemeProvider>
-  <div className="page-container">
+  <div className={`page-container ${props.class}`}>
     {props.children}
   </div>
   </MuiThemeProvider>

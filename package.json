@@ -21,6 +21,7 @@
     "font-awesome": "^4.7.0",
     "history": "^4.7.2",
     "hover.css": "^2.2.1",
+    "humanize-duration": "^3.14.0",
     "material-ui": "^0.20.0",
     "material-ui-icons": "^1.0.0-beta.36",
     "prop-types": "^15.6.1",
