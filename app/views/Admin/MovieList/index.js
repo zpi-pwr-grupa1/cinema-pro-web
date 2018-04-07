@@ -37,6 +37,8 @@ class MovieList extends Component {
 				</section>
 
 				<div className="container">
+					<button className="button add-button" onClick={() => this.props.history.push(`movies/new`)}>Dodaj nowy film</button>
+
 					<Table className="movie-table" displaySelectAll={false} selectable={false}>
 						<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 							<TableRow>
