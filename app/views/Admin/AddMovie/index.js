@@ -44,6 +44,7 @@ class AddMovie extends Component {
 	
 	movie.get(this.movieId)
       .then(response => {
+        console.log(response);
         this.setState({
           ...this.state,
           form: response.data
@@ -83,7 +84,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.title}
+				        value={this.state.form.title}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -93,7 +94,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.age}
+				        value={this.state.form.age}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -103,7 +104,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.country}
+				        value={this.state.form.country}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -113,7 +114,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.runTime}
+				        value={this.state.form.runTime}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
                 />
@@ -123,7 +124,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.director}
+				        value={this.state.form.director}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -134,7 +135,7 @@ class AddMovie extends Component {
                 floatingLabelFixed={true}
                 multiLine={true}
                 onChange={this.onInputChange}
-				value={this.state.form.movieCast}
+				        value={this.state.form.movieCast}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -144,7 +145,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.storyline}
+				        value={this.state.form.storyline}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -154,7 +155,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.polishReleaseDate}
+				        value={this.state.form.polishReleaseDate}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -164,7 +165,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.worldReleaseDate}
+				        value={this.state.form.worldReleaseDate}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -174,7 +175,7 @@ class AddMovie extends Component {
                 fullWidth={true}
                 floatingLabelFixed={true}
                 onChange={this.onInputChange}
-				value={this.state.form.imgURL}
+				        value={this.state.form.imgURL}
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
@@ -182,7 +183,7 @@ class AddMovie extends Component {
             </div>
         </Form>
 		
-		<Snackbar
+		    <Snackbar
           open={this.state.snackbar}
           message={this.movieId ? 'Pomyślnie edytowano film' : 'Pomyślnie dodano film'}
           autoHideDuration={2000}

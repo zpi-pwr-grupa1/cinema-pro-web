@@ -16,6 +16,9 @@ export const movie = {
   all: () => (
     axios.get('/movie/get/all')
   ),
+  get: (id) => (
+    axios.get(`/movie/get/${id}`)
+  ),
   new: (data) => (
     axios.post('/movie/update', data)
   ),

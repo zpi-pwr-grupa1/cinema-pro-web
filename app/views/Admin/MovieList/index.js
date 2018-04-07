@@ -3,6 +3,7 @@ import Page from 'components/Page';
 import './index.scss';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
 import {movie} from "services/api";
+import {Link} from "react-router-dom";
 
 class MovieList extends Component {
   constructor(props) {
@@ -61,7 +62,9 @@ class MovieList extends Component {
 											<TableRowColumn>{movie.worldReleaseDate}</TableRowColumn>
 											<TableRowColumn>{movie.director}</TableRowColumn>
 											<TableRowColumn>
-												<button className="button" onClick={() => this.props.history.push(`movies/${movie.id}`)}>edytuj</button>
+                      <Link to={'/admin/movies/'+movie.id} key={movie.id}>
+												<button className="button">Edytuj</button>
+                      </Link>
 											</TableRowColumn>
 										</TableRow>
 									)

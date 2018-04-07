@@ -22,6 +22,7 @@ const Views = (props) => {
 
       <Route exact path='/admin/movies' component={MovieList} />
       <Route path='/admin/movies/new' component={AddMovie} />
+      <Route path='/admin/movies/:id' component={AddMovie} />
     </Switch>
   )
 };
