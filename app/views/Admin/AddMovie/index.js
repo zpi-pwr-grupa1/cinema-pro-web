@@ -37,6 +37,23 @@ class AddMovie extends Component {
     };
   }
 
+  cleanForm = () => {
+    this.setState({
+      form: {
+        title: '',
+        age: '',
+        country: '',
+        runTime: '',
+        polishReleaseDate: '',
+        worldReleaseDate: '',
+        storyline: '',
+        imgURL: '',
+        director: '',
+        movieCast: '',
+      }
+    });
+  }
+
   componentDidMount() {
 	if(!this.movieId) {
       return;
@@ -62,6 +79,7 @@ class AddMovie extends Component {
         ...this.state,
         snackbar: true
       }))
+    this.cleanForm();
   }
 
   onInputChange = (event) => {
