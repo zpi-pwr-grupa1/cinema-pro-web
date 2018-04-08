@@ -45,7 +45,7 @@ class CinemaList extends Component {
 								<div key={index} className="tile is-parent">
 									{threeCinemas
 										.map(cinema =>
-											<Link to={'/admin/cinemas/'+cinema.id} key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
+											<Link to={'/admin/cinema/'+cinema.id} key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
 												<article className="tile is-child notification is-dark">
 													<p className="title">{cinema.name}</p>
 													<p className="subtitle">{cinema.description}</p>

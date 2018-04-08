@@ -57,6 +57,7 @@ class AddCinema extends Component {
 
     cinema.get(this.cinemaId)
       .then(response => {
+       console.log(response);
         this.setState({
           ...this.state,
           form: response.data

@@ -1,0 +1,28 @@
+.cinema-info-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.cinema-info-txt {
+  height: 700px;
+  width: 700px;
+}
+
+.cinema-info-img {
+  height: 700px;
+  width: 700px;
+}
+
+.info-txt {
+  margin-bottom: 5px;
+}
+
+.cinema-header {
+  margin: 0 auto !important;
+}
+
+.cinema-btn {
+  margin: 5px;
+}
