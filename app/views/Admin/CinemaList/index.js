@@ -32,7 +32,7 @@ class CinemaList extends Component {
 						<div className="hero-body">
 							<div className="container">
 								<h1 className="title">
-									Lista wszystkich kin
+									    Lista wszystkich kin
 								</h1>
 							</div>
 						</div>
@@ -59,11 +59,7 @@ class CinemaList extends Component {
 								</div>
 							)}
 
-						{ !(this.state.cinemas.length % 3)
-								&& <Link to='/admin/cinemas/new'  className="tile is-4 is-parent cinema-tile hvr-grow button add-button">
-											{/*<a className="button add-button">+</a>*/}
-										</Link>
-						}
+
 					</div>
 				</div>
 			</Page>
