@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from 'containers/App';
 import './styles.scss'
 import 'config'
+import App from "views";
 
 render(<App />, document.getElementById('app'));

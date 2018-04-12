@@ -4,7 +4,7 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import SideBar from 'components/Sidebar';
 
-import Views from "views/Default/Views";
+import Views from "views/Guest/index";
 
 class DefaultLayout extends Component {
   constructor(props) {

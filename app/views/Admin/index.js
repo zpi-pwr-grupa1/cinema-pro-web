@@ -2,12 +2,12 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Views
-import MainPage from 'views/Admin/MainPage';
-import CinemaList from 'views/Admin/CinemaList';
-import AddCinema from 'views/Admin/AddCinema';
-import AddMovie from 'views/Admin/AddMovie';
-import MovieList from 'views/Admin/MovieList';
-import CinemaInfo from 'views/Admin/CinemaInfo';
+import MainPage from 'views/Admin/MainPage/index';
+import CinemaList from 'views/Admin/CinemaList/index';
+import AddCinema from 'views/Admin/AddCinema/index';
+import AddMovie from 'views/Admin/AddMovie/index';
+import MovieList from 'views/Admin/MovieList/index';
+import CinemaInfo from 'views/Admin/CinemaInfo/index';
 
 // /admin/*
 

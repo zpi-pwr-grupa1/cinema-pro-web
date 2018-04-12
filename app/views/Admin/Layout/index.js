@@ -4,7 +4,7 @@ import Layout from 'components/Layout';
 import Header from 'components/Header';
 import SideBar from 'components/Sidebar';
 
-import Views from 'views/Admin/Views';
+import Views from 'views/Admin/index';
 import Footer from "components/Footer";
 
 class AdminLayout extends Component {
