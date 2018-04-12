@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {MuiThemeProvider, Snackbar, TextField} from 'material-ui';
+import { MuiThemeProvider, Snackbar, TextField } from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
 
@@ -57,7 +57,6 @@ class AddCinema extends Component {
 
     cinema.get(this.cinemaId)
       .then(response => {
-       console.log(response);
         this.setState({
           ...this.state,
           form: response.data
@@ -75,7 +74,7 @@ class AddCinema extends Component {
         ...this.state,
         snackbar: true
       }))
-    this.cleanForm();
+      this.cleanForm();
   }
 
   onInputChange = (event) => {
