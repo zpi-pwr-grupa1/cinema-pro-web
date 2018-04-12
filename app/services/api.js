@@ -1,5 +1,14 @@
 import axios from 'config/axios';
 
+export const user = {
+  register: (form) => (
+    axios.post('/user/register', form)
+  ),
+  login: (form) => (
+    axios.post('/user/login', form)
+  )
+}
+
 export const cinema = {
   all: () => (
     axios.get('/cinema/get/all')
