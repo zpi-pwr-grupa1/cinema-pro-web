@@ -1,14 +1,19 @@
 @import "~bulma";
 
 .header-container {
+  display: flex;
+  justify-content: space-between;
   font-weight: 900;
   font-size: 50px;
   background: $dark;
   color: white;
   padding: 20px 100px;
-  text-align: right;
 
-  span {
-    right: 200px;
-  }
+}
+
+.menu-button {
+  font-size: 15px;
+  height: 30px;
+  margin: auto 175px;
+  font-weight: 700;
 }

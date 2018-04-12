@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './styles.scss';
-import {MuiThemeProvider} from "material-ui";
+import { MuiThemeProvider } from "material-ui";
 
 const Page = (props) => (
   <MuiThemeProvider>

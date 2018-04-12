@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import './styles.scss';
+import { MuiThemeProvider } from "material-ui";
+import RaisedButton from 'material-ui/RaisedButton';
 
 const Header = (props) => (
-  <div className="header-container">
-    <span>CinemaPro</span>
-    <i className="fas fa-video"/>
-    {/*<button onClick={ () => props.toggleSidebar() }>toggle</button>*/}
-  </div>
+  <MuiThemeProvider>
+    <div className="header-container">
+      <RaisedButton
+        className="menu-button"
+        onClick={ () => props.toggleSidebar() } >
+        MENU
+      </RaisedButton>
+      <span>CinemaPro</span>
+    </div>
+  </MuiThemeProvider>
 );
 
 export default Header;
