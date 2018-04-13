@@ -1,30 +1,51 @@
 import React, {Component} from 'react';
 import './index.scss';
-import {List, ListItem, ListItemText } from 'material-ui/List';
+import {List, ListItem} from 'material-ui/List';
+import {MuiThemeProvider} from "material-ui";
+import {cinema} from "services/api";
 
 class Home extends Component {
 
-  componentDidMount() {}
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cinemas: [],
+    };
+  }
+
+  componentDidMount() {
+    cinema.all()
+      .then(response => {
+        this.setState({
+          ...this.state,
+          cinemas: response.data.map(cinema => cinema.name)
+        })
+      })
+  }
 
   render() {
     return (
-      <div className="home-view">
+      <MuiThemeProvider>
+        <div className="home-view">
 
-        <div className="box">
-          <h1>Wybierz swoje kino</h1>
+          <div className="box">
+            <h1>Wybierz kino</h1>
 
-          {/*<List component="nav">*/}
-            {/*<ListItem button>*/}
-              {/*<ListItemText primary="Trash" />*/}
-            {/*</ListItem>*/}
-            {/*<ListItem button component="a" href="#simple-list">*/}
-              {/*<ListItemText primary="Spam" />*/}
-            {/*</ListItem>*/}
-          {/*</List>*/}
+            <List className="cinema-list">
+              {
+                this.state.cinemas
+                  .map(cinema=>
+                    <ListItem primaryText={cinema} key={cinema} />
+                  )
+              }
+
+            </List>
+
+          </div>
 
         </div>
-
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

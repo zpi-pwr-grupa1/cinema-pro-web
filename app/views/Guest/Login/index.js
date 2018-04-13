@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import './index.scss';
-import * as axios from "axios/index";
 import {user} from "services/api";
+import {auth} from "services/auth";
+
 
 class Login extends Component {
   constructor(props) {
@@ -26,7 +27,10 @@ class Login extends Component {
 
   handleSubmit(event) {
     return user.login(this.state.form)
-      .then(data => alert('wow, it succeeded'))
+      .then(data => {
+        auth.authenticate(data);
+        this.props.history.push('/admin');
+      })
       .catch(err => alert('server respond with err: ' + err))
   }
 

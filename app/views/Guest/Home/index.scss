@@ -12,7 +12,7 @@
   .box {
     color: white;
     height: 300px;
-    width: 400px;
+    width: 600px;
     opacity: 0.9;
 
     display: flex;
@@ -21,7 +21,21 @@
 
     border: 1px solid;
     border-radius: 5px;
-    padding: 30px;
+    padding: 30px 100px;
     background: $dark;
+
+    h1 {
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .cinema-list {
+      background: $light;
+      height: 250px;
+      overflow: auto;
+      border-radius: 5px;
+    }
   }
 }
