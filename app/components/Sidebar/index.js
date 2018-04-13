@@ -2,12 +2,10 @@ import React from 'react';
 import './styles.scss';
 import PersistentDrawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
-import { MuiThemeProvider ,Paper } from "material-ui";
 
 import Navigation from 'components/Navigation';
 
 const SideBar = (props) => (
-  <MuiThemeProvider>
     <PersistentDrawer
      className="sidebar" 
      width={250}
@@ -20,7 +18,6 @@ const SideBar = (props) => (
       />
       <Navigation />
     </PersistentDrawer>
-  </MuiThemeProvider>
 );
 
 export default SideBar;

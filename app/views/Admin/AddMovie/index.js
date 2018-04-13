@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import {MuiThemeProvider, Snackbar, TextField} from 'material-ui';
-import RaisedButton from 'material-ui/RaisedButton';
+import React, {Component} from 'react';
+import {Snackbar, TextField} from 'material-ui';
 import './index.scss'
 
-import { movie } from 'services/api';
+import {movie} from 'services/api';
 import Page from 'components/Page';
-import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
+import Button from "material-ui/es/Button/Button";
 
 const hideAutoFillColorStyle = {
   WebkitBoxShadow: '0 0 0 1000px white inset'
@@ -197,7 +196,7 @@ class AddMovie extends Component {
                 inputStyle={hideAutoFillColorStyle}
                 hintStyle={hintStyle} 
               />
-              <RaisedButton className="add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
+              <Button className="add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
             </div>
         </Form>
 		

@@ -1,3 +1,27 @@
-.home-view {
+@import "~bulma";
 
+.home-view {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh - 115px);
+  justify-content: center;
+  align-items: center;
+  background-image: url("/assets/images/cinema.jpeg");
+  background-size: cover;
+
+  .box {
+    color: white;
+    height: 300px;
+    width: 400px;
+    opacity: 0.9;
+
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 30px;
+    background: $dark;
+  }
 }

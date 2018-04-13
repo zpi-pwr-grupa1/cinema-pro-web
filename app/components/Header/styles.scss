@@ -8,7 +8,16 @@
   background: $dark;
   color: white;
   padding: 20px 100px;
+  box-shadow: 0 8px 6px -6px black;
 
+  a {
+    color: white!important;
+
+    i {
+      font-size: 40px;
+      margin: auto;
+    }
+  }
 }
 
 .menu-button {

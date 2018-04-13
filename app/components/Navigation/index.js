@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from "material-ui/es/Button/Button";
 
 const adminNav = [{
     key: 0,
@@ -46,10 +45,9 @@ const Navigation = (props) => {
   <div className="navigation-wrapper">
       {navigations[props.role].map((element) => (
         <div key={element.key} className="navigation-item">
-          <MuiThemeProvider>
-            {element.url ? 
+            {element.url ?
               <NavLink to={element.url}>
-                <RaisedButton
+                <Button
                   label={element.name}
                   labelPosition="after"
                   backgroundColor="#363636"
@@ -57,7 +55,7 @@ const Navigation = (props) => {
                   style={styles.button}
                 />
               </NavLink> : 
-              <RaisedButton
+              <Button
                 label={element.name}
                 labelPosition="after"
                 backgroundColor="#363636"
@@ -66,7 +64,6 @@ const Navigation = (props) => {
                 style={styles.button}
               />
             }
-        </MuiThemeProvider>
         </div>
       ))}
     </div>

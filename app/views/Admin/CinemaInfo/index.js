@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './index.scss'
 import { Link } from "react-router-dom";
-import RaisedButton from 'material-ui/RaisedButton';
 
 import { cinema } from 'services/api';
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
+import Button from "material-ui/es/Button/Button";
 
 class CinemaInfo extends Component {
   constructor(props) {
@@ -56,10 +56,10 @@ class CinemaInfo extends Component {
                 <p className="info-txt">{this.state.form.email}</p>
                 <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
                 <Link to={'/admin/cinemas/new/'+this.cinemaId}>
-                  <RaisedButton className="cinema-btn" label="Dodaj" />
+                  <Button className="cinema-btn" label="Dodaj" />
                 </Link>
                 <Link to={'/admin/cinemas/'+this.cinemaId}>
-                  <RaisedButton className="cinema-btn" label="Edytuj" />
+                  <Button className="cinema-btn" label="Edytuj" />
                 </Link>
               </div>
           </div>
