@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './styles.scss';
+import { MuiThemeProvider } from "material-ui";
+import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from "react-router-dom";
-import Button from "material-ui/es/Button/Button";
 
 const Header = (props) => (
+  <MuiThemeProvider>
     <div className="header-container">
       {/*<button className="button">Zaloguj się</button>*/}
-      <Button
+      <RaisedButton
         className="menu-button"
         onClick={ () => props.toggleSidebar() } >
         MENU
-      </Button>
+      </RaisedButton>
       <Link to={'/'} >CinemaPro <i className="material-icons">movie</i></Link>
     </div>
+  </MuiThemeProvider>
 );
 
 export default Header;

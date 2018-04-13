@@ -1,5 +1,6 @@
 import React from 'react';
 import './styles.scss';
+// import packageJson from  '../../../package'
 
 const Footer = (props) => (
 	<footer className="footer">

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './index.scss'
 import { Link } from "react-router-dom";
+import RaisedButton from 'material-ui/RaisedButton';
 
 import { cinema } from 'services/api';
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
-import Button from "material-ui/es/Button/Button";
 
 class CinemaInfo extends Component {
   constructor(props) {
@@ -50,18 +50,18 @@ class CinemaInfo extends Component {
         <div className="cinema-info-wrapper">
           <div className="cinema-info-txt">
             <h1 className="cinema-header">{this.state.form.name}</h1>
-              <div>
-                <p className="info-txt">{this.state.form.description}</p>
-                <p className="info-txt">{this.state.form.telephone}</p>
-                <p className="info-txt">{this.state.form.email}</p>
-                <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
-                <Link to={'/admin/cinemas/new/'+this.cinemaId}>
-                  <Button className="cinema-btn" label="Dodaj" />
-                </Link>
-                <Link to={'/admin/cinemas/'+this.cinemaId}>
-                  <Button className="cinema-btn" label="Edytuj" />
-                </Link>
-              </div>
+            <div>
+              <p className="info-txt">{this.state.form.description}</p>
+              <p className="info-txt">{this.state.form.telephone}</p>
+              <p className="info-txt">{this.state.form.email}</p>
+              <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
+              <Link to={'/admin/cinemas/new/'+this.cinemaId}>
+                <RaisedButton className="cinema-btn" label="Dodaj" />
+              </Link>
+              <Link to={'/admin/cinemas/'+this.cinemaId}>
+                <RaisedButton className="cinema-btn" label="Edytuj" />
+              </Link>
+            </div>
           </div>
           <div className="cinema-info-img">
             <img src="/assets/images/cinema.jpg" />

@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
-import {Snackbar, TextField} from 'material-ui';
+import React, { Component } from 'react';
+import {MuiThemeProvider, Snackbar, TextField} from 'material-ui';
+import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
 
-import {movie} from 'services/api';
+import { movie } from 'services/api';
 import Page from 'components/Page';
+import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
-import Button from "material-ui/es/Button/Button";
 
 const hideAutoFillColorStyle = {
   WebkitBoxShadow: '0 0 0 1000px white inset'
-};  
-const hintStyle = { 
-  zIndex: '1' 
+};
+const hintStyle = {
+  zIndex: '1'
 };
 
 class AddMovie extends Component {
@@ -31,7 +32,7 @@ class AddMovie extends Component {
         director: '',
         movieCast: '',
       },
-	  snackbar: false,
+      snackbar: false,
       error: '',
     };
   }
@@ -54,11 +55,11 @@ class AddMovie extends Component {
   }
 
   componentDidMount() {
-	if(!this.movieId) {
+    if(!this.movieId) {
       return;
     }
-	
-	movie.get(this.movieId)
+
+    movie.get(this.movieId)
       .then(response => {
         console.log(response);
         this.setState({
@@ -67,7 +68,7 @@ class AddMovie extends Component {
         })
       })
   }
-  
+
   get movieId() {
     return this.props.match.params.id;
   }
@@ -84,9 +85,9 @@ class AddMovie extends Component {
   onInputChange = (event) => {
     const { name, value } = event.target;
     this.setState({ form: {
-      ...this.state.form,
-      [name]: value,
-    }});
+        ...this.state.form,
+        [name]: value,
+      }});
   }
 
   render() {
@@ -94,113 +95,113 @@ class AddMovie extends Component {
       <Page>
         <Form>
           <h1>{this.movieId ? 'Edytuj ' + this.state.form.title : 'Dodawanie filmu'}</h1>
-           <div>
-              <TextField
-                name="title"                
-                floatingLabelText="Tytuł:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.title}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-                <TextField
-                name="age"
-                floatingLabelText="Rok:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.age}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-                <TextField
-                name="country"
-                floatingLabelText="Kraj:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.country}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-                <TextField
-                name="runTime"
-                floatingLabelText="Czas trwania:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.runTime}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-                />
-              <TextField
-                name="director"
-                floatingLabelText="Reżyseria:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.director}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-              <TextField
-                name="movieCast"
-                floatingLabelText="Obsada:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                multiLine={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.movieCast}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-              <TextField
-                name="storyline"
-                floatingLabelText="Opis:"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.storyline}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-              <TextField
-                name="polishReleaseDate"
-                floatingLabelText="Premiera(Polska):"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.polishReleaseDate}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-              <TextField
-                name="worldReleaseDate"
-                floatingLabelText="Premiera(Świat):"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.worldReleaseDate}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-              <TextField
-                name="imgURL"
-                floatingLabelText="Plakat (url):"
-                fullWidth={true}
-                floatingLabelFixed={true}
-                onChange={this.onInputChange}
-				        value={this.state.form.imgURL}
-                inputStyle={hideAutoFillColorStyle}
-                hintStyle={hintStyle} 
-              />
-              <Button className="add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
-            </div>
+          <div>
+            <TextField
+              name="title"
+              floatingLabelText="Tytuł:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.title}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="age"
+              floatingLabelText="Rok:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.age}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="country"
+              floatingLabelText="Kraj:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.country}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="runTime"
+              floatingLabelText="Czas trwania:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.runTime}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="director"
+              floatingLabelText="Reżyseria:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.director}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="movieCast"
+              floatingLabelText="Obsada:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              multiLine={true}
+              onChange={this.onInputChange}
+              value={this.state.form.movieCast}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="storyline"
+              floatingLabelText="Opis:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.storyline}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="polishReleaseDate"
+              floatingLabelText="Premiera(Polska):"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.polishReleaseDate}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="worldReleaseDate"
+              floatingLabelText="Premiera(Świat):"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.worldReleaseDate}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name="imgURL"
+              floatingLabelText="Plakat (url):"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              onChange={this.onInputChange}
+              value={this.state.form.imgURL}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <RaisedButton className="add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
+          </div>
         </Form>
-		
-		    <Snackbar
+
+        <Snackbar
           open={this.state.snackbar}
           message={this.movieId ? 'Pomyślnie edytowano film' : 'Pomyślnie dodano film'}
           autoHideDuration={2000}
