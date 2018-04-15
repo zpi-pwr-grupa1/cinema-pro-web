@@ -36,7 +36,7 @@ class AddCinema extends Component {
   }
 
   cleanForm = () => {
-    this.setState({
+    !this.cinemaId && this.setState({
       form: {
         name: '',
         street: '',
