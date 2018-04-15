@@ -17,14 +17,22 @@ const adminNav = [{
   url: "/admin/cinemas/new/"
 }, {
   key: 3,
+  name: "Seanse",
+  url: "/admin/showtimes/"
+}, {
+  key: 4,
+  name: "Seans +",
+  url: "/admin/showtimes/new"
+}, {
+  key: 5,
   name: "Filmy",
   url: "/admin/movies/"
 }, {
-  key: 4,
-  name: "Filmy +",
+  key: 6,
+  name: "Film +",
   url: "/admin/movies/new"
 }, {
-  key: 5,
+  key: 7,
   name: "Wyloguj",
   url: "",
   method: () => false

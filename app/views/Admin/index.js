@@ -8,6 +8,8 @@ import AddCinema from 'views/Admin/AddCinema/index';
 import AddMovie from 'views/Admin/AddMovie/index';
 import MovieList from 'views/Admin/MovieList/index';
 import CinemaInfo from 'views/Admin/CinemaInfo/index';
+import Showtimes from 'views/Admin/Showtimes/index';
+import AddShowtime from 'views/Admin/AddShowtime/index';
 
 // /admin/*
 
@@ -25,6 +27,10 @@ const Views = (props) => {
       <Route path='/admin/movies/:id' component={AddMovie} />
 
       <Route exact path='/admin/cinema/:id' component={CinemaInfo} />
+
+      <Route exact path='/admin/showtimes' component={Showtimes} />
+      <Route path ='/admin/showtimes/new' component={AddShowtime} />
+      <Route path ='/admin/showtimes/:id' component={Showtimes} />
     </Switch>
   )
 };

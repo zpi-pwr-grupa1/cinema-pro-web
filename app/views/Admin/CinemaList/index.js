@@ -32,7 +32,7 @@ class CinemaList extends Component {
 						<div className="hero-body">
 							<div className="container">
 								<h1 className="title">
-									    Lista wszystkich kin
+								  Lista wszystkich kin
 								</h1>
 							</div>
 						</div>
@@ -48,7 +48,6 @@ class CinemaList extends Component {
 											<Link to={'/admin/cinema/'+cinema.id} key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
 												<article className="tile is-child notification is-dark">
 													<p className="title">{cinema.name}</p>
-													<p className="subtitle">{cinema.description}</p>
 												</article>
 											</Link>
 										)}

@@ -55,11 +55,11 @@ class CinemaInfo extends Component {
               <p className="info-txt">{this.state.form.telephone}</p>
               <p className="info-txt">{this.state.form.email}</p>
               <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
-              <Link to={'/admin/cinemas/new/'+this.cinemaId}>
-                <RaisedButton className="cinema-btn" label="Dodaj" />
+              <Link to={'/admin/showtimes/'+this.cinemaId}>
+                <RaisedButton className="cinema-btn" label="Lista seansów" />
               </Link>
               <Link to={'/admin/cinemas/'+this.cinemaId}>
-                <RaisedButton className="cinema-btn" label="Edytuj" />
+                <RaisedButton className="cinema-btn" label="Edytuj informacje o kinie" />
               </Link>
             </div>
           </div>

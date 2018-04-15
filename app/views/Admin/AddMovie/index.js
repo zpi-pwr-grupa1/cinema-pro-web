@@ -105,6 +105,7 @@ class AddMovie extends Component {
               value={this.state.form.title}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              hintText="Tytuł filmu"
             />
             <TextField
               name="age"

@@ -6,7 +6,6 @@
     height: calc(100vh - 115px);
     justify-content: center;
     align-items: center;
-    background-image: url("/assets/images/curtain.jpg");
     background-repeat: no-repeat;
     background-size: 100% 50%;
     filter: drop-shadow( 0 0 15px #000 );
@@ -54,9 +53,6 @@
     max-width:300px;
     opacity: 0.8;
     background: $dark;
-    -webkit-box-shadow: 0 35px 20px $dark;
-    -moz-box-shadow: 0 35px 20px $dark;
-    box-shadow: 0 35px 20px $dark;
     -webkit-transform: rotate(-8deg);
     -moz-transform: rotate(-8deg);
     -o-transform: rotate(-8deg);
