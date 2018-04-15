@@ -38,7 +38,7 @@ class AddMovie extends Component {
   }
 
   cleanForm = () => {
-    this.setState({
+		!this.movieId && this.setState({
       form: {
         title: '',
         age: '',
