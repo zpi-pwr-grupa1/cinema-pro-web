@@ -1,7 +1,21 @@
 .navigation-wrapper {
+
 	.navigation-link {
 		padding: 20px 30px;
 		color: black;
 		border-bottom: 1px solid black;
+
+		&:hover {
+			color: gray;
+		}
+	}
+
+	.logout-btn {
+		margin-left: 32px;
+	}
+
+	.navigation-item:last-child {
+		position: absolute;
+		bottom: 85px;
 	}
 }

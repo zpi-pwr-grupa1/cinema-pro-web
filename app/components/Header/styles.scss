@@ -1,6 +1,10 @@
 @import "~bulma";
 
 .header-container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   font-weight: 900;
@@ -8,7 +12,7 @@
   background: $dark;
   color: white;
   padding: 20px 100px 20px 45px;
-  box-shadow: 0 8px 6px -6px black;
+  //box-shadow: 0 8px 6px -6px black;
 
   a {
     color: white!important;

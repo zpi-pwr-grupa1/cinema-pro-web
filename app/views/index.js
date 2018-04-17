@@ -6,8 +6,15 @@ import History from 'services/history';
 import HomeLayout from 'views/Guest/Layout';
 // Admin
 import AdminLayout from 'views/Admin/Layout/index';
+import {auth} from "services/auth";
 
 class App extends Component {
+
+	constructor() {
+		super()
+		auth.init(History)
+	}
+
 	render() {
 		return (
 			<Router history={History}>

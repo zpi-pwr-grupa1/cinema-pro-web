@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { MuiThemeProvider } from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import "./styles.scss"
+import {auth} from "services/auth";
 
 const adminNav = [{
   key: 0,
@@ -20,33 +21,31 @@ const adminNav = [{
   key: 3,
   name: "Wyloguj",
   url: "",
-  method: () => false
+  method: (context) => auth.logout()
 }];
 
 const navigations = {
   admin: adminNav
 };
 
-const styles = {
-};
-
-const Navigation = (props) => {
+const Navigation = (props, context) => {
   return (
     <div className="navigation-wrapper">
       {navigations[props.role].map((element) => (
-        <div key={element.key} className="navigation-item">
+        auth.user && <div key={element.key} className="navigation-item">
           <MuiThemeProvider>
-            {element.url ?
+            {
+              element.url ?
               <NavLink to={element.url}>
                 <div className="navigation-link">{element.name}</div>
               </NavLink> :
               <RaisedButton
+                className="logout-btn"
                 label={element.name}
                 labelPosition="after"
                 backgroundColor="#363636"
                 labelColor="#FFFFFF"
-                onClick={element.method}
-                style={styles.button}
+                onClick={() => element.method(context)}
               />
             }
           </MuiThemeProvider>
@@ -57,7 +56,7 @@ const Navigation = (props) => {
 }
 
 Navigation.defaultProps = {
-  role: 'admin'
+  role: 'admin',
 };
 
 export default Navigation;
