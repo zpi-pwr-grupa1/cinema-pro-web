@@ -1,0 +1,18 @@
+.sidebar {
+	> div {
+		margin-top: 60px;
+
+		> div:first-child {
+			display: flex;
+			height: 55px;
+
+			h1 {
+				margin-top: 100px;
+			}
+
+			i {
+				margin-left: 60px;
+			}
+		}
+	}
+}

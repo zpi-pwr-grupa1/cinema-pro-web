@@ -27,7 +27,7 @@ class Home extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="home-view">
+        <div className="page-container home-view">
 
           <div className="box">
             <h1>Wybierz kino</h1>

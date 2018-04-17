@@ -7,7 +7,7 @@
   font-size: 50px;
   background: $dark;
   color: white;
-  padding: 20px 100px;
+  padding: 20px 100px 20px 45px;
   box-shadow: 0 8px 6px -6px black;
 
   a {
@@ -17,16 +17,6 @@
       font-size: 40px;
       margin: auto;
     }
-  }
-
-  .button-group {
-    width: 200px;
-    display: inline-block;
-    margin-left: 175px;
-  }
-
-  .button {
-    margin: 2px;
   }
 
 }

@@ -37,8 +37,7 @@
     }
 }
 
-.effect5
-{
+.effect5 {
     position: relative;
 }
 .effect5:before, .effect5:after
@@ -53,6 +52,9 @@
     max-width:300px;
     opacity: 0.8;
     background: $dark;
+    -webkit-box-shadow: 0 35px 20px $dark;
+    -moz-box-shadow: 0 35px 20px $dark;
+    box-shadow: 0 35px 20px $dark;
     -webkit-transform: rotate(-8deg);
     -moz-transform: rotate(-8deg);
     -o-transform: rotate(-8deg);
