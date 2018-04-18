@@ -1,19 +1,6 @@
 .sidebar {
-	> div {
-		margin-top: 60px;
-		background: #fafafa!important;
-
-		> div:first-child {
-			display: flex;
-			height: 55px;
-
-			h1 {
-				margin-top: 100px;
-			}
-
-			i {
-				margin-left: 60px;
-			}
-		}
-	}
+  display: flex;
+  justify-content: flexstart;
+  align-items: center;
+  width: 50px;
 }

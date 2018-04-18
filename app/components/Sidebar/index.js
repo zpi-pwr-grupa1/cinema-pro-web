@@ -1,25 +1,26 @@
 import React from 'react';
-import './styles.scss';
 import AppBar from 'material-ui/AppBar';
-import {Drawer, MuiThemeProvider} from "material-ui";
-
+import { MuiThemeProvider ,Paper } from "material-ui";
+import PersistentDrawer from 'material-ui/Drawer';
+import './styles.scss';
+ 
 import Navigation from 'components/Navigation';
 
-const SideBar = (props) => (
-  <MuiThemeProvider>
-    <Drawer
-      className="sidebar"
-      width={170}
-      open={ true }
-      docked={true}
+ const SideBar = (props) => (
+   <MuiThemeProvider>
+    <PersistentDrawer
+     className="sidebar" 
+     width={250}
+     open={true} 
+     docked={true}
     >
-      <AppBar
-        title={<i className='material-icons'>menu</i>} style={{backgroundColor: "#363636"}}
+      <AppBar 
+        title="Menu" style={{backgroundColor: "#363636"}} 
         showMenuIconButton={false}
       />
       <Navigation />
-    </Drawer>
-  </MuiThemeProvider>
-);
+    </PersistentDrawer>
+   </MuiThemeProvider>
+ );
 
-export default SideBar;
+ export default SideBar;

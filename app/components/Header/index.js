@@ -8,7 +8,7 @@ import {auth} from "services/auth";
 const Header = (props) => (
   <MuiThemeProvider>
     <div className="header-container">
-			{!auth.user ? <Link to={'/login'} ><button className="button is-dark is-inverted is-outlined">Zaloguj się</button></Link> : <div></div>}
+			{!auth.user ? <Link to={'/login'} ><RaisedButton className="login-btn">Zaloguj się</RaisedButton></Link> : <div></div>}
       <Link to={'/'} >CinemaPro <i className="material-icons">movie</i></Link>
     </div>
   </MuiThemeProvider>
