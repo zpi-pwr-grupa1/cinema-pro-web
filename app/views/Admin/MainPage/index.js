@@ -2,6 +2,11 @@ import React, {Component} from 'react';
 import Page from 'components/Page';
 import splitEvery from "ramda/es/splitEvery";
 import './index.scss';
+import FontIcon from 'material-ui/FontIcon';
+
+const iconStyles = {
+  fontSize: 150,
+};
 
 class MainPage extends Component {
 
@@ -10,9 +15,9 @@ class MainPage extends Component {
   render() {
     return (
       <Page>
-        <div>
-          <h1>Administrator</h1>
-        </div>
+      <div className="aaa">
+        <FontIcon className="material-icons" style={iconStyles}>home</FontIcon>
+      </div>
       </Page>
     )
   }

@@ -2,43 +2,38 @@ import React, { Component } from 'react';
 import './index.scss'
 import { Link } from "react-router-dom";
 import RaisedButton from 'material-ui/RaisedButton';
+import {Tabs, Tab} from 'material-ui/Tabs';
 
 import { cinema } from 'services/api';
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
+import Cinema from 'components/information/Cinema';
+import Showtime from 'components/information/Showtime';
+import Hall from 'components/information/Hall';
+
+const styles = {
+  headline: {
+    fontSize: 24,
+    paddingTop: 16,
+    marginBottom: 12,
+    fontWeight: 400,
+  },
+};
 
 class CinemaInfo extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      form: {
-        name: '',
-        street: '',
-        streetNumber: '',
-        postCode: '',
-        city: '',
-        telephone: '',
-        email: '',
-        description: ''
-      },
-      snackbar: false,
-      error: '',
+      value: 'a',
     };
   }
 
-  componentDidMount() {
-    if(this.cinemaId) {
-      cinema.get(this.cinemaId)
-        .then(response => {
-          this.setState({
-            ...this.state,
-            form: response.data
-          })
-        })
-    }
-  }
+  handleChange = (value) => {
+    this.setState({
+      value: value,
+    });
+  };
 
   get cinemaId() {
     return this.props.match.params.id;
@@ -47,26 +42,22 @@ class CinemaInfo extends Component {
   render() {
     return (
       <Page>
-        <div className="cinema-info-wrapper">
-          <div className="cinema-info-txt">
-            <h1 className="cinema-header">{this.state.form.name}</h1>
-            <div>
-              <p className="info-txt">{this.state.form.description}</p>
-              <p className="info-txt">{this.state.form.telephone}</p>
-              <p className="info-txt">{this.state.form.email}</p>
-              <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
-              <Link to={'/admin/showtimes/'+this.cinemaId}>
-                <RaisedButton className="cinema-btn" label="Lista seansów" />
-              </Link>
-              <Link to={'/admin/cinemas/'+this.cinemaId}>
-                <RaisedButton className="cinema-btn" label="Edytuj informacje o kinie" />
-              </Link>
-            </div>
-          </div>
-          <div className="cinema-info-img">
-            <img src="/assets/images/cinema.jpg" />
-          </div>
-        </div>
+      <div className="cinema-info-wrapper">
+       <Tabs
+          value={this.state.value}
+          onChange={this.handleChange}
+        >
+          <Tab label="Informacje" value="a">
+            <Cinema />
+          </Tab>
+          <Tab label="Lista seansów" value="b">
+            <Showtime />
+          </Tab>
+          <Tab label="SALE" value="c">
+            <Hall />
+          </Tab>
+        </Tabs>
+      </div>
       </Page>
     )
   }
