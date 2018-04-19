@@ -6,16 +6,25 @@ import './styles.scss';
  
 import Navigation from 'components/Navigation';
 
+const styles = {
+  appbar: {
+    backgroundColor: "#363636",
+    height: 115,
+    paddingTop: 30,
+    paddingLeft: 70,
+  }
+};
+
  const SideBar = (props) => (
    <MuiThemeProvider>
     <PersistentDrawer
      className="sidebar" 
-     width={250}
+     width={200}
      open={true} 
      docked={true}
     >
       <AppBar 
-        title="Menu" style={{backgroundColor: "#363636"}} 
+        title="Menu" style={styles.appbar}
         showMenuIconButton={false}
       />
       <Navigation />

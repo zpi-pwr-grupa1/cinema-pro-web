@@ -36,7 +36,7 @@ class AddShowtime extends Component {
           <div>
             <TextField
               name=""
-              floatingLabelText="Kino:"
+              floatingLabelText="ID kina:"
               fullWidth={true}
               floatingLabelFixed={true}
               inputStyle={hideAutoFillColorStyle}
@@ -44,7 +44,7 @@ class AddShowtime extends Component {
             />
             <TextField
               name=""
-              floatingLabelText="Data:"
+              floatingLabelText="Nazwa kina:"
               fullWidth={true}
               floatingLabelFixed={true}
               inputStyle={hideAutoFillColorStyle}
@@ -52,7 +52,16 @@ class AddShowtime extends Component {
             />
             <TextField
               name=""
-              floatingLabelText="Sala:"
+              floatingLabelText="Data i czas rozpoczęcia seansu:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+              hintText="yyyy-mm-dd"
+            />
+            <TextField
+              name=""
+              floatingLabelText="Numer sali:"
               fullWidth={true}
               floatingLabelFixed={true}
               inputStyle={hideAutoFillColorStyle}
@@ -60,15 +69,7 @@ class AddShowtime extends Component {
             />
             <TextField
               name=""
-              floatingLabelText="Film:"
-              fullWidth={true}
-              floatingLabelFixed={true}
-              inputStyle={hideAutoFillColorStyle}
-              hintStyle={hintStyle}
-            />
-            <TextField
-              name=""
-              floatingLabelText="Godzina rozpoczęcia:"
+              floatingLabelText="Nazwa filmu:"
               fullWidth={true}
               floatingLabelFixed={true}
               inputStyle={hideAutoFillColorStyle}

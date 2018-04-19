@@ -29,8 +29,9 @@ const navigations = {
 
 const styles = {
   button: {
-    margin: 5,
-    width: 230,
+    marginTop: 5,
+    marginLeft: 5,
+    width: 190,
   }
 };
 

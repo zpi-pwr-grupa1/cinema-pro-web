@@ -31,7 +31,7 @@ class Hall extends Component {
     return (
       <div>
         <div className="container">
-          <Link to='/admin/halls/new' >
+          <Link to='/admin/halls/' >
             <button className="button add-button">Dodaj nową salę</button>
           </Link>
           <Table className="showtime-table" displaySelectAll={false} selectable={false}>

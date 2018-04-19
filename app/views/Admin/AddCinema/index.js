@@ -93,7 +93,7 @@ class AddCinema extends Component {
           <div>
             <TextField
               name="name"
-              floatingLabelText="Nazwa:"
+              floatingLabelText="Nazwa kina:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
@@ -113,7 +113,7 @@ class AddCinema extends Component {
             />
             <TextField
               name="streetNumber"
-              floatingLabelText="Nr:"
+              floatingLabelText="Numer lokalu:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
@@ -130,6 +130,7 @@ class AddCinema extends Component {
               value={this.state.form.postCode}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              hintText="xx-xxx"
             />
             <TextField
               name="city"
@@ -143,17 +144,18 @@ class AddCinema extends Component {
             />
             <TextField
               name="telephone"
-              floatingLabelText="Telefon:"
+              floatingLabelText="Telefon kontaktowy:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
               value={this.state.form.telephone}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              hintText="xxx-xxx-xxx"
             />
             <TextField
               name="email"
-              floatingLabelText="Email:"
+              floatingLabelText="Adres email:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
@@ -163,7 +165,7 @@ class AddCinema extends Component {
             />
             <TextField
               name="description"
-              floatingLabelText="Opis:"
+              floatingLabelText="Opis kina:"
               fullWidth={true}
               floatingLabelFixed={true}
               multiLine={true}

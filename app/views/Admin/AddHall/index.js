@@ -66,7 +66,7 @@ class AddHall extends Component {
     return (
       <Page>
         <Form>
-          <h1>{this.cinemaId ? 'Edytuj ' : 'Dodawanie filmu'}</h1>
+          <h1>{this.cinemaId ? 'Edytuj ' : 'Dodawanie sali'}</h1>
           <div>
             <TextField
               name=""
