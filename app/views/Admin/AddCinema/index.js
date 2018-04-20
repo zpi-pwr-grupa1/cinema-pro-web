@@ -88,8 +88,18 @@ class AddCinema extends Component {
   render() {
     return (
       <Page>
+				<div>
+					<section className="hero is-light">
+						<div className="hero-body">
+							<div className="container">
+								<h1 className="title">
+									{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodawanie kina'}
+								</h1>
+							</div>
+						</div>
+					</section>
+
         <Form>
-          <h1>{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodawanie kina'}</h1>
           <div>
             <TextField
               name="name"
@@ -184,6 +194,7 @@ class AddCinema extends Component {
           autoHideDuration={2000}
           onRequestClose={ () => { this.state.snackbar = false } }
         />
+        </div>
       </Page>
     )
   }

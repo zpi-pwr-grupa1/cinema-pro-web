@@ -34,6 +34,7 @@ class CinemaList extends Component {
 								<h1 className="title">
 								  Lista wszystkich kin
 								</h1>
+								<Link to='/admin/cinemas/new' className="button add-button"><i className="material-icons">add</i></Link>
 							</div>
 						</div>
 					</section>
@@ -45,19 +46,14 @@ class CinemaList extends Component {
 								<div key={index} className="tile is-parent">
 									{threeCinemas
 										.map(cinema =>
-											<Link to={'/admin/cinema/'+cinema.id} key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
+											<Link to={'/admin/cinemas/'+cinema.id} key={cinema.id} className="tile is-4 is-parent cinema-tile hvr-grow">
 												<article className="tile is-child notification is-dark">
 													<p className="title">{cinema.name}</p>
 												</article>
 											</Link>
 										)}
-
-									{ Math.floor(this.state.cinemas.length/3) === index
-										&& <Link to='/admin/cinemas/new' className="button add-button">+</Link>
-									}
 								</div>
 							)}
-
 
 					</div>
 				</div>
