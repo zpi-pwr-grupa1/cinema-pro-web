@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import Page from 'components/Page';
 import './index.scss';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, DropDownMenu, MenuItem} from "material-ui";
-import {Link} from "react-router-dom";
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
 import {cinema} from 'services/api';
 
 
@@ -25,7 +23,7 @@ class Showtime extends Component {
       })
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  // handleChange = (event, index, value) => this.setState({value});
 
   render() {
     return (

@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
 
-import { cinema } from 'services/api';
-import Input from 'components/FormElements/Input';
+import {cinema} from 'services/api';
 
 class Cinema extends Component {
   constructor(props) {
@@ -28,7 +26,7 @@ class Cinema extends Component {
 
   componentDidMount() {
     if(this.cinemaId) {
-      cinema.get(this.props.match.params.id)
+      cinema.get(this.cinemaId)
         .then(response => {
           this.setState({
             ...this.state,
@@ -37,6 +35,10 @@ class Cinema extends Component {
         })
     }
   }
+
+	get cinemaId() {
+		return this.props.id;
+	}
 
   render() {
     return (
@@ -48,13 +50,12 @@ class Cinema extends Component {
               <p className="info-txt">{this.state.form.telephone}</p>
               <p className="info-txt">{this.state.form.email}</p>
               <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
-              {/*<Link to={'/admin/cinemas/'+this.cinemaId}>*/}
-                <RaisedButton className="cinema-btn" label="Usuń kino" />
-              {/*</Link>*/}
+
+              <RaisedButton className="cinema-btn" label="Usuń kino" />
             </div>
           </div>
           <div className="cinema-info-img">
-            <img src="/assets/images/cinema.jpg" />
+            <img src={this.state.form.imgUrl} />
           </div>
         </div>
     )

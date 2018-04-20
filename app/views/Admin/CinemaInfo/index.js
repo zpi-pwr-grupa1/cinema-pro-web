@@ -80,9 +80,9 @@ class CinemaInfo extends Component {
 						onChange={this.handleChange}
 						className="tabstabs"
 					>
-						<Tab label="Szczegóły" value="a" style={styles.tabtab}><Cinema /></Tab>
-						<Tab label="Seanse" value="b" style={styles.tabtab} ><Showtime/></Tab>
-						<Tab label="Sale" value="c" style={styles.tabtab} ><Hall/></Tab>
+						<Tab label="Szczegóły" value="a" style={styles.tabtab}><Cinema id={this.cinemaId} /></Tab>
+						<Tab label="Seanse" value="b" style={styles.tabtab} ><Showtime id={this.cinemaId} /></Tab>
+						<Tab label="Sale" value="c" style={styles.tabtab} ><Hall id={this.cinemaId} /></Tab>
 					</Tabs>
 				</div>
 				</div>

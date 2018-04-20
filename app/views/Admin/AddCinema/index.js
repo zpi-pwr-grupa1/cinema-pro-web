@@ -65,7 +65,7 @@ class AddCinema extends Component {
   }
 
   get cinemaId() {
-    return this.props.match.params.id;
+    return this.props.id || this.props.match.params.id;
   }
 
   onHandleClick = () => {
@@ -93,7 +93,7 @@ class AddCinema extends Component {
 						<div className="hero-body">
 							<div className="container">
 								<h1 className="title">
-									{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodawanie kina'}
+									{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodaj nowe kino'}
 								</h1>
 							</div>
 						</div>
