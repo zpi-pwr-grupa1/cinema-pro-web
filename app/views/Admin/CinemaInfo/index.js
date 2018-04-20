@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './index.scss'
-import { Link } from "react-router-dom";
 import RaisedButton from 'material-ui/RaisedButton';
-import {Tabs, Tab} from 'material-ui/Tabs';
+import {Tab, Tabs} from 'material-ui/Tabs';
 
-import { cinema } from 'services/api';
+import {cinema} from 'services/api';
 import Page from 'components/Page';
-import Input from 'components/FormElements/Input';
-import Form from 'components/FormElements/Form';
-import Cinema from 'components/information/Cinema';
-import CinemaForm from 'components/information/addform/CinemaForm';
-import Showtime from 'components/information/Showtime';
-import ShowtimeForm from 'components/information/addform/ShowtimeForm';
-import Hall from 'components/information/Hall';
-import HallForm from 'components/information/addform/HallForm';
+import Cinema from 'components/Information/Cinema';
+import CinemaForm from 'components/Information/AddForm/CinemaForm';
+import Showtime from 'components/Information/Showtime';
+import ShowtimeForm from 'components/Information/AddForm/ShowtimeForm';
+import Hall from 'components/Information/Hall';
+import HallForm from 'components/Information/AddForm/HallForm';
 
 const styles = {
   button: {
@@ -80,9 +77,9 @@ class CinemaInfo extends Component {
 
 
   render() {
-    
+
     const isClicked = this.state.isClicked;
-    
+
     let button = null;
     let button2 = null;
     let button3 = null;
@@ -152,7 +149,7 @@ function Greeting3(props) {
 function ClickButton(props) {
   return (
     <RaisedButton
-      onClick={props.onClick} 
+      onClick={props.onClick}
       style={styles.button}
       label="Dodaj sale"
     >
@@ -162,8 +159,8 @@ function ClickButton(props) {
 
 function ClickedButton(props) {
   return (
-    <RaisedButton 
-      onClick={props.onClick} 
+    <RaisedButton
+      onClick={props.onClick}
       style={styles.button}
       label="Lista sal"
     >
@@ -174,7 +171,7 @@ function ClickedButton(props) {
 function ClickButton2(props) {
   return (
     <RaisedButton
-      onClick={props.onClick} 
+      onClick={props.onClick}
       style={styles.button}
       label="Dodaj seans"
     >
@@ -184,8 +181,8 @@ function ClickButton2(props) {
 
 function ClickedButton2(props) {
   return (
-    <RaisedButton 
-      onClick={props.onClick} 
+    <RaisedButton
+      onClick={props.onClick}
       style={styles.button}
       label="Lista seansów"
     >
@@ -196,7 +193,7 @@ function ClickedButton2(props) {
 function ClickButton3(props) {
   return (
     <RaisedButton
-      onClick={props.onClick} 
+      onClick={props.onClick}
       style={styles.button}
       label="Edytuj kino"
     >
@@ -206,8 +203,8 @@ function ClickButton3(props) {
 
 function ClickedButton3(props) {
   return (
-    <RaisedButton 
-      onClick={props.onClick} 
+    <RaisedButton
+      onClick={props.onClick}
       style={styles.button}
       label="Informacje o kinie"
     >

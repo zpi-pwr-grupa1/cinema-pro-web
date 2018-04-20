@@ -1,4 +1,9 @@
 .home-wrapper {
-  margin-left: 750px;
-  margin-top: 400px;
+  //margin-left: 750px;
+  //margin-top: 400px;
+  display: flex;
+  //justify-self: center;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
 }

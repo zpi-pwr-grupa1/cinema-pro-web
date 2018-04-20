@@ -3,4 +3,9 @@
 	min-height: calc(100vh - 260px);
 	margin-left: 170px;
 	position: relative;
+	display: flex;
+
+	> div {
+		width: 100%;
+	}
 }
