@@ -1,6 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
+import {Route, Switch} from 'react-router-dom';
 // Views
 import MainPage from 'views/Admin/MainPage/index';
 import CinemaList from 'views/Admin/CinemaList/index';
@@ -8,9 +7,6 @@ import AddCinema from 'views/Admin/AddCinema/index';
 import AddMovie from 'views/Admin/AddMovie/index';
 import MovieList from 'views/Admin/MovieList/index';
 import CinemaInfo from 'views/Admin/CinemaInfo/index';
-import Showtimes from 'views/Admin/Showtimes/index';
-import AddShowtime from 'views/Admin/AddShowtime/index';
-import AddHall from 'views/Admin/AddHall/index';
 
 // /admin/*
 

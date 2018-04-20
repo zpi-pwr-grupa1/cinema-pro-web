@@ -33,6 +33,18 @@ export const movie = {
   ),
 };
 
+export const showing = {
+  all: () => (
+    axios.get('/showing/get/all')
+  ),
+  update: (data) => (
+    axios.post('/showing/update', data)
+  ),
+	delete: (id) => (
+		axios.delete('/showing/delete/' + id)
+	)
+}
+
 export const hall = {
   all: () => (
     axios.get('/hall/get/all')
