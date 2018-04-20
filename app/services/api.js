@@ -32,3 +32,27 @@ export const movie = {
     axios.post('/movie/update', data)
   ),
 };
+
+export const hall = {
+  all: () => (
+    axios.get('/hall/get/all')
+  ),
+  get: (id) => (
+    axios.get(`/hall/get/${id}`)
+  ),
+  new: (data) => (
+    axios.post('/hall/update', data)
+  ),
+};
+
+export const seat = {
+  all: () => (
+    axios.get('/seat/get/all')
+  ),
+  get: (id) => (
+    axios.get(`/seat/get/${id}`)
+  ),
+  new: (data) => (
+    axios.post('/seat/update', data)
+  ),
+};

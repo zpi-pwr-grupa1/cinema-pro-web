@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import {cinema} from 'services/api';
 
 
-class Showtimes extends Component {
+class Showtime extends Component {
   constructor(props) {
     super(props);
 
@@ -29,28 +29,8 @@ class Showtimes extends Component {
 
   render() {
     return (
-      <Page class="showtime-list">
-        <section className="hero is-light">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title">
-                Lista seansów
-              </h1>
-            </div>
-          </div>
-        </section>
-
+      <div>
         <div className="container">
-        <Link to='/admin/showtimes/new' >
-          <button className="button add-button">Dodaj nowy seans</button>
-        </Link>
-        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-          {this.state.cinemas.map ((cinema) => (
-            <Link to={'/admin/showtimes/'+cinema.id} >
-              <MenuItem key={cinema.id} value={cinema.id} primaryText={cinema.name} />
-            </Link>
-          ))}
-        </DropDownMenu>
           <Table className="showtime-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
@@ -83,9 +63,9 @@ class Showtimes extends Component {
             </TableBody>
           </Table>
         </div>
-      </Page>
+      </div>
     )
   }
 }
 
-export default Showtimes;
+export default Showtime;

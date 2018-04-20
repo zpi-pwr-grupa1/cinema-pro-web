@@ -4,7 +4,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
 
 import { cinema } from 'services/api';
-import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
 
@@ -15,7 +14,7 @@ const hintStyle = {
   zIndex: '1'
 };
 
-class AddCinema extends Component {
+class CinemaForm extends Component {
   constructor(props) {
     super(props);
 
@@ -64,10 +63,6 @@ class AddCinema extends Component {
       })
   }
 
-  get cinemaId() {
-    return this.props.match.params.id;
-  }
-
   onHandleClick = () => {
     cinema.new(this.state.form)
       .then((response) => this.setState({
@@ -87,7 +82,6 @@ class AddCinema extends Component {
 
   render() {
     return (
-      <Page>
         <Form>
           <h1>{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodawanie kina'}</h1>
           <div>
@@ -177,16 +171,8 @@ class AddCinema extends Component {
             <RaisedButton className="add_button" label={this.cinemaId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
           </div>
         </Form>
-
-        <Snackbar
-          open={this.state.snackbar}
-          message={this.cinemaId ? 'Pomyślnie edytowano kino' : 'Pomyślnie dodano kino'}
-          autoHideDuration={2000}
-          onRequestClose={ () => { this.state.snackbar = false } }
-        />
-      </Page>
     )
   }
 }
 
-export default AddCinema;
+export default CinemaForm;

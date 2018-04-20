@@ -38,7 +38,7 @@ class AddMovie extends Component {
   }
 
   cleanForm = () => {
-		!this.movieId && this.setState({
+    !this.movieId && this.setState({
       form: {
         title: '',
         age: '',
@@ -98,28 +98,28 @@ class AddMovie extends Component {
           <div>
             <TextField
               name="title"
-              floatingLabelText="Tytuł:"
+              floatingLabelText="Tytuł filmu:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
               value={this.state.form.title}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
-              hintText="Tytuł filmu"
             />
             <TextField
               name="age"
-              floatingLabelText="Rok:"
+              floatingLabelText="Rok produkcji:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
               value={this.state.form.age}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              hintText="xxxx"
             />
             <TextField
               name="country"
-              floatingLabelText="Kraj:"
+              floatingLabelText="Kraj produkcji:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
@@ -129,7 +129,7 @@ class AddMovie extends Component {
             />
             <TextField
               name="runTime"
-              floatingLabelText="Czas trwania:"
+              floatingLabelText="Czas trwania (min.):"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
@@ -160,7 +160,7 @@ class AddMovie extends Component {
             />
             <TextField
               name="storyline"
-              floatingLabelText="Opis:"
+              floatingLabelText="Opis filmu:"
               fullWidth={true}
               floatingLabelFixed={true}
               onChange={this.onInputChange}
@@ -177,6 +177,7 @@ class AddMovie extends Component {
               value={this.state.form.polishReleaseDate}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              hintText="yyyy-mm-dd"
             />
             <TextField
               name="worldReleaseDate"
@@ -187,6 +188,7 @@ class AddMovie extends Component {
               value={this.state.form.worldReleaseDate}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              hintText="yyyy-mm-dd"
             />
             <TextField
               name="imgURL"

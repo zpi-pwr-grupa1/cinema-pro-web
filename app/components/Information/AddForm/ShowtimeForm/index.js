@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {MuiThemeProvider, Snackbar, TextField, RaisedButton } from 'material-ui';
 import './index.scss'
+import { showtime } from 'services/api';
+import { cinema } from 'services/api';
 
-import { movie } from 'services/api';
-import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
 
@@ -15,7 +15,7 @@ const hintStyle = {
 };
 
 
-class AddShowtime extends Component {
+class ShowtimeForm extends Component {
   constructor(props) {
     super(props);
 
@@ -25,14 +25,27 @@ class AddShowtime extends Component {
     };
   }
 
-  componentDidMount() {
+  onHandleClick = () => {
+    hall.new(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+        snackbar: true
+      }))
+    this.cleanForm();
+  }
+
+  onInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ form: {
+      ...this.state.form,
+      [name]: value,
+    }});
   }
 
   render() {
     return (
-      <Page>
-        <Form>
-          <h1>Dodawanie seansu</h1>
+      <Form>
+        <h1>{this.cinemaId ? 'Edytuj ' : 'Dodawanie seansu'}</h1>
           <div>
             <TextField
               name=""
@@ -77,10 +90,9 @@ class AddShowtime extends Component {
             />
             <RaisedButton className="add_button" label='Dodaj' />
           </div>
-        </Form>
-      </Page>
+      </Form>
     )
   }
 }
 
-export default AddShowtime;
+export default ShowtimeForm;

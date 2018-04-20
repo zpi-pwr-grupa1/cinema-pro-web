@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import {MuiThemeProvider, Snackbar, TextField, RaisedButton } from 'material-ui';
 import './index.scss'
+import { hall } from 'services/api';
+import { cinema } from 'services/api';
 
-import { movie } from 'services/api';
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
@@ -15,7 +16,7 @@ const hintStyle = {
 };
 
 
-class AddShowtime extends Component {
+class AddHall extends Component {
   constructor(props) {
     super(props);
 
@@ -26,38 +27,54 @@ class AddShowtime extends Component {
   }
 
   componentDidMount() {
+    if(!this.cinemaId) {
+      return;
+    }
+
+    cinema.get(this.cinemaId)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          ...this.state,
+          form: response.data
+        })
+      })
+  }
+
+  get cinemaId() {
+    return this.props.match.params.id;
+  }
+
+  onHandleClick = () => {
+    hall.new(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+        snackbar: true
+      }))
+    this.cleanForm();
+  }
+
+  onInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ form: {
+      ...this.state.form,
+      [name]: value,
+    }});
   }
 
   render() {
     return (
       <Page>
         <Form>
-          <h1>Dodawanie seansu</h1>
+          <h1>{this.cinemaId ? 'Edytuj ' : 'Dodawanie sali'}</h1>
           <div>
             <TextField
               name=""
-              floatingLabelText="ID kina:"
+              floatingLabelText="Kino:"
               fullWidth={true}
               floatingLabelFixed={true}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
-            />
-            <TextField
-              name=""
-              floatingLabelText="Nazwa kina:"
-              fullWidth={true}
-              floatingLabelFixed={true}
-              inputStyle={hideAutoFillColorStyle}
-              hintStyle={hintStyle}
-            />
-            <TextField
-              name=""
-              floatingLabelText="Data i czas rozpoczęcia seansu:"
-              fullWidth={true}
-              floatingLabelFixed={true}
-              inputStyle={hideAutoFillColorStyle}
-              hintStyle={hintStyle}
-              hintText="yyyy-mm-dd"
             />
             <TextField
               name=""
@@ -69,7 +86,15 @@ class AddShowtime extends Component {
             />
             <TextField
               name=""
-              floatingLabelText="Nazwa filmu:"
+              floatingLabelText="Liczba kolumn:"
+              fullWidth={true}
+              floatingLabelFixed={true}
+              inputStyle={hideAutoFillColorStyle}
+              hintStyle={hintStyle}
+            />
+            <TextField
+              name=""
+              floatingLabelText="Liczba rzędów:"
               fullWidth={true}
               floatingLabelFixed={true}
               inputStyle={hideAutoFillColorStyle}
@@ -83,4 +108,4 @@ class AddShowtime extends Component {
   }
 }
 
-export default AddShowtime;
+export default AddHall;
