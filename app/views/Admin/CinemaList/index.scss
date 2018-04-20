@@ -4,6 +4,16 @@
 		cursor: pointer;
 		height: 200px;
 
+		> article {
+			display: flex;
+
+			p {
+				align-self: center;
+				justify-content: center;
+				text-align: center
+			}
+		}
+
 		&:hover article {
 			box-shadow: 0 10px 6px -6px #777;
 		}
@@ -16,6 +26,4 @@
 		height: 100px;
 	}
 
-	.title {
-	}
 }

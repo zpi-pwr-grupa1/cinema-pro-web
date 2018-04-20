@@ -39,7 +39,7 @@ class MovieList extends Component {
 					</section>
 
 					<div className="container">
-						<button className="button add-button" onClick={() => this.props.history.push(`movies/new`)}>Dodaj nowy film</button>
+						<button className="button add-button" onClick={() => this.props.history.push(`/admin/movies/new`)}>Dodaj nowy film</button>
 
 						<Table className="movie-table" displaySelectAll={false} selectable={false}>
 							<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -64,7 +64,7 @@ class MovieList extends Component {
 												<TableRowColumn>{movie.director}</TableRowColumn>
 												<TableRowColumn>
 												<Link to={'/admin/movies/'+movie.id} key={movie.id}>
-													<button className="button">Edytuj</button>
+													<button className="button edit-btn">Edytuj</button>
 												</Link>
 												</TableRowColumn>
 											</TableRow>

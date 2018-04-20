@@ -5,12 +5,12 @@ import {Tab, Tabs} from 'material-ui/Tabs';
 
 import {cinema} from 'services/api';
 import Page from 'components/Page';
-import Cinema from 'components/Information/Cinema';
-import CinemaForm from 'components/Information/AddForm/CinemaForm';
-import Showtime from 'components/Information/Showtime';
-import ShowtimeForm from 'components/Information/AddForm/ShowtimeForm';
-import Hall from 'components/Information/Hall';
-import HallForm from 'components/Information/AddForm/HallForm';
+import Cinema from './Information/Cinema';
+import CinemaForm from './Information/AddForm/CinemaForm';
+import Showtime from './Information/Showtime';
+import ShowtimeForm from './Information/AddForm/ShowtimeForm';
+import Hall from './Information/Hall';
+import HallForm from './Information/AddForm/HallForm';
 
 const styles = {
   button: {

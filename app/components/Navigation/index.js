@@ -36,7 +36,7 @@ const Navigation = (props, context) => {
           <MuiThemeProvider>
             {
               element.url ?
-              <NavLink to={element.url}>
+              <NavLink exact={element.key === 0} to={element.url}>
                 <div className="navigation-link">{element.name}</div>
               </NavLink> :
               <RaisedButton

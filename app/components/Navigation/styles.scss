@@ -1,3 +1,5 @@
+@import "~bulma";
+
 .navigation-wrapper {
 
 	.navigation-link {
@@ -7,6 +9,14 @@
 
 		&:hover {
 			color: gray;
+		}
+	}
+
+	.active {
+		.navigation-link {
+			background: $dark;
+			color: white;
+			cursor: default;
 		}
 	}
 
