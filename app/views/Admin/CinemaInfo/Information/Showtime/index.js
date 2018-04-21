@@ -3,6 +3,7 @@ import './index.scss';
 import {RaisedButton, Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
 import {showing} from 'services/api';
 import ShowtimeForm from "views/Admin/CinemaInfo/Information/AddForm/ShowtimeForm";
+import moment from 'moment';
 
 class Showtime extends Component {
   constructor(props) {
@@ -51,15 +52,17 @@ class Showtime extends Component {
   render() {
 		if (this.state.isEdited) {
 		  return <div className="container">
-				<RaisedButton className="add_button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
+				<RaisedButton className="add-button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
 				<ShowtimeForm back={this.changeToEdit.bind(this)} form={this.state.showingEdited} />
       </div>
 		}
 
     return (
-      <div>
+      <div className="showtimes-list">
         <div className="container">
-					<RaisedButton className="add_button" label="Dodaj seans" onClick={() => this.changeToEdit()} />
+					<RaisedButton className="add-button is-pulled-right" label="Dodaj seans" onClick={() => this.changeToEdit()} />
+
+					<div className="is-clearfix"></div>
 
           <Table className="showtime-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
@@ -80,8 +83,9 @@ class Showtime extends Component {
 											<TableRowColumn>{show.id}</TableRowColumn>
 											<TableRowColumn>{show.movie.title}</TableRowColumn>
 											<TableRowColumn>{show.hall.id}</TableRowColumn>
+											<TableRowColumn>{moment(show.screeningStart).format("YYYY-MM-DD  hh:mm")}</TableRowColumn>
 
-											<TableRowColumn>
+											<TableRowColumn className="is-pulled-right">
                         <button className="button edit-btn" onClick={() => this.changeToEdit(show)}>Edytuj</button>
                         <button className="button edit-btn" onClick={() => this.onDelete(show.id)}>Usuń</button>
 											</TableRowColumn>
