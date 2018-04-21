@@ -57,6 +57,12 @@ class CinemaInfo extends Component {
     }
   }
 
+	deleteCinema() {
+  	cinema
+			.delete(this.cinemaId)
+			.then(() => this.props.history.push(`/admin/cinemas`))
+	}
+
   get cinemaId() {
     return this.props.match.params.id;
   }
@@ -70,7 +76,7 @@ class CinemaInfo extends Component {
 							<div className="container">
 								<h1 className="title is-pulled-left">{this.state.form.name}</h1>
 								<div className="button round-btn is-pulled-right">
-									<i className="material-icons">delete</i>
+									<i onClick={() => this.deleteCinema()} className="material-icons">delete</i>
 								</div>
 							</div>
 						</div>

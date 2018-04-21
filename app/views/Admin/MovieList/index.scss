@@ -1,14 +1,8 @@
 
 .movie-list {
 
-	.add-button {
-		margin: 20px;
-		justify-content: flex-end;
-	}
-
-	.container {
+	> .container {
 		margin-top: 20px;
-
 	}
 
 	.button {

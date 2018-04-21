@@ -29,11 +29,13 @@
     "humanize-duration": "^3.14.0",
     "material-ui": "~0.20.0",
     "material-ui-icons": "latest",
+    "moment": "^2.22.1",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "react-x-editable": "0.0.9-beta"
   },
   "devDependencies": {
     "babel": "^6.23.0",

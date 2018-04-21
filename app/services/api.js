@@ -11,7 +11,7 @@ export const user = {
 
 export const cinema = {
   all: () => (
-    axios.get('/cinema/get/all')
+    axios.get('/cinema/get/all/visible')
   ),
   get: (id) => (
     axios.get(`/cinema/get/${id}`)
@@ -19,6 +19,9 @@ export const cinema = {
   new: (data) => (
     axios.post('/cinema/update', data)
   ),
+	delete: (id) => (
+		axios.delete(`/cinema/delete/${id}`)
+	),
 };
 
 export const movie = {
