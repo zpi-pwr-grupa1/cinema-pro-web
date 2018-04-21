@@ -44,15 +44,16 @@ class Cinema extends Component {
     return (
         <div className="cinema-info-wrapper">
           <div className="cinema-info-txt">
-            <h1 className="cinema-header">{this.state.form.name}</h1>
-            <div>
-              <p className="info-txt">{this.state.form.description}</p>
-              <p className="info-txt">{this.state.form.telephone}</p>
-              <p className="info-txt">{this.state.form.email}</p>
-              <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
+            <span className="label">Opis:</span>
+            <p className="info-txt">{this.state.form.description}</p>
+						<span className="label">Telefon:</span>
+            <p className="info-txt">{this.state.form.telephone}</p>
+						<span className="label">Email:</span>
+            <p className="info-txt">{this.state.form.email}</p>
+						<span className="label">Ulica:</span>
+            <p className="info-txt">{this.state.form.street} {this.state.form.streetNumber}, {this.state.form.postCode} {this.state.form.city}</p>
 
-              <RaisedButton className="cinema-btn" label="Usuń kino" />
-            </div>
+            <RaisedButton className="edit" label="Edytuj" />
           </div>
           <div className="cinema-info-img">
             <img src={this.state.form.imgUrl} />

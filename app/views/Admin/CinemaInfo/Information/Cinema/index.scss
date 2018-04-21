@@ -6,14 +6,26 @@
 }
 
 .info-txt {
-  margin-bottom: 5px;
+  margin: 0 0 10px;
+}
+
+.label {
+  margin-bottom: 0!important;
+}
+
+.cinema-info-txt {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
 }
 
 .cinema-header {
   margin: 0 auto !important;
 }
 
-.cinema-btn {
-  margin: 2px;
-  min-width: 170px;
+.edit {
+  display: flex;
+  margin-top: auto;
+  align-content: space-between;
+  width: 50%;
 }

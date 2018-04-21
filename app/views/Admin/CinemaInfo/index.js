@@ -68,9 +68,10 @@ class CinemaInfo extends Component {
 					<section className="hero is-light">
 						<div className="hero-body">
 							<div className="container">
-								<h1 className="title">
-									{this.state.form.name}
-								</h1>
+								<h1 className="title is-pulled-left">{this.state.form.name}</h1>
+								<div className="button round-btn is-pulled-right">
+									<i className="material-icons">delete</i>
+								</div>
 							</div>
 						</div>
 					</section>

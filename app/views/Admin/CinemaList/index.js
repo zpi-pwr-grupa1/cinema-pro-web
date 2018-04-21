@@ -34,7 +34,7 @@ class CinemaList extends Component {
 								<h1 className="title">
 								  Lista wszystkich kin
 								</h1>
-								<Link to='/admin/cinemas/new' className="button add-button"><i className="material-icons">add</i></Link>
+								<Link to='/admin/cinemas/new' className="button add-button"><i className="material-icons is-danger">add</i></Link>
 							</div>
 						</div>
 					</section>
