@@ -17,7 +17,8 @@ class Showtime extends Component {
   }
 
   componentDidMount() {
-		showing.all()
+		showing
+			.allForCinema(this.state.cinemaId)
       .then(response => {
         this.setState({
           ...this.state,

@@ -42,6 +42,9 @@ export const showing = {
   ),
 	delete: (id) => (
 		axios.delete('/showing/delete/' + id)
+	),
+  allForCinema: (id) => (
+		axios.get(`/cinema/get/${id}/showings`)
 	)
 }
 
