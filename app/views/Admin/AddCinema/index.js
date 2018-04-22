@@ -16,6 +16,15 @@ const hintStyle = {
   zIndex: '1'
 };
 
+const styles = {
+  floatingLabelFocusStyle: {
+    color: "#FF4081",
+  },
+  underlineStyle: {
+    borderColor: "#FF4081",
+  },
+};
+
 class AddCinema extends Component {
   constructor(props) {
     super(props);
@@ -113,6 +122,8 @@ class AddCinema extends Component {
               value={this.state.form.name}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="street"
@@ -123,6 +134,8 @@ class AddCinema extends Component {
               value={this.state.form.street}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="streetNumber"
@@ -133,6 +146,8 @@ class AddCinema extends Component {
               value={this.state.form.streetNumber}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="postCode"
@@ -144,6 +159,8 @@ class AddCinema extends Component {
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
               hintText="xx-xxx"
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="city"
@@ -154,6 +171,8 @@ class AddCinema extends Component {
               value={this.state.form.city}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="telephone"
@@ -165,6 +184,8 @@ class AddCinema extends Component {
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
               hintText="xxx-xxx-xxx"
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="email"
@@ -175,6 +196,8 @@ class AddCinema extends Component {
               value={this.state.form.email}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="description"
@@ -186,6 +209,8 @@ class AddCinema extends Component {
               value={this.state.form.description}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <RaisedButton className="add_button" label={this.cinemaId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
           </div>

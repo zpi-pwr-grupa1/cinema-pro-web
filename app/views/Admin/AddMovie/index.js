@@ -15,6 +15,15 @@ const hintStyle = {
   zIndex: '1'
 };
 
+const styles = {
+  floatingLabelFocusStyle: {
+    color: "#FF4081",
+  },
+  underlineStyle: {
+    borderColor: "#FF4081",
+  },
+};
+
 class AddMovie extends Component {
   constructor(props) {
     super(props);
@@ -117,6 +126,8 @@ class AddMovie extends Component {
                   value={this.state.form.title}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="age"
@@ -128,6 +139,8 @@ class AddMovie extends Component {
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   hintText="xxxx"
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="country"
@@ -138,6 +151,8 @@ class AddMovie extends Component {
                   value={this.state.form.country}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="runTime"
@@ -148,6 +163,8 @@ class AddMovie extends Component {
                   value={this.state.form.runTime}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="director"
@@ -158,6 +175,8 @@ class AddMovie extends Component {
                   value={this.state.form.director}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="movieCast"
@@ -169,6 +188,8 @@ class AddMovie extends Component {
                   value={this.state.form.movieCast}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="storyline"
@@ -179,6 +200,8 @@ class AddMovie extends Component {
                   value={this.state.form.storyline}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="polishReleaseDate"
@@ -190,6 +213,8 @@ class AddMovie extends Component {
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   hintText="yyyy-mm-dd"
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="worldReleaseDate"
@@ -201,6 +226,8 @@ class AddMovie extends Component {
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   hintText="yyyy-mm-dd"
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
                   name="imgURL"
@@ -211,6 +238,8 @@ class AddMovie extends Component {
                   value={this.state.form.imgURL}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
+                  underlineFocusStyle={styles.underlineStyle}
+                  floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <RaisedButton className="btn add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
               </div>

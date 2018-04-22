@@ -37,42 +37,41 @@ class Cinema extends Component {
     }
   }
 
-	submit = () => {
-		cinema.new(this.state.form)
-			.then((response) => this.setState({
-				...this.state,
-				snackbar: true
-			}))
-	}
+  submit = () => {
+    cinema.new(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+        snackbar: true
+      }))
+  }
 
-	onInputChange = (event) => {
-		const { name, value } = event.target;
-		this.setState({ form: {
-				...this.state.form,
-				[name]: value,
-			}});
-	}
+  onInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ form: {
+        ...this.state.form,
+        [name]: value,
+      }});
+  }
 
-	get cinemaId() {
-		return this.props.id;
-	}
+  get cinemaId() {
+    return this.props.id;
+  }
 
   render() {
     return (
         <div className="cinema-info-wrapper">
           <div className="cinema-info-txt">
             <span className="label">Opis:</span>
-						<Editable dataType="text" showButtons={false} mode="inline" value={this.state.form.description}/>
-						<span className="label">Telefon:</span>
-						<Editable name="username" dataType="text" showButtons={false} mode="inline" value={this.state.form.telephone}/>
-						<span className="label">Email:</span>
-						<Editable dataType="text" showButtons={false} mode="inline" value={this.state.form.email}/>
-						<span className="label">Ulica:</span>
-						<Editable  dataType="text" showButtons={false} mode="inline" value={this.state.form.street}/>
-						<Editable  dataType="text" showButtons={false} mode="inline" value={this.state.form.streetNumber}/>
-						<Editable dataType="text" showButtons={false} mode="inline" value={this.state.form.city}/>
-						<Editable  dataType="text" showButtons={false} mode="inline" value={this.state.form.postCode}/>
-
+            <Editable dataType="text" showButtons={false} mode="inline" value={this.state.form.description}/>
+            <span className="label">Telefon:</span>
+            <Editable name="username" dataType="text" showButtons={false} mode="inline" value={this.state.form.telephone}/>
+            <span className="label">Email:</span>
+            <Editable dataType="text" showButtons={false} mode="inline" value={this.state.form.email}/>
+            <span className="label">Ulica:</span>
+            <Editable  dataType="text" showButtons={false} mode="inline" value={this.state.form.street}/>
+            <Editable  dataType="text" showButtons={false} mode="inline" value={this.state.form.streetNumber}/>
+            <Editable dataType="text" showButtons={false} mode="inline" value={this.state.form.city}/>
+            <Editable  dataType="text" showButtons={false} mode="inline" value={this.state.form.postCode}/>
             <RaisedButton className="edit" label="Edytuj" onClick={() => this.submit()} />
           </div>
           <div className="cinema-info-img">

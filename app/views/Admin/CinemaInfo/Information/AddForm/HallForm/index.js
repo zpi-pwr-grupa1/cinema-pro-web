@@ -11,6 +11,14 @@ const hintStyle = {
   zIndex: '1'
 };
 
+const styles = {
+  floatingLabelFocusStyle: {
+    color: "#FF4081",
+  },
+  underlineStyle: {
+    borderColor: "#FF4081",
+  },
+};
 
 class HallForm extends Component {
   constructor(props) {
@@ -42,7 +50,6 @@ class HallForm extends Component {
   render() {
     return (
       <Form>
-        <h1>{this.cinemaId ? 'Edytuj ' : 'Dodawanie sali'}</h1>
         <div>
           <TextField
             name=""
@@ -51,6 +58,8 @@ class HallForm extends Component {
             floatingLabelFixed={true}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <TextField
             name=""
@@ -59,6 +68,8 @@ class HallForm extends Component {
             floatingLabelFixed={true}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <TextField
             name=""
@@ -67,6 +78,8 @@ class HallForm extends Component {
             floatingLabelFixed={true}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <TextField
             name=""
@@ -75,6 +88,8 @@ class HallForm extends Component {
             floatingLabelFixed={true}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <RaisedButton className="add_button" label='Dodaj' />
         </div>

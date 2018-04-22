@@ -23,6 +23,15 @@ const initialState = {
 	}
 };
 
+const styles = {
+  floatingLabelFocusStyle: {
+    color: "#FF4081",
+  },
+  underlineStyle: {
+    borderColor: "#FF4081",
+  },
+};
+
 class ShowtimeForm extends Component {
   constructor(props) {
     super(props);
@@ -81,6 +90,8 @@ class ShowtimeForm extends Component {
 						value={this.state.form.screeningStart}
 						inputStyle={hideAutoFillColorStyle}
 						hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					/>
 					<DropDownMenu style={{width: '100%', padding: 0}} maxHeight={300} value={this.state.form.movie.title}>
 						{this.state.data.movies.map(m =>

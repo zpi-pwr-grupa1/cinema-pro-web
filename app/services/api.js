@@ -16,12 +16,12 @@ export const cinema = {
   get: (id) => (
     axios.get(`/cinema/get/${id}`)
   ),
-  new: (data) => (
-    axios.post('/cinema/update', data)
-  ),
 	delete: (id) => (
 		axios.delete(`/cinema/delete/${id}`)
 	),
+  update: (data) => (
+    axios.post('/cinema/update', data)
+  ),
 };
 
 export const movie = {
