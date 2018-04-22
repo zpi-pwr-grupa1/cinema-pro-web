@@ -18,14 +18,18 @@ class Showtime extends Component {
   }
 
   componentDidMount() {
-		showing.allForCinema(this.state.cinemaId)
-      .then(response => {
-        this.setState({
-          ...this.state,
-					showings: response.data
-        })
-      })
+		this.initShowings()
   }
+
+  initShowings() {
+		showing.allForCinema(this.state.cinemaId)
+			.then(response => {
+				this.setState({
+					...this.state,
+					showings: response.data
+				})
+			})
+	}
 
   changeToEdit(showing) {
     this.setState({
@@ -51,7 +55,7 @@ class Showtime extends Component {
   render() {
 		if (this.state.isEdited) {
 		  return <div className="container">
-				<RaisedButton className="add-button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
+				<RaisedButton className="add-button" label="Powrót do listy" onClick={() => {this.initShowings(); this.changeToEdit()}} />
 				<ShowtimeForm back={this.changeToEdit.bind(this)} form={this.state.showingEdited} />
       </div>
 		}
@@ -66,10 +70,10 @@ class Showtime extends Component {
           <Table className="my-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>id</TableHeaderColumn>
+								<TableHeaderColumn>Czas rozpoczęcia</TableHeaderColumn>
+								<TableHeaderColumn>Czas zakończenia</TableHeaderColumn>
                 <TableHeaderColumn>film</TableHeaderColumn>
-                <TableHeaderColumn>id sali</TableHeaderColumn>
-								<TableHeaderColumn>czas rozpoczęcia</TableHeaderColumn>
+                <TableHeaderColumn>nr sali</TableHeaderColumn>
                 <TableHeaderColumn />
               </TableRow>
             </TableHeader>
@@ -79,10 +83,10 @@ class Showtime extends Component {
 								this.state.showings
 									.map(show =>
 										<TableRow key={show.id} hoverable={true}>
-											<TableRowColumn>{show.id}</TableRowColumn>
-											<TableRowColumn>{show.movie.title}</TableRowColumn>
-											<TableRowColumn>{show.hall.id}</TableRowColumn>
 											<TableRowColumn>{moment(show.screeningStart).format("YYYY-MM-DD  hh:mm")}</TableRowColumn>
+											<TableRowColumn>{moment(show.screeningStart).add(show.movie.runTime, 'minutes').format("YYYY-MM-DD  hh:mm")}</TableRowColumn>
+											<TableRowColumn>{show.movie.title}</TableRowColumn>
+											<TableRowColumn>{show.hall.hallNumber}</TableRowColumn>
 											<TableRowColumn className="is-pulled-right">
                         <button className="btn button edit-btn" onClick={() => this.changeToEdit(show)}>Edytuj</button>
                         <button className="btn button edit-btn" onClick={() => this.onDelete(show.id)}>Usuń</button>
