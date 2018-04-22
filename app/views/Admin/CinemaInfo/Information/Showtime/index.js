@@ -17,8 +17,7 @@ class Showtime extends Component {
   }
 
   componentDidMount() {
-		showing
-			.allForCinema(this.state.cinemaId)
+		showing.allForCinema(this.state.cinemaId)
       .then(response => {
         this.setState({
           ...this.state,
@@ -80,7 +79,7 @@ class Showtime extends Component {
 											<TableRowColumn>{show.id}</TableRowColumn>
 											<TableRowColumn>{show.movie.title}</TableRowColumn>
 											<TableRowColumn>{show.hall.id}</TableRowColumn>
-
+                      <TableRowColumn>18:00</TableRowColumn>
 											<TableRowColumn>
                         <button className="button edit-btn" onClick={() => this.changeToEdit(show)}>Edytuj</button>
                         <button className="button edit-btn" onClick={() => this.onDelete(show.id)}>Usuń</button>

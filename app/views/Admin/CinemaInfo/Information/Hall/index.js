@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import Page from 'components/Page';
 import './index.scss';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, DropDownMenu, MenuItem} from "material-ui";
-import {Link} from "react-router-dom";
-import {cinema} from 'services/api';
+import {RaisedButton, Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
+import {hall} from 'services/api';
+import HallForm from "views/Admin/CinemaInfo/Information/AddForm/HallForm";
 
 
 class Hall extends Component {
@@ -11,49 +10,83 @@ class Hall extends Component {
     super(props);
 
     this.state = {
-      cinemas: [],
+      halls: [],
+      isEdited: false,
+      hallEdited: null,
     };
   }
 
   componentDidMount() {
-    cinema.all()
+    hall.all()
       .then(response => {
         this.setState({
           ...this.state,
-          cinemas: response.data
+          halls: response.data
         })
       })
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  changeToEdit(hall) {
+    this.setState({
+      isEdited: !this.state.isEdited,
+      hallEdited: hall
+    })
+  }
+
+  onDelete(id) {
+    hall.delete(id)
+      .then((response) => {
+        this.setState({
+          ...this.state,
+          halls: this.state.halls.filter(h => h.id !== id),
+          snackbar: true
+        })})
+  }
+
+  get cinemaId() {
+    return this.props.id;
+  }
 
   render() {
+    if (this.state.isEdited) {
+      return <div className="container">
+        <RaisedButton className="add_button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
+        <HallForm back={this.changeToEdit.bind(this)} form={this.state.hallEdited} />
+      </div>
+    }
+
     return (
       <div>
         <div className="container">
+          <RaisedButton className="add_button" label="Dodaj sale" onClick={() => this.changeToEdit()} />
+
           <Table className="showtime-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>Kino</TableHeaderColumn>
-                <TableHeaderColumn>ID sali</TableHeaderColumn>
-                <TableHeaderColumn>Numer sali</TableHeaderColumn>
-                <TableHeaderColumn>Liczba miejsc</TableHeaderColumn>
+                <TableHeaderColumn>kino</TableHeaderColumn>
+                <TableHeaderColumn>id sali</TableHeaderColumn>
+                <TableHeaderColumn>numer sali</TableHeaderColumn>
+                <TableHeaderColumn>liczba miejsc</TableHeaderColumn>
                 <TableHeaderColumn />
               </TableRow>
             </TableHeader>
+
             <TableBody displayRowCheckbox={false}>
-              <TableRow hoverable={true}>
-                <TableRowColumn>Nazwa kina</TableRowColumn>
-                <TableRowColumn>ID</TableRowColumn>
-                <TableRowColumn>Numer</TableRowColumn>
-                <TableRowColumn>Liczba</TableRowColumn>
-                <TableRowColumn>
-                {/*<Link to={'/admin/showtimes/'+showtime.id} key={showtime.id}>*/}
-                  <button className="button">Edytuj</button>
-                {/*</Link>*/}
-                  <button className="button">Usuń</button>
-                </TableRowColumn>
-              </TableRow>
+            {
+              this.state.halls
+                .map(hall =>
+                  <TableRow key={hall.id} hoverable={true}>
+                    <TableRowColumn>{this.cinemaId}</TableRowColumn>u
+                    <TableRowColumn>{hall.id}</TableRowColumn>
+                    <TableRowColumn>{hall.hallNumber}</TableRowColumn>
+                    <TableRowColumn></TableRowColumn>
+                    <TableRowColumn>
+                      <button className="button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
+                      <button className="button edit-btn" onClick={() => this.onDelete(hall.id)}>Usuń</button>
+                    </TableRowColumn>
+                  </TableRow>
+                )
+            }
             </TableBody>
           </Table>
         </div>

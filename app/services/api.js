@@ -52,11 +52,14 @@ export const hall = {
   all: () => (
     axios.get('/hall/get/all')
   ),
-  get: (id) => (
-    axios.get(`/hall/get/${id}`)
-  ),
-  new: (data) => (
+  update: (data) => (
     axios.post('/hall/update', data)
+  ),
+  delete: (id) => (
+    axios.delete('/hall/delete/' + id)
+  ),
+  allForCinema: (id) => (
+    axios.get(`/hall/get/${id}`)
   ),
 };
 
