@@ -11,6 +11,15 @@ const hintStyle = {
   zIndex: '1'
 };
 
+const styles = {
+  floatingLabelFocusStyle: {
+    color: "#FF4081",
+  },
+  underlineStyle: {
+    borderColor: "#FF4081",
+  },
+};
+
 class ShowtimeForm extends Component {
   constructor(props) {
     super(props);
@@ -60,6 +69,8 @@ class ShowtimeForm extends Component {
 						value={this.state.form.screeningStart}
 						inputStyle={hideAutoFillColorStyle}
 						hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					/>
 					<TextField
 						name="hall"
@@ -71,6 +82,8 @@ class ShowtimeForm extends Component {
 						inputStyle={hideAutoFillColorStyle}
 						hintStyle={hintStyle}
 						hintText="yyyy-mm-dd"
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
 					/>
 					<TextField
 						name="movie"
@@ -81,6 +94,9 @@ class ShowtimeForm extends Component {
 						value={this.state.form.movie}
 						inputStyle={hideAutoFillColorStyle}
 						hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+
 					/>
 					<RaisedButton className="add_button" label='Edytuj' onClick={this.onHandleClick}/>
 				</div>

@@ -14,62 +14,45 @@ const hintStyle = {
   zIndex: '1'
 };
 
+const styles = {
+  floatingLabelFocusStyle: {
+    color: "#FF4081",
+  },
+  underlineStyle: {
+    borderColor: "#FF4081",
+  },
+};
+
 class CinemaForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      form: {
-        name: '',
-        street: '',
-        streetNumber: '',
-        postCode: '',
-        city: '',
-        telephone: '',
-        email: '',
-        description: ''
-      },
-      snackbar: false,
-      error: '',
-    };
-  }
-
-  cleanForm = () => {
-    !this.cinemaId && this.setState({
-      form: {
-        name: '',
-        street: '',
-        streetNumber: '',
-        postCode: '',
-        city: '',
-        telephone: '',
-        email: '',
-        description: ''
-      }
-    });
-  }
-
-  componentDidMount() {
-    if(!this.cinemaId) {
-      return;
+    if(props.form) {
+      this.state = {
+        form: props.form,
+      };
+    } else {
+      this.state = {
+        form: {
+          name: '',
+          street: '',
+          streetNumber: '',
+          postCode: '',
+          city: '',
+          telephone: '',
+          email: '',
+          description: '',
+        },
+      };
     }
-
-    cinema.get(this.cinemaId)
-      .then(response => {
-        this.setState({
-          ...this.state,
-          form: response.data
-        })
-      })
   }
 
   onHandleClick = () => {
-    cinema.new(this.state.form)
+    cinema.update(this.state.form)
       .then((response) => this.setState({
         ...this.state,
         snackbar: true
       }))
-    this.cleanForm();
   }
 
   onInputChange = (event) => {
@@ -83,7 +66,6 @@ class CinemaForm extends Component {
   render() {
     return (
         <Form>
-          <h1>{this.cinemaId ? 'Edytuj ' + this.state.form.name : 'Dodawanie kina'}</h1>
           <div>
             <TextField
               name="name"
@@ -94,6 +76,8 @@ class CinemaForm extends Component {
               value={this.state.form.name}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="street"
@@ -104,6 +88,8 @@ class CinemaForm extends Component {
               value={this.state.form.street}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="streetNumber"
@@ -114,6 +100,8 @@ class CinemaForm extends Component {
               value={this.state.form.streetNumber}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="postCode"
@@ -125,6 +113,8 @@ class CinemaForm extends Component {
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
               hintText="xx-xxx"
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="city"
@@ -135,6 +125,8 @@ class CinemaForm extends Component {
               value={this.state.form.city}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="telephone"
@@ -146,6 +138,8 @@ class CinemaForm extends Component {
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
               hintText="xxx-xxx-xxx"
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="email"
@@ -156,6 +150,8 @@ class CinemaForm extends Component {
               value={this.state.form.email}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
             <TextField
               name="description"
@@ -167,10 +163,12 @@ class CinemaForm extends Component {
               value={this.state.form.description}
               inputStyle={hideAutoFillColorStyle}
               hintStyle={hintStyle}
+              underlineFocusStyle={styles.underlineStyle}
+              floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
             />
-            <RaisedButton className="add_button" label={this.cinemaId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
-          </div>
-        </Form>
+          <RaisedButton className="add_button" label='Edytuj' onClick={this.onHandleClick}/>
+        </div>
+      </Form>
     )
   }
 }
