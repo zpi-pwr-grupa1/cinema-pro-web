@@ -65,9 +65,9 @@ class Hall extends Component {
           <Table className="my-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
-                <TableHeaderColumn>kino</TableHeaderColumn>
-                <TableHeaderColumn>id sali</TableHeaderColumn>
-                <TableHeaderColumn>numer sali</TableHeaderColumn>
+                <TableHeaderColumn>nr sali</TableHeaderColumn>
+                <TableHeaderColumn>liczba rzędów</TableHeaderColumn>
+                <TableHeaderColumn>liczba kolumn</TableHeaderColumn>
                 <TableHeaderColumn>liczba miejsc</TableHeaderColumn>
                 <TableHeaderColumn />
               </TableRow>
@@ -78,10 +78,10 @@ class Hall extends Component {
               this.state.halls
                 .map(hall =>
                   <TableRow key={hall.id} hoverable={true}>
-                    <TableRowColumn>{this.cinemaId}</TableRowColumn>u
-                    <TableRowColumn>{hall.id}</TableRowColumn>
                     <TableRowColumn>{hall.hallNumber}</TableRowColumn>
-                    <TableRowColumn></TableRowColumn>
+                    <TableRowColumn>{hall.seats.reduce((p, c) => c.seatRow > p.seatRow ? c : p).seatRow+1}</TableRowColumn>
+                    <TableRowColumn>{hall.seats.reduce((p, c) => c.seatColumn > p.seatColumn ? c : p).seatColumn+1}</TableRowColumn>
+                    <TableRowColumn>{hall.seats.length}</TableRowColumn>
                     <TableRowColumn className="is-pulled-right">
                       <button className="btn button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
                       <button className="btn button edit-btn" onClick={() => this.onDelete(hall.id)}>Usuń</button>

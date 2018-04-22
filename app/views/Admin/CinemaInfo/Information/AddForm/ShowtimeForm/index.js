@@ -111,7 +111,7 @@ class ShowtimeForm extends Component {
 						)}
 					</DropDownMenu>
 
-					<RaisedButton className="btn add_button" label='Edytuj' onClick={this.onHandleClick}/>
+					<RaisedButton className="btn add_button" label={this.props.form ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick}/>
 				</div>
 			</Form>
 		)
