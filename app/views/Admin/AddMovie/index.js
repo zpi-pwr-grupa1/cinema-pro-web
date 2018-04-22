@@ -250,7 +250,7 @@ class AddMovie extends Component {
             open={this.state.snackbar}
             message={this.movieId ? 'Pomyślnie edytowano film' : 'Pomyślnie dodano film'}
             autoHideDuration={2000}
-            onRequestClose={ () => { this.state.snackbar = false } }
+            onRequestClose={ () => { this.setState({snackbar: false}) } }
           />
         </div>
       </Page>

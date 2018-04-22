@@ -83,6 +83,14 @@ class ShowtimeForm extends Component {
   	}});
 	}
 
+	onHandleClick = () => {
+		showing.update(this.state.form)
+			.then(() => {
+				this.setState()
+				this.props.back()
+			})
+	}
+
   render() {
     return (
 			<Form>

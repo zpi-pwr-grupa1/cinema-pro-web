@@ -65,7 +65,7 @@ export const hall = {
     axios.delete('/hall/delete/' + id)
   ),
   allForCinema: (id) => (
-    axios.get(`/hall/get/${id}`)
+    axios.get(`/cinema/get/${id}/halls/visible`)
   ),
 };
 

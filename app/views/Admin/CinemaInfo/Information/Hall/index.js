@@ -17,7 +17,7 @@ class Hall extends Component {
   }
 
   componentDidMount() {
-    hall.all()
+    hall.allForCinema(this.cinemaId)
       .then(response => {
         this.setState({
           ...this.state,
