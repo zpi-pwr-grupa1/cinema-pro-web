@@ -22,6 +22,9 @@ export const cinema = {
   update: (data) => (
     axios.post('/cinema/update', data)
   ),
+	modify: (data) => (
+		axios.put('/cinema/modify', data)
+	),
 };
 
 export const movie = {

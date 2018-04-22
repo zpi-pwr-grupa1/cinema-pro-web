@@ -76,6 +76,7 @@ class Hall extends Component {
             <TableBody displayRowCheckbox={false}>
             {
               this.state.halls
+                .sort((a,b) => a.hallNumber > b.hallNumber)
                 .map(hall =>
                   <TableRow key={hall.id} hoverable={true}>
                     <TableRowColumn>{hall.hallNumber}</TableRowColumn>
