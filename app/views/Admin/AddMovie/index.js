@@ -212,7 +212,7 @@ class AddMovie extends Component {
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                 />
-                <RaisedButton className="add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
+                <RaisedButton className="btn add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
               </div>
             </Form>
           </div>

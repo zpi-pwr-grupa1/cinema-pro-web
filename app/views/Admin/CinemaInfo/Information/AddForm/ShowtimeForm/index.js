@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {RaisedButton, TextField} from 'material-ui';
+import {DropDownMenu, MenuItem, RaisedButton, TextField} from 'material-ui';
 import './index.scss'
-import {showing} from 'services/api';
+import {hall, movie, showing} from 'services/api';
 import Form from 'components/FormElements/Form';
 
 const hideAutoFillColorStyle = {
@@ -11,24 +11,46 @@ const hintStyle = {
   zIndex: '1'
 };
 
+const initialState = {
+	form: {
+		screeningStart: '',
+		hall: {},
+		movie: {},
+	},
+	data: {
+		halls: [],
+		movies: [],
+	}
+};
+
 class ShowtimeForm extends Component {
   constructor(props) {
     super(props);
 
     if(props.form) {
 			this.state = {
+				...initialState,
 				form: props.form,
-			};
+			}
 		} else {
-			this.state = {
-				form: {
-					screeningStart: '',
-					hall: '',
-					movie: '',
-        },
-			};
-    }
+			this.state = initialState
+		}
   }
+
+  componentDidMount() {
+  	Promise
+			.all([
+				movie.all(),
+				hall.all(),
+			])
+			.then(([resM, resH]) => this.setState({
+				data: {
+					movies: resM.data,
+					halls: resH.data,
+				}
+			}))
+
+	}
 
 	onHandleClick = () => {
 		showing.update(this.state.form)
@@ -36,7 +58,6 @@ class ShowtimeForm extends Component {
         ...this.state,
         snackbar: true
       }))
-    // this.cleanForm();
   }
 
   onInputChange = (event) => {
@@ -50,7 +71,7 @@ class ShowtimeForm extends Component {
   render() {
     return (
 			<Form>
-				<div>
+				<div className="showtime-form">
 					<TextField
 						name="screeningStart"
 						floatingLabelText="Data wyświetlenia:"
@@ -61,28 +82,19 @@ class ShowtimeForm extends Component {
 						inputStyle={hideAutoFillColorStyle}
 						hintStyle={hintStyle}
 					/>
-					<TextField
-						name="hall"
-						floatingLabelText="Id filmu"
-						fullWidth={true}
-						floatingLabelFixed={true}
-						onChange={this.onInputChange}
-						value={this.state.form.hall}
-						inputStyle={hideAutoFillColorStyle}
-						hintStyle={hintStyle}
-						hintText="yyyy-mm-dd"
-					/>
-					<TextField
-						name="movie"
-						floatingLabelText="Id sali"
-						fullWidth={true}
-						floatingLabelFixed={true}
-						onChange={this.onInputChange}
-						value={this.state.form.movie}
-						inputStyle={hideAutoFillColorStyle}
-						hintStyle={hintStyle}
-					/>
-					<RaisedButton className="add_button" label='Edytuj' onClick={this.onHandleClick}/>
+					<DropDownMenu style={{width: '100%', padding: 0}} maxHeight={300} value={this.state.form.movie.title}>
+						{this.state.data.movies.map(m =>
+							<MenuItem style={{width: '300px'}} value={m.title} key={m.id} primaryText={m.title}  />
+						)}
+					</DropDownMenu>
+
+					<DropDownMenu style={{width: '100%', padding: 0}} maxHeight={300} value={this.state.form.hall.hallNumber}>
+						{this.state.data.halls.map(h =>
+							<MenuItem style={{width: '300px'}} value={h.hallNumber} key={h.id} primaryText={h.hallNumber}  />
+						)}
+					</DropDownMenu>
+
+					<RaisedButton className="btn add_button" label='Edytuj' onClick={this.onHandleClick}/>
 				</div>
 			</Form>
 		)

@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import {MuiThemeProvider, Snackbar, TextField, RaisedButton } from 'material-ui';
+import React, {Component} from 'react';
+import {RaisedButton, TextField} from 'material-ui';
 import './index.scss'
-import { hall } from 'services/api';
-import { cinema } from 'services/api';
-
-import Input from 'components/FormElements/Input';
+import {hall} from 'services/api';
 import Form from 'components/FormElements/Form';
 
 const hideAutoFillColorStyle = {

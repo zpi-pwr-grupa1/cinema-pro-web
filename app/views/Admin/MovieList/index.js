@@ -41,7 +41,7 @@ class MovieList extends Component {
 
 					<div className="container">
 
-						<Table className="movie-table" displaySelectAll={false} selectable={false}>
+						<Table className="my-table" displaySelectAll={false} selectable={false}>
 							<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 								<TableRow>
 									<TableHeaderColumn>ID</TableHeaderColumn>
@@ -64,7 +64,7 @@ class MovieList extends Component {
 												<TableRowColumn>{movie.director}</TableRowColumn>
 												<TableRowColumn>
 												<Link to={'/admin/movies/'+movie.id} key={movie.id}>
-													<button className="button edit-btn">Edytuj</button>
+													<button className="btn button edit-btn">Edytuj</button>
 												</Link>
 												</TableRowColumn>
 											</TableRow>

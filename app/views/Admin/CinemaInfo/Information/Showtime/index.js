@@ -32,8 +32,8 @@ class Showtime extends Component {
       isEdited: !this.state.isEdited,
       showingEdited: showing && {
         ...showing,
-        movie: showing.movie.id,
-        hall: showing.hall.id,
+        movie: showing.movie,
+        hall: showing.hall,
 			},
     })
   }
@@ -63,7 +63,7 @@ class Showtime extends Component {
 
 					<div className="is-clearfix"></div>
 
-          <Table className="showtime-table" displaySelectAll={false} selectable={false}>
+          <Table className="my-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn>id</TableHeaderColumn>
@@ -84,8 +84,8 @@ class Showtime extends Component {
 											<TableRowColumn>{show.hall.id}</TableRowColumn>
 											<TableRowColumn>{moment(show.screeningStart).format("YYYY-MM-DD  hh:mm")}</TableRowColumn>
 											<TableRowColumn className="is-pulled-right">
-                        <button className="button edit-btn" onClick={() => this.changeToEdit(show)}>Edytuj</button>
-                        <button className="button edit-btn" onClick={() => this.onDelete(show.id)}>Usuń</button>
+                        <button className="btn button edit-btn" onClick={() => this.changeToEdit(show)}>Edytuj</button>
+                        <button className="btn button edit-btn" onClick={() => this.onDelete(show.id)}>Usuń</button>
 											</TableRowColumn>
 										</TableRow>
 									)

@@ -62,7 +62,7 @@ class Hall extends Component {
 
           <div className="is-clearfix"></div>
 
-          <Table className="hall-table" displaySelectAll={false} selectable={false}>
+          <Table className="my-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn>kino</TableHeaderColumn>
@@ -83,8 +83,8 @@ class Hall extends Component {
                     <TableRowColumn>{hall.hallNumber}</TableRowColumn>
                     <TableRowColumn></TableRowColumn>
                     <TableRowColumn className="is-pulled-right">
-                      <button className="button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
-                      <button className="button edit-btn" onClick={() => this.onDelete(hall.id)}>Usuń</button>
+                      <button className="btn button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
+                      <button className="btn button edit-btn" onClick={() => this.onDelete(hall.id)}>Usuń</button>
                     </TableRowColumn>
                   </TableRow>
                 )
