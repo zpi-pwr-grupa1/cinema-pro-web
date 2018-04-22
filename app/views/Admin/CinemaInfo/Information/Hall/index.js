@@ -56,11 +56,13 @@ class Hall extends Component {
     }
 
     return (
-      <div>
+      <div className="halls-list">
         <div className="container">
-          <RaisedButton className="add_button" label="Dodaj sale" onClick={() => this.changeToEdit()} />
+          <RaisedButton className="add-button is-pulled-right" label="Dodaj sale" onClick={() => this.changeToEdit()} />
 
-          <Table className="showtime-table" displaySelectAll={false} selectable={false}>
+          <div className="is-clearfix"></div>
+
+          <Table className="hall-table" displaySelectAll={false} selectable={false}>
             <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
               <TableRow>
                 <TableHeaderColumn>kino</TableHeaderColumn>
@@ -80,7 +82,7 @@ class Hall extends Component {
                     <TableRowColumn>{hall.id}</TableRowColumn>
                     <TableRowColumn>{hall.hallNumber}</TableRowColumn>
                     <TableRowColumn></TableRowColumn>
-                    <TableRowColumn>
+                    <TableRowColumn className="is-pulled-right">
                       <button className="button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
                       <button className="button edit-btn" onClick={() => this.onDelete(hall.id)}>Usuń</button>
                     </TableRowColumn>

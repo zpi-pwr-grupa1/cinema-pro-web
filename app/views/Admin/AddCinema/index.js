@@ -7,6 +7,7 @@ import { cinema } from 'services/api';
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
 import Form from 'components/FormElements/Form';
+import {Link} from "react-router-dom";
 
 const hideAutoFillColorStyle = {
   WebkitBoxShadow: '0 0 0 1000px white inset'
@@ -98,6 +99,8 @@ class AddCinema extends Component {
 							</div>
 						</div>
 					</section>
+        <div className="container">
+        <Link to="/admin/cinemas"><i className="material-icons">keyboard_arrow_left</i>Powrót do listy</Link>
 
         <Form>
           <div>
@@ -194,6 +197,7 @@ class AddCinema extends Component {
           autoHideDuration={2000}
           onRequestClose={ () => { this.state.snackbar = false } }
         />
+        </div>
         </div>
       </Page>
     )
