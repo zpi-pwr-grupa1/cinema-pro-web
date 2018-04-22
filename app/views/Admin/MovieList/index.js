@@ -31,15 +31,15 @@ class MovieList extends Component {
 					<section className="hero is-light">
 						<div className="hero-body">
 							<div className="container">
-								<h1 className="title">
-									Lista wszystkich filmów
-								</h1>
+								<h1 className="title is-pulled-left">Lista wszystkich filmów</h1>
+								<div className="button round-btn is-pulled-right">
+									<i className="material-icons" onClick={() => this.props.history.push(`/admin/movies/new`)}>add</i>
+								</div>
 							</div>
 						</div>
 					</section>
 
 					<div className="container">
-						<button className="button add-button" onClick={() => this.props.history.push(`/admin/movies/new`)}>Dodaj nowy film</button>
 
 						<Table className="movie-table" displaySelectAll={false} selectable={false}>
 							<TableHeader displaySelectAll={false} adjustForCheckbox={false}>

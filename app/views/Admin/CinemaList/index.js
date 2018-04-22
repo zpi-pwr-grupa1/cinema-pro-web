@@ -31,10 +31,10 @@ class CinemaList extends Component {
 					<section className="hero is-light">
 						<div className="hero-body">
 							<div className="container">
-								<h1 className="title">
-								  Lista wszystkich kin
-								</h1>
-								<Link to='/admin/cinemas/new' className="button add-button"><i className="material-icons">add</i></Link>
+								<h1 className="title is-pulled-left">Lista wszystkich kin</h1>
+								<div className="button round-btn is-pulled-right">
+									<Link to='/admin/cinemas/new' className="material-icons" onClick={() => this.props.history.push(`/admin/movies/new`)}>add</Link>
+								</div>
 							</div>
 						</div>
 					</section>
