@@ -13,6 +13,22 @@
 			}
 			.price {
 				font-size: 40px;
+				
+				> .editable-container {
+					width: auto!important;
+					display: inline-block;
+				}
+				
+				input {
+					font-size: 40px;
+					width: 100px!important;
+				}
+
+				.delete {
+					margin-left: 25px;
+					margin-bottom: 10px;
+					vertical-align: middle;
+				}
 			}
 		}	
 	}

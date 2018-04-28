@@ -85,4 +85,10 @@ export const ticketType = {
 	all: () => (
 		axios.get('/ticket/type/get/all')
 	),
+	update: (data) => (
+		axios.post('/ticket/type/update', data)
+	),
+	delete: (id) => (
+		axios.delete('/ticket/type/delete/' + id)
+	),
 };
