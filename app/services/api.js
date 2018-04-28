@@ -80,3 +80,9 @@ export const seat = {
     axios.post('/seat/update', data)
   ),
 };
+
+export const ticketType = {
+	all: () => (
+		axios.get('/ticket/type/get/all')
+	),
+};

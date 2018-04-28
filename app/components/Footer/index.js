@@ -7,7 +7,7 @@ const Footer = (props) => (
 		<div className="container">
 			<div className="content has-text-right">
 				<p>
-					Aplikacja CinemaPro v0.0.1
+					Aplikacja CinemaPro v1.0.0
 				</p>
 			</div>
 		</div>

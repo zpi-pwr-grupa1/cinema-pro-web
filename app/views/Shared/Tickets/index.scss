@@ -1,0 +1,19 @@
+.tickets {
+	> .container {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		min-width: 100%;
+		
+		.tickets-table {
+			.name {
+				font-weight: bold;
+				font-size: 20px;
+				align-self: center;
+			}
+			.price {
+				font-size: 40px;
+			}
+		}	
+	}
+}
