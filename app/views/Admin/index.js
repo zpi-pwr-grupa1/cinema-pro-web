@@ -9,6 +9,7 @@ import MovieList from 'views/Admin/MovieList/index';
 import CinemaInfo from 'views/Admin/CinemaInfo/index';
 import Tickets from "views/Shared/Tickets";
 import EmployeeList from "views/Admin/EmployeeList/index";
+import AddEmployee from "views/Admin//AddEmployee/index";
 
 // /admin/*
 
@@ -25,8 +26,10 @@ const Views = (props) => {
       <Route path='/admin/movies/new' component={AddMovie} />
       <Route path='/admin/movies/:id' component={AddMovie} />
 
-      <Route path='/admin/employees' component={EmployeeList} />
-      
+      <Route exact path='/admin/employees' component={EmployeeList} />
+      <Route path='/admin/employees/new' component={AddEmployee} />
+      <Route path='/admin/employees/:id' component={AddEmployee} />
+
       <Route path='/admin/tickets' component={Tickets} />
 
     </Switch>

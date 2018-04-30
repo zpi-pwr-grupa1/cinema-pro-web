@@ -79,7 +79,7 @@ class AddCinema extends Component {
   }
 
   onHandleClick = () => {
-    cinema.new(this.state.form)
+    cinema.update(this.state.form)
       .then((response) => this.setState({
         ...this.state,
         snackbar: true
