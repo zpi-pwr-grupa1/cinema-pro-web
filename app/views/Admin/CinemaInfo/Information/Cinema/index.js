@@ -79,12 +79,12 @@ class Cinema extends Component {
             <img src={this.state.form.imgUrl} />
           </div>
 
-					<Snackbar
-						open={this.state.snackbar}
-						message={'Pomyślnie edytowano kino'}
-						autoHideDuration={2000}
-						onRequestClose={ () => { this.setState({snackbar: false})} }
-					/>
+          <Snackbar
+            open={this.state.snackbar}
+            message={'Pomyślnie edytowano kino'}
+            autoHideDuration={2000}
+            onRequestClose={ () => { this.setState({snackbar: false})} }
+          />
         </div>
     )
   }

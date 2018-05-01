@@ -92,3 +92,18 @@ export const ticketType = {
 		axios.delete('/ticket/type/delete/' + id)
 	),
 };
+
+export const employee = {
+  all: () => (
+    axios.get('/employee/get/all')
+  ),
+  get: (id) => (
+    axios.get(`/employee/get/${id}`)
+  ),
+  update: (data) => (
+    axios.post('/employee/update', data)
+  ),
+  delete: (id) => (
+    axios.delete('/employee/delete/' + id)
+  ),
+};

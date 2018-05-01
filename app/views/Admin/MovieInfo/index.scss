@@ -1,0 +1,30 @@
+.cinema-info-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 30px;
+}
+
+.cinema-info-img {
+  width: 50%;
+  align-self: flex-end;
+  text-align: center;
+}
+
+img.poster {
+  width: 450px;
+}
+
+p.types {
+  font-size: 30px;
+}
+
+p.headingsp {
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 40px;
+}

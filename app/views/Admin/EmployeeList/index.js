@@ -6,7 +6,7 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import InfoIcon from 'material-ui-icons/Info';
-import {cinema} from 'services/api';
+import {employee} from 'services/api';
 
 import avatarImg from "assets/images/avatar.png";
 import Page from 'components/Page';
@@ -31,16 +31,16 @@ class EmployeeList extends Component {
     super(props);
 
     this.state = {
-      cinemas: [],
+      employees: [],
     };
   }
 
   componentDidMount() {
-    cinema.all()
+    employee.all()
       .then(response => {
         this.setState({
           ...this.state,
-          cinemas: response.data
+          employees: response.data
         })
       })
   }
@@ -61,7 +61,7 @@ class EmployeeList extends Component {
         </section>
         <div>
         <Tabs inkBarStyle={{backgroundColor: '#ffffff'}}>
-          <Tab label='Aktywni' style={styles.tabtab}>
+          <Tab label='' style={styles.tabtab}>
           <div style={styles.root}>
             <GridList
               cellHeight={250}
@@ -69,31 +69,11 @@ class EmployeeList extends Component {
               cols={7}
             >
               <Subheader>Pracownicy aktywni</Subheader>
-              {this.state.cinemas.map((employee) => (
+              {this.state.employees.map((employee) => (
                 <Link to={"/admin/employees/"+employee.id} key={employee.id} >
                   <GridTile
-                    title={<span>{employee.name}</span>}
-                    actionIcon={<IconButton><InfoIcon /></IconButton>}
-                  >
-                    <img src={avatarImg} />
-                  </GridTile>
-                </Link>
-              ))}
-            </GridList>
-          </div>
-          </Tab>
-          <Tab label='Nieaktywni' style={styles.tabtab} >
-          <div style={styles.root}>
-            <GridList
-              cellHeight={250}
-              style={styles.gridList}
-              cols={7}
-            >
-              <Subheader>Pracownicy nieaktywni</Subheader>
-              {this.state.cinemas.map((employee) => (
-                <Link to={"/coach/clients/"+employee.id} key={employee.id} >
-                  <GridTile
-                    title={<span>{employee.name}</span>}
+                    title={<span>{employee.name} {employee.surname}</span>}
+                    subtitle={<span>Data zatrudnienia: {employee.startingDateOfEmployment}</span>}
                     actionIcon={<IconButton><InfoIcon /></IconButton>}
                   >
                     <img src={avatarImg} />

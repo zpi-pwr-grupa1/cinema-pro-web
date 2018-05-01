@@ -56,18 +56,22 @@ class MovieList extends Component {
 								{
 									this.state.movies
 										.map(movie =>
-											<TableRow key={movie.id} hoverable={true}>
-												<TableRowColumn onClick={() => { console.log('dupa');}}>{movie.id}</TableRowColumn>
-												<TableRowColumn>{movie.title}</TableRowColumn>
-												<TableRowColumn>{movie.runTime / 60}</TableRowColumn>
-												<TableRowColumn>{movie.worldReleaseDate}</TableRowColumn>
-												<TableRowColumn>{movie.director}</TableRowColumn>
-												<TableRowColumn>
-												<Link to={'/admin/movies/'+movie.id} key={movie.id}>
-													<button className="btn button edit-btn">Edytuj</button>
-												</Link>
-												</TableRowColumn>
-											</TableRow>
+                      <TableRow key={movie.id} hoverable={true}>
+                        <TableRowColumn>{movie.id}</TableRowColumn>
+                          <TableRowColumn>
+                            <Link to={"/admin/movies/info/"+movie.id} key={movie.id}>
+                              {movie.title}
+                            </Link>
+                          </TableRowColumn>
+                        <TableRowColumn>{movie.runTime / 60}</TableRowColumn>
+                        <TableRowColumn>{movie.worldReleaseDate}</TableRowColumn>
+                        <TableRowColumn>{movie.director}</TableRowColumn>
+                        <TableRowColumn>
+                        <Link to={'/admin/movies/'+movie.id} key={movie.id}>
+                          <button className="btn button edit-btn">Edytuj</button>
+                        </Link>
+                        </TableRowColumn>
+                      </TableRow>
 										)
 								}
 							</TableBody>

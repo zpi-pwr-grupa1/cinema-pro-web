@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {TextField, DropDownMenu, MenuItem} from 'material-ui';
+import {TextField, DropDownMenu, MenuItem, Snackbar} from 'material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import './index.scss'
-import {cinema} from 'services/api';
+import {cinema, employee} from 'services/api';
 
 import Page from 'components/Page';
 import Form from 'components/FormElements/Form';
@@ -24,42 +24,60 @@ const styles = {
   },
 };
 
-const initialState = {
-  form: {
-    cinema: {},
-  },
-  data: {
-    cinemas: [],
-  }
-};
-
 class AddEmployee extends Component {
   constructor(props) {
     super(props);
 
-    this.state = initialState
+    this.state = {
+      form: {
+        name: "",
+        surname: "",
+        city: "",
+        street: "",
+        streetNumber: "",
+        postCode: "",
+        telephone: "",
+        email: "",
+        startingDateOfEmployment: "",
+        cinema: {},
+      },
+      data: {
+        cinemas: [],
+      },
+      snackbar: false,
+      error: '',
+    };
   }
 
   componentDidMount() {
-    Promise
-      .all([
-        cinema.all(),
-      ])
-      .then(([resM, resH]) =>
+    cinema.all()
+      .then(response => {
         this.setState({
-          form: this.props.form ? {
-            cinema: resM.data.filter(m => m.id === this.props.form.cinema.id)[0],
-          } : initialState.form,
+          ...this.state,
           data: {
-            cinemas: resM.data,
+            cinemas: response.data
           }
         })
-      )
+      })
 
+    if(!this.employeeId) {
+      return;
+    }
+    employee.get(this.employeeId)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          form: response.data
+        })
+      })
   }
 
-  get employeeId() {
-    return this.props.match.params.id;
+  onInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ form: {
+      ...this.state.form,
+      [name]: value,
+    }});
   }
 
   cinemaChange (event, index, value) {
@@ -67,6 +85,18 @@ class AddEmployee extends Component {
         ...this.state.form,
         cinema: value
     }});
+  }
+
+  onHandleClick = () => {
+    employee.update(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+        snackbar: true
+      }))
+  }
+
+  get employeeId() {
+    return this.props.match.params.id;
   }
 
   render() {
@@ -77,7 +107,7 @@ class AddEmployee extends Component {
             <div className="hero-body">
               <div className="container">
                 <h1 className="title">
-                  {this.employeeId ? 'Edytuj ' : 'Dodaj nowego pracownika'}
+                  {this.employeeId ? 'Edytuj pracownika' : 'Dodaj nowego pracownika'}
                 </h1>
               </div>
             </div>
@@ -95,100 +125,118 @@ class AddEmployee extends Component {
                   maxHeight={300} 
                   value={this.state.form.cinema}
                 >
-                  {this.state.data.cinemas.map(m =>
+                  {this.state.data.cinemas.map(cinema =>
                     <MenuItem 
                       style={{width: '300px'}} 
-                      value={m} 
-                      label={m.name} 
-                      key={m.id} 
-                      primaryText={m.name} />
+                      value={cinema} 
+                      label={cinema.name} 
+                      key={cinema.id} 
+                      primaryText={cinema.name} />
                   )}
                 </DropDownMenu>
                 <TextField
-                  name="title"
+                  name="name"
                   floatingLabelText="Imię pracownika:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.name}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="surname"
                   floatingLabelText="Nazwisko pracownika:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.surname}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="city"
                   floatingLabelText="Miejsce zamieszkania:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.city}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="street"
                   floatingLabelText="Ulica:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.street}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="streetNumber"
                   floatingLabelText="Nr lokalu:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.streetNumber}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="postCode"
                   floatingLabelText="Kod pocztowy:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.postCode}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="telephone"
                   floatingLabelText="Telefon kontaktowy:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.telephone}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="email"
                   floatingLabelText="Adres email:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.email}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
                 <TextField
-                  name="title"
+                  name="startingDateOfEmployment"
                   floatingLabelText="Data zatrudnienia:"
                   fullWidth={true}
                   floatingLabelFixed={true}
+                  onChange={this.onInputChange}
+                  value={this.state.form.startingDateOfEmployment}
                   inputStyle={hideAutoFillColorStyle}
                   hintStyle={hintStyle}
                   underlineFocusStyle={styles.underlineStyle}
@@ -198,6 +246,12 @@ class AddEmployee extends Component {
                 <RaisedButton className="btn add_button" label={this.employeeId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
               </div>
             </Form>
+            <Snackbar
+              open={this.state.snackbar}
+              message={this.employeeId ? 'Pomyślnie edytowano dane pracownika' : 'Pomyślnie dodano pracownika'}
+              autoHideDuration={2000}
+              onRequestClose={ () => { this.state.snackbar = false } }
+          />
           </div>
         </div>
       </Page>
