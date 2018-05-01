@@ -19,10 +19,12 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
-    width: 1700,
+    width: 1400,
+    marginBottom: 20,
   },
   tabtab: {
-    backgroundColor: "#363636",
+    backgroundColor: "#ffffff",
+    cursor: "default",
   },
 };
 
@@ -66,7 +68,7 @@ class EmployeeList extends Component {
             <GridList
               cellHeight={250}
               style={styles.gridList}
-              cols={7}
+              cols={6}
             >
               <Subheader>Pracownicy aktywni</Subheader>
               {this.state.employees.map((employee) => (
