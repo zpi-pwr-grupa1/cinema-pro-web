@@ -1,14 +1,18 @@
-.cinema-info-wrapper {
+.movie-info-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: row;
   margin: 30px;
 }
 
-.cinema-info-img {
+.movie-info-img {
   width: 50%;
   align-self: flex-end;
   text-align: center;
+}
+
+.arrow {
+  margin-top: 50px;
 }
 
 img.poster {

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from "react-router-dom";
 import './index.scss'
 
 import {movie} from 'services/api';
@@ -53,8 +54,8 @@ class MovieInfo extends Component {
               </div>
             </div>
           </section>
-          <div className="cinema-info-wrapper">
-            <div className="cinema-info-txt2">
+          <div className="movie-info-wrapper">
+            <div className="movie-info-txt">
               <p className="types">Science-Fiction</p>
               <p>Czas trwania: {this.state.form.runTime} min. / Od lat: {this.state.form.age} / Produkcja: {this.state.form.country}</p>
               <p className="headingsp">Premiera:</p>
@@ -65,8 +66,11 @@ class MovieInfo extends Component {
               <p>{this.state.form.movieCast}</p>
               <p className="headingsp">Opis filmu:</p>
               <p>{this.state.form.storyline}</p>
+              <div className="arrow">
+              <Link to="/admin/movies"><i className="material-icons">keyboard_arrow_left</i>Powrót do listy</Link>
+              </div>
             </div>
-            <div className="cinema-info-img">
+            <div className="movie-info-img">
               <div className="imgimg">
                 <img className="poster" src={this.state.form.imgURL} />
               </div>
