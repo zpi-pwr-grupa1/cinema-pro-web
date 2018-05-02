@@ -83,7 +83,7 @@ export const seat = {
 
 export const ticketType = {
 	all: () => (
-		axios.get('/ticket/type/get/all')
+		axios.get('/ticket/type/get/all/visible')
 	),
 	update: (data) => (
 		axios.post('/ticket/type/update', data)
