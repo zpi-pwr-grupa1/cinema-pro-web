@@ -44,9 +44,8 @@ class MovieList extends Component {
 						<Table className="my-table" displaySelectAll={false} selectable={false}>
 							<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 								<TableRow>
-									<TableHeaderColumn>ID</TableHeaderColumn>
 									<TableHeaderColumn>Tytuł</TableHeaderColumn>
-									<TableHeaderColumn>Czas trwania (h)</TableHeaderColumn>
+									<TableHeaderColumn>Czas trwania (min)</TableHeaderColumn>
 									<TableHeaderColumn>Premiera światowa</TableHeaderColumn>
 									<TableHeaderColumn>Reżyser</TableHeaderColumn>
 									<TableHeaderColumn>Opcje</TableHeaderColumn>
@@ -57,13 +56,12 @@ class MovieList extends Component {
 									this.state.movies
 										.map(movie =>
                       <TableRow key={movie.id} hoverable={true}>
-                        <TableRowColumn>{movie.id}</TableRowColumn>
                           <TableRowColumn>
                             <Link to={"/admin/movies/info/"+movie.id} key={movie.id}>
                               {movie.title}
                             </Link>
                           </TableRowColumn>
-                        <TableRowColumn>{movie.runTime / 60}</TableRowColumn>
+                        <TableRowColumn>{movie.runTime}</TableRowColumn>
                         <TableRowColumn>{movie.worldReleaseDate}</TableRowColumn>
                         <TableRowColumn>{movie.director}</TableRowColumn>
                         <TableRowColumn>

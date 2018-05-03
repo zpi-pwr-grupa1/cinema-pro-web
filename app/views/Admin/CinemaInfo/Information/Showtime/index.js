@@ -57,7 +57,7 @@ class Showtime extends Component {
 		if (this.state.isEdited) {
 		  return <div className="container">
 				<RaisedButton className="add-button" label="Powrót do listy" onClick={() => {this.changeToEdit()}} />
-				<ShowtimeForm back={this.changeToEdit.bind(this)} form={this.state.showingEdited} />
+				<ShowtimeForm cinemaId={this.state.cinemaId} back={this.changeToEdit.bind(this)} form={this.state.showingEdited} />
       </div>
 		}
 

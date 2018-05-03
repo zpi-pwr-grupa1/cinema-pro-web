@@ -3,6 +3,10 @@ import {DropDownMenu, MenuItem, RaisedButton, TextField} from 'material-ui';
 import './index.scss'
 import {hall, movie, showing} from 'services/api';
 import Form from 'components/FormElements/Form';
+import DatePicker from "react-datepicker";
+import MyDatePicker from "components/MyDatePicker";
+// import * as moment from "moment";
+import moment from 'moment';
 
 const hideAutoFillColorStyle = {
   WebkitBoxShadow: '0 0 0 1000px white inset'
@@ -13,7 +17,7 @@ const hintStyle = {
 
 const initialState = {
 	form: {
-		screeningStart: '',
+		// screeningStart: '',
 		hall: {},
 		movie: {},
 	},
@@ -43,12 +47,12 @@ class ShowtimeForm extends Component {
   	Promise
 			.all([
 				movie.all(),
-				hall.all(),
+				hall.allForCinema(this.props.cinemaId),
 			])
 			.then(([resM, resH]) =>
 				this.setState({
 					form: this.props.form ? {
-						screeningStart: this.props.form.screeningStart,
+						screeningStart: moment(this.props.form.screeningStart),
 						movie: resM.data.filter(m => m.id === this.props.form.movie.id)[0],
 						hall: resH.data.filter(h => h.id === this.props.form.hall.id)[0],
 					} : initialState.form,
@@ -83,6 +87,13 @@ class ShowtimeForm extends Component {
   	}});
 	}
 
+	dateChange (value) {
+		return this.setState({ form: {
+				...this.state.form,
+				screeningStart: value
+			}});
+	}
+
 	onHandleClick = () => {
 		showing.update(this.state.form)
 			.then(() => {
@@ -95,18 +106,15 @@ class ShowtimeForm extends Component {
     return (
 			<Form>
 				<div className="showtime-form">
-					<TextField
-						name="screeningStart"
-						floatingLabelText="Data wyświetlenia:"
-						fullWidth={true}
-						floatingLabelFixed={true}
-						onChange={this.onInputChange}
-						value={this.state.form.screeningStart}
-						inputStyle={hideAutoFillColorStyle}
-						hintStyle={hintStyle}
-            underlineFocusStyle={styles.underlineStyle}
-            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-					/>
+					<DatePicker
+						customInput={<MyDatePicker />}
+						showTimeSelect
+						timeFormat="hh:mm"
+						timeIntervals={5}
+						dateFormat="YYYY-MM-DD hh:mm"
+						selected={this.state.form.screeningStart}
+						onChange={this.dateChange.bind(this)} />
+					
 					<DropDownMenu style={{width: '100%', padding: 0}} onChange={this.movieChange.bind(this)} maxHeight={300} value={this.state.form.movie}>
 						{this.state.data.movies.map(m =>
 							<MenuItem style={{width: '300px'}} value={m} label={m.title} key={m.id} primaryText={m.title}  />
