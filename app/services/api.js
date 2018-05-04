@@ -29,13 +29,16 @@ export const cinema = {
 
 export const movie = {
   all: () => (
-    axios.get('/movie/get/all')
+    axios.get('/movie/get/all/visible')
   ),
   get: (id) => (
     axios.get(`/movie/get/${id}`)
   ),
   new: (data) => (
     axios.post('/movie/update', data)
+  ),
+  delete: (id) => (
+    axios.delete('/movie/delete/' + id)
   ),
 };
 

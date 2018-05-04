@@ -24,6 +24,15 @@ class MovieList extends Component {
 			})
   }
 
+  onDelete(id) {
+    movie
+      .delete(id)
+      .then((response) => this.setState({
+        ...this.state,
+        movies: this.state.movies.filter(m => m.id !== id),
+      }))
+  }
+
   render() {
     return (
       <Page>
@@ -38,9 +47,7 @@ class MovieList extends Component {
 							</div>
 						</div>
 					</section>
-
 					<div className="container">
-
 						<Table className="my-table" displaySelectAll={false} selectable={false}>
 							<TableHeader displaySelectAll={false} adjustForCheckbox={false}>
 								<TableRow>
@@ -48,7 +55,7 @@ class MovieList extends Component {
 									<TableHeaderColumn>Czas trwania (min)</TableHeaderColumn>
 									<TableHeaderColumn>Premiera światowa</TableHeaderColumn>
 									<TableHeaderColumn>Reżyser</TableHeaderColumn>
-									<TableHeaderColumn>Opcje</TableHeaderColumn>
+									<TableHeaderColumn></TableHeaderColumn>
 								</TableRow>
 							</TableHeader>
 							<TableBody displayRowCheckbox={false}>
@@ -68,6 +75,7 @@ class MovieList extends Component {
                         <Link to={'/admin/movies/'+movie.id} key={movie.id}>
                           <button className="btn button edit-btn">Edytuj</button>
                         </Link>
+                          <button className="btn button edit-btn" onClick={() => this.onDelete(movie.id)}>Usuń</button>
                         </TableRowColumn>
                       </TableRow>
 										)
