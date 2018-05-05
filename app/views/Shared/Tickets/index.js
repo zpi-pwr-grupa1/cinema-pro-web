@@ -5,6 +5,7 @@ import {ticketType} from 'services/api';
 import Editable from "react-x-editable";
 import {auth} from "services/auth";
 import {RaisedButton, Snackbar} from "material-ui";
+import {Popconfirm} from "antd";
 
 const initialState = {
 	ticketTypes: [],
@@ -112,7 +113,12 @@ class Tickets extends Component {
 												disabled={!auth.user}
 											/>
 											zł
-											{ auth.user && <i className="delete has-text-danger" onClick={() => this.onDelete(ticket.id)}/>}
+											{auth.user &&
+											<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć ten bilet?"
+																	onConfirm={() => this.onDelete(ticket.id)} okText="Tak" cancelText="Nie">
+												<i className="delete has-text-danger"/>
+											</Popconfirm>
+											}
 										</div>
 									</div>
 								)}

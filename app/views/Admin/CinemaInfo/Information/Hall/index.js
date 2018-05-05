@@ -3,6 +3,7 @@ import './index.scss';
 import {RaisedButton, Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
 import {hall} from 'services/api';
 import HallForm from "views/Admin/CinemaInfo/Information/AddForm/HallForm";
+import {Popconfirm} from "antd";
 
 
 class Hall extends Component {
@@ -85,7 +86,10 @@ class Hall extends Component {
                     <TableRowColumn>{hall.seats.length}</TableRowColumn>
                     <TableRowColumn className="is-pulled-right">
                       <button className="btn button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
-                      <button className="btn button edit-btn" onClick={() => this.onDelete(hall.id)}>Usuń</button>
+											<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć tę salę?"
+																	onConfirm={() => this.onDelete(hall.id)} okText="Tak" cancelText="Nie">
+                        <button className="btn button edit-btn">Usuń</button>
+                      </Popconfirm>
                     </TableRowColumn>
                   </TableRow>
                 )

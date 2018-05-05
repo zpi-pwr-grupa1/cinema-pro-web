@@ -6,7 +6,7 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
 
-  > div {
+  > div:first-of-type {
     width: 100%;
     min-height: 100vh;
   }

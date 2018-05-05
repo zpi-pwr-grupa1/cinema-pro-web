@@ -6,3 +6,5 @@ import 'config'
 import App from "views";
 
 render(<App />, document.getElementById('app'));
+
+module.hot.accept();

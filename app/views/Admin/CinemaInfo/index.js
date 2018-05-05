@@ -7,6 +7,7 @@ import Page from 'components/Page';
 import Cinema from './Information/Cinema';
 import Showtime from './Information/Showtime';
 import Hall from './Information/Hall';
+import {Popconfirm} from "antd";
 
 const styles = {
   button: {
@@ -76,7 +77,9 @@ class CinemaInfo extends Component {
               <div className="container">
                 <h1 className="title is-pulled-left">{this.state.form.name}</h1>
                 <div className="button round-btn is-pulled-right">
-                  <i onClick={() => this.deleteCinema()} className="material-icons">delete</i>
+									<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć to kino?" onConfirm={() => this.deleteCinema()} okText="Tak" cancelText="Nie">
+										<i className="material-icons">delete</i>
+                  </Popconfirm>
                 </div>
               </div>
             </div>

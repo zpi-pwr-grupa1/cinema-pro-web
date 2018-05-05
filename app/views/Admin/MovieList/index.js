@@ -4,6 +4,7 @@ import './index.scss';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from "material-ui";
 import {movie} from "services/api";
 import {Link} from "react-router-dom";
+import {Popconfirm} from "antd";
 
 class MovieList extends Component {
   constructor(props) {
@@ -75,7 +76,10 @@ class MovieList extends Component {
                         <Link to={'/admin/movies/'+movie.id} key={movie.id}>
                           <button className="btn button edit-btn">Edytuj</button>
                         </Link>
-                          <button className="btn button edit-btn" onClick={() => this.onDelete(movie.id)}>Usuń</button>
+													<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć ten film?"
+																			onConfirm={() => this.onDelete(movie.id)} okText="Tak" cancelText="Nie">
+														<button className="btn button edit-btn">Usuń</button>
+													</Popconfirm>
                         </TableRowColumn>
                       </TableRow>
 										)

@@ -4,6 +4,7 @@ import {RaisedButton, Table, TableBody, TableHeader, TableHeaderColumn, TableRow
 import {showing} from 'services/api';
 import ShowtimeForm from "views/Admin/CinemaInfo/Information/AddForm/ShowtimeForm";
 import moment from 'moment';
+import {Popconfirm} from "antd";
 
 class Showtime extends Component {
   constructor(props) {
@@ -90,7 +91,10 @@ class Showtime extends Component {
 											<TableRowColumn>{show.hall.hallNumber}</TableRowColumn>
 											<TableRowColumn className="is-pulled-right">
                         <button className="btn button edit-btn" onClick={() => this.changeToEdit(show)}>Edytuj</button>
-                        <button className="btn button edit-btn" onClick={() => this.onDelete(show.id)}>Usuń</button>
+												<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć ten seans?"
+																		onConfirm={() => this.onDelete(show.id)} okText="Tak" cancelText="Nie">
+													<button className="btn button edit-btn">Usuń</button>
+												</Popconfirm>
 											</TableRowColumn>
 										</TableRow>
 									)
