@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import * as axios from "axios";
 import './index.scss'
 
-//FIXME utilise redux
-class User extends Component {
+class Register extends Component {
 
   constructor(props) {
     super(props);
@@ -30,38 +29,50 @@ class User extends Component {
 
   render() {
     return (
-      <div className="user container">
-        <form action="javascript:() => false;" noValidate>
+      <div className="page-container register">
+        <form className="effect5" action="javascript:() => false;" noValidate>
           <div className="field">
-            <label className="label">Podaj email:</label>
-            <input className="input" type="email" name="email" value={this.state.userForm.email}
-                   onChange={this.handleInputChange.bind(this)}/>
+            <label className="label">Podaj email</label>
+            <input className="input"
+                   type="email"
+                   name="email"
+                   required/>
           </div>
           <div className="field">
-            <label className="label"> Podaj imię:</label>
-            <input className="input" type="text" name="name" value={this.state.userForm.name}
-                   onChange={this.handleInputChange.bind(this)}/>
+            <label className="label">Podaj imię</label>
+            <input className="input"
+                   type="text"
+                   name="name"
+                   required/>
           </div>
           <div className="field">
-            <label className="label"> Podaj nazwisko:</label>
-            <input className="input" type="text" name="lastName" value={this.state.userForm.lastName}
-                   onChange={this.handleInputChange.bind(this)}/>
+            <label className="label">Podaj nazwisko</label>
+            <input className="input"
+                   type="text"
+                   name="lastname"
+                   required/>
           </div>
           <div className="field">
-            <label className="label"> Podaj hasło:</label>
-            <input className="input" type="password" name="password" value={this.state.userForm.password}
-                   onChange={this.handleInputChange.bind(this)}/>
+            <label className="label">Podaj hasło</label>
+            <input className="input"
+                   type="password"
+                   name="password"
+                   required/>
           </div>
           <div className="field">
-            <label className="label"> Powtórz hasło: </label>
-            <input className="input" type="password" name="passwordConfirm" value={this.state.userForm.passwordConfirm}
-                   onChange={this.handleInputChange.bind(this)}/>
+            <label className="label">Powtórz hasło</label>
+            <input className="input"
+                   type="password"
+                   name="password"
+                   required/>
           </div>
-          <button className="button" onClick={() => this.handleSubmit()}>Wyślij</button>
+
+          <button className="button" onClick={() => this.handleSubmit()}>Zarejestruj</button>
+
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default User;
+export default Register;

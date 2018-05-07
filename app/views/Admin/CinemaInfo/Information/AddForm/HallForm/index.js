@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {RaisedButton, TextField} from 'material-ui';
+import {DropDownMenu, MenuItem, RaisedButton, TextField} from 'material-ui';
 import './index.scss'
-import {hall} from 'services/api';
+import {hall, cinema} from 'services/api';
 import Form from 'components/FormElements/Form';
 
 const hideAutoFillColorStyle = {
@@ -26,17 +26,31 @@ class HallForm extends Component {
 
     this.state = {
       form: {
+        hallNumber: "",
+        cinema: {},
       },
+      error: '',
     };
   }
 
-  onHandleClick = () => {
-    hall.new(this.state.form)
-      .then((response) => this.setState({
-        ...this.state,
-        snackbar: true
-      }))
-    this.cleanForm();
+  componentDidMount() {
+    cinema.get(this.props.cinemaId)
+      .then(response => {
+        this.setState({
+          ...this.state,
+          form: {
+            cinema: response.data
+          }
+        })
+      })
+
+    if(!this.props.form) {
+      return;
+    }
+    return this.setState({ form: {
+        ...this.state.form,
+        hallNumber: this.props.form.hallNumber
+      }});
   }
 
   onInputChange = (event) => {
@@ -47,51 +61,54 @@ class HallForm extends Component {
     }});
   }
 
+  onHandleClick = () => {
+    hall.update(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+      }))
+  }
+
   render() {
+    console.log(this.state)
     return (
       <Form>
-        <div>
+        <div className="hall-form">
           <TextField
-            name=""
-            floatingLabelText="Kino:"
-            fullWidth={true}
-            floatingLabelFixed={true}
-            inputStyle={hideAutoFillColorStyle}
-            hintStyle={hintStyle}
-            underlineFocusStyle={styles.underlineStyle}
-            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-          />
-          <TextField
-            name=""
+            name="hallNumber"
             floatingLabelText="Numer sali:"
             fullWidth={true}
             floatingLabelFixed={true}
+            onChange={this.onInputChange}
+            value={this.state.form.hallNumber}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <TextField
-            name=""
-            floatingLabelText="Liczba kolumn:"
-            fullWidth={true}
-            floatingLabelFixed={true}
-            inputStyle={hideAutoFillColorStyle}
-            hintStyle={hintStyle}
-            underlineFocusStyle={styles.underlineStyle}
-            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
-          />
-          <TextField
-            name=""
+            name="seatRow"
             floatingLabelText="Liczba rzędów:"
             fullWidth={true}
             floatingLabelFixed={true}
+            onChange={this.onInputChange}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
-          <RaisedButton className="add_button" label='Dodaj' />
+          <TextField
+            name="seatColumn"
+            floatingLabelText="Liczba kolumn:"
+            fullWidth={true}
+            floatingLabelFixed={true}
+            onChange={this.onInputChange}
+            inputStyle={hideAutoFillColorStyle}
+            hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+          />
+
+          <RaisedButton className="btn add_button" label={this.props.form ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick}/>
         </div>
       </Form>
     )

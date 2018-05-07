@@ -14,6 +14,7 @@ class Hall extends Component {
       halls: [],
       isEdited: false,
       hallEdited: null,
+      cinemaId: props.id,
     };
   }
 
@@ -49,10 +50,11 @@ class Hall extends Component {
   }
 
   render() {
+    console.log(this.state)
     if (this.state.isEdited) {
       return <div className="container">
-        <RaisedButton className="add_button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
-        <HallForm back={this.changeToEdit.bind(this)} form={this.state.hallEdited} />
+        <RaisedButton className="add-button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
+        <HallForm cinemaId={this.state.cinemaId} back={this.changeToEdit.bind(this)} form={this.state.hallEdited} />
       </div>
     }
 

@@ -43,6 +43,8 @@ class EmployeeList extends Component {
         this.setState({
           ...this.state,
           employees: response.data
+        }).catch(error => {
+          console.log(error.message);
         })
       })
   }
