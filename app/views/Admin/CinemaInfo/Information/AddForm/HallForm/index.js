@@ -62,10 +62,14 @@ class HallForm extends Component {
   }
 
   onHandleClick = () => {
-    hall.update(this.state.form)
-      .then((response) => this.setState({
-        ...this.state,
-      }))
+    cinema.addHallToCinema(this.props.cinemaId, {
+      hallNumber: this.state.form.hallNumber
+    }).then((response) => {
+      console.log(response)
+      this.setState({
+        ...this.state
+      })
+    })
   }
 
   render() {

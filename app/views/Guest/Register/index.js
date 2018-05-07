@@ -1,73 +1,76 @@
 import React, {Component} from 'react';
 import * as axios from "axios";
+import {client} from 'services/api';
 import './index.scss'
 
 class Register extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {userForm: {}};
-  }
 
-  handleInputChange(event) {
-    const target = event.target;
-    const name = target.name;
-
-    this.setState({
-      userForm: {
-        [name]: event.value
+    this.state = {
+      form: {
+        email: "",
+        password: "",
+        birthDate: "",
       }
-    });
+    };
   }
 
-  handleSubmit(event) {
-    return axios
-      .post('/client/update', this.state.userForm) // FIXME move to service
-      .then(data => alert('wow, it succeeded'))
-      .catch(err => alert('server respond with err: ' + err))
+  onHandleClick = () => {
+    client.update(this.state.form)
+      .then((response) => this.setState({
+        ...this.state,
+      }))
+  }
+
+  onInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ form: {
+      ...this.state.form,
+      [name]: value,
+    }});
   }
 
   render() {
     return (
       <div className="page-container register">
-        <form className="effect5" action="javascript:() => false;" noValidate>
+        <form className="effect5">
           <div className="field">
-            <label className="label">Podaj email</label>
+            <label className="label">Podaj email:</label>
             <input className="input"
                    type="email"
                    name="email"
+                   value={this.state.form.email}
+                   onChange={this.onInputChange}
                    required/>
           </div>
           <div className="field">
-            <label className="label">Podaj imię</label>
-            <input className="input"
-                   type="text"
-                   name="name"
-                   required/>
-          </div>
-          <div className="field">
-            <label className="label">Podaj nazwisko</label>
-            <input className="input"
-                   type="text"
-                   name="lastname"
-                   required/>
-          </div>
-          <div className="field">
-            <label className="label">Podaj hasło</label>
+            <label className="label">Podaj hasło:</label>
             <input className="input"
                    type="password"
                    name="password"
+                   value={this.state.form.password}
+                   onChange={this.onInputChange}
                    required/>
           </div>
           <div className="field">
-            <label className="label">Powtórz hasło</label>
+            <label className="label">Podaj datę urodzenia:</label>
             <input className="input"
-                   type="password"
-                   name="password"
+                   type="text"
+                   name="birthDate"
+                   value={this.state.form.birthDate}
+                   onChange={this.onInputChange}
                    required/>
+          </div>
+          <div className="field">
+            <label className="label">Wybierz ulubione typy filmów:</label>
+            <input className="input"
+                   type="text"
+                   name="groups"/>
           </div>
 
-          <button className="button" onClick={() => this.handleSubmit()}>Zarejestruj</button>
+          <button type="button" className="button" onClick={this.onHandleClick}>Zarejestruj</button>
 
         </form>
       </div>

@@ -88,11 +88,19 @@ class AddEmployee extends Component {
   }
 
   onHandleClick = () => {
-    employee.update(this.state.form)
-      .then((response) => this.setState({
-        ...this.state,
-        snackbar: true
-      }))
+    if(this.employeeId) {
+      employee.modify(this.state.form)
+        .then((response) => this.setState({
+          ...this.state,
+          snackbar: true
+        }))
+    } else {
+      employee.update(this.state.form)
+        .then((response) => this.setState({
+          ...this.state,
+          snackbar: true
+        }))
+      }
   }
 
   get employeeId() {
@@ -118,7 +126,7 @@ class AddEmployee extends Component {
 
             <Form>
               <div>
-                Wybierz kino:
+                Kino: {this.state.form.cinema.name}
                 <DropDownMenu
                   style={{width: "100%", padding: 0}} 
                   onChange={this.cinemaChange.bind(this)} 

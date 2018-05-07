@@ -25,6 +25,9 @@ export const cinema = {
 	modify: (data) => (
 		axios.put('/cinema/modify', data)
 	),
+  addHallToCinema: (id, data) => (
+    axios.put(`/cinema/${id}/put/hall`, data)
+  ),
 };
 
 export const movie = {
@@ -70,6 +73,9 @@ export const hall = {
   allForCinema: (id) => (
     axios.get(`/cinema/get/${id}/halls/visible`)
   ),
+  createMultipleSeats: (data) => (
+    axios.get('/hall/createseats')
+  ),
 };
 
 export const seat = {
@@ -108,5 +114,17 @@ export const employee = {
   ),
   delete: (id) => (
     axios.delete('/employee/delete/' + id)
+  ),
+  modify: (data) => (
+    axios.put('/employee/modify', data)
+  ),
+};
+
+export const client = {
+  all: () => (
+    axios.get('/client/get/all')
+  ),
+  update: (data) => (
+    axios.post('/client/update', data)
   ),
 };
