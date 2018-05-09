@@ -127,4 +127,13 @@ export const client = {
   update: (data) => (
     axios.post('/client/update', data)
   ),
+  get: (id) => (
+    axios.get(`/client/get/${id}`)
+  ),
+};
+
+export const movieGroup = {
+  all: () => (
+    axios.get('/movieGroup/get/all')
+  ),
 };

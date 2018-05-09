@@ -1,0 +1,28 @@
+.client-info-wrapper {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 30px;
+}
+
+.client-info-img {
+  width: 50%;
+}
+
+img.poster {
+  width: 450px;
+}
+
+p.types {
+  font-size: 30px;
+}
+
+p.headingsp {
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+h1 {
+  font-weight: 500;
+  font-size: 40px;
+}

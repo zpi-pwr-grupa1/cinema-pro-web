@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Route, Router, Switch} from 'react-router-dom';
 import History from 'services/history';
-// Views
+// Client
+import ClientLayout from 'views/Client/Layout/index';
 // Guest
 import HomeLayout from 'views/Guest/Layout';
 // Admin
@@ -20,6 +21,7 @@ class App extends Component {
 			<Router history={History}>
 				<Switch>
 					<Route path="/admin" component={AdminLayout} />
+          <Route path="/client" component={ClientLayout} />
 					<Route path="/" component={HomeLayout} />
 					{/* <Route path="/operator" component={OperatorHome} exact />
 					<Route path="/client" component={ClientHome} exact />
