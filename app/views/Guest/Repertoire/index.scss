@@ -1,10 +1,33 @@
 @import "~bulma";
 
 .repertoire {
-  display: flex;
-  flex-direction: row;
-  //height: calc(100vh - 115px);
-  justify-content: center;
-  align-items: center;
 
+  .list {
+    .tile {
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid black;
+      border-radius: 5px;
+      padding: 5px;
+      
+      img {
+        width: 100px;
+        height: 100px;
+      }
+      
+      > div {
+        width: 33%;
+      }
+      
+      .showings-info {
+        font-size: 24px;
+        display: flex;
+        
+        > b {
+          display: block
+        }
+      }
+    }
+  }
+  
 }

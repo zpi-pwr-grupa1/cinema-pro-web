@@ -12,7 +12,7 @@ const Header = (props) => (
 				{!auth.user ?
 					<div className="user-tabs"> 
 						<Link to={'/login'} ><button className="button is-dark is-inverted is-outlined">Zaloguj się</button></Link>
-						<Link to={'/register'} ><button className="button is-dark is-inverted is-outlined id-grouped">Zarejestruj się</button></Link>
+						<Link to={'/register'} ><button className="button is-dark is-inverted is-outlined id-grouped">Załóż konto</button></Link>
 					</div> : <div></div>}
 
 				{

@@ -1,56 +1,75 @@
 import React, {Component} from 'react';
 import './index.scss';
-import {List, ListItem} from 'material-ui/List';
-import {MuiThemeProvider} from "material-ui";
-import {cinema} from "services/api";
+import {showing} from "services/api";
+import {cinema} from "services/cinema";
+import Page from "components/Page";
+import {groupBy} from "ramda";
+import avatarImg from "assets/images/avatar.png";
 
 class Repertoire extends Component {
 
+	state = {
+		showings: [],
+	}
+  
   constructor(props) {
-    super(props);
-
-    this.state = {
-      cinemas: [],
-    };
+    super(props)
   }
 
   componentDidMount() {
-    cinema.all()
-      .then(response => {
-        this.setState({
-          ...this.state,
-          cinemas: response.data
-        })
-      })
+		showing
+      .allForCinema(cinema.current.id)
+			.then(response => {
+				this.setState({
+					showings: response.data,
+				})
+			})
   }
   
-  goTo(cinema) {
-    localStorage.setItem('cinema', JSON.stringify(cinema))
-		this.props.history.push(`/repertoire`)
-  }
+  groupByMovie = groupBy((showing) => showing.movie.id)
 
   render() {
     return (
-      <MuiThemeProvider>
-        <div className="page-container repertoire">
+			<Page>
+        <div className="repertoire">
+					<section className="hero is-light">
+						<div className="hero-body">
+							<div className="container">
+								<h1 className="title">Repertuar</h1>
+							</div>
+						</div>
+					</section>
 
-          <div className="box">
-            <h1>Wybierz kino</h1>
-
-            <List className="cinema-list">
+					<div className="container">
+            <div className="list">
               {
-                this.state.cinemas
-                  .map(cinema=>
-                    <ListItem onClick={() => this.goTo(cinema)} primaryText={cinema.name} key={cinema.id} />
-                  )
+                this.state.showings
+                  .map((showing, key) =>
+                    <div key={showing.id} className="tile">
+											<div className="has-text-centered">
+												<img src={avatarImg} />
+											</div>
+											<div className="movie-info">
+												<div>{showing.movie.title}</div>												
+												<div>12 lat</div>												
+												<div>{showing.movie.groups.map((g, i) => `${g.label}${i+1 !== showing.movie.groups.length ? ',':''} `)}</div>												
+												<div>{showing.movie.runTime} min</div>												
+											</div>
+											<div className="showings-info">
+												<b>10:10</b>
+												<b>13:30</b>
+												<b>19:50</b>
+											</div>
+                    </div>
+                )
               }
-
-            </List>
-
+              
+            </div>
           </div>
-
+          
+          
         </div>
-      </MuiThemeProvider>
+      </Page>
     )
   }
 }

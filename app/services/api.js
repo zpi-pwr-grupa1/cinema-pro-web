@@ -57,6 +57,9 @@ export const showing = {
 	),
   allForCinema: (id) => (
 		axios.get(`/cinema/get/${id}/showings`)
+	),
+	allPlannedForCinema: (id) => (
+		axios.get(`/cinema/get/${id}/showings/planned`)
 	)
 }
 
