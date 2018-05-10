@@ -3,6 +3,7 @@ import './index.scss';
 import {List, ListItem} from 'material-ui/List';
 import {MuiThemeProvider} from "material-ui";
 import {cinema} from "services/api";
+import {cinema as cinemaService} from "services/cinema";
 
 class Home extends Component {
 
@@ -24,9 +25,10 @@ class Home extends Component {
       })
   }
   
-  goTo(cinema) {
-    localStorage.setItem('cinema', JSON.stringify(cinema))
+  goTo(c) {
+    localStorage.setItem('cinema', JSON.stringify(c))
 		this.props.history.push(`/repertoire`)
+    cinemaService.select(c)
   }
 
   render() {

@@ -18,6 +18,20 @@
     font-size: 50px;
   }
   
+  .cinema {
+    display: flex;
+    font-size: 40px;
+    letter-spacing: 1px;
+    align-self: center;
+    padding: 5px 10px;
+    line-height: 1;
+    text-decoration: none;
+    
+    > i {
+      margin-left: 10px;
+    }
+  }
+  
   button {
     margin-right: 5px;
   }
@@ -65,9 +79,14 @@
         margin: 0 10px;
         color: white;
         outline: none!important;
+        text-decoration: none;
         
         &:hover {
           background: #585858;
+        }
+        
+        &.active {
+          background: #676767;
         }
 
         &:first-child {

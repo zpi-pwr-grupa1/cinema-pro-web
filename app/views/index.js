@@ -8,12 +8,14 @@ import HomeLayout from 'views/Guest/Layout';
 // Admin
 import AdminLayout from 'views/Admin/Layout/index';
 import {auth} from "services/auth";
+import {cinema} from "services/cinema";
 
 class App extends Component {
 
 	constructor() {
 		super()
 		auth.init(History)
+		cinema.init()
 	}
 
 	render() {
