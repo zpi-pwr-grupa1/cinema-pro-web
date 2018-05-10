@@ -76,6 +76,9 @@ export const hall = {
   createMultipleSeats: (data) => (
     axios.get('/hall/createseats')
   ),
+  getColumnsAndRows: (id) => (
+    axios.get(`/hall/get/${id}/columnsandrows`)
+  ),
 };
 
 export const seat = {

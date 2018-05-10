@@ -57,6 +57,7 @@ class ClientInfo extends Component {
 
     client.get(this.clientId)
       .then(response => {
+        console.log(response)
         this.setState({
           ...this.state,
           form: response.data
@@ -132,11 +133,11 @@ class ClientInfo extends Component {
               <p>{this.state.form.birthDate}</p>
               <p className="headingsp">Grupy:</p>
               {this.state.form.groups.map((group) =>
-                <p key={group.id}>{this.state.form.group}</p>
+                <p key={group.id}>{group.label}</p>
               )}
             </div>
             <div className="client-info-img">
-              <p className="types">Grupy:</p>
+              <p className="types">Ulubione typy filmów:</p>
 
               <SelectField
                 multiple={true}

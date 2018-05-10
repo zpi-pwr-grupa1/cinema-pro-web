@@ -37,7 +37,7 @@ class Register extends Component {
       <div className="page-container register">
         <form className="effect5">
           <div className="field">
-            <label className="label">Email:</label>
+            <label className="label">Email</label>
             <input className="input"
                    type="email"
                    name="email"
@@ -46,7 +46,7 @@ class Register extends Component {
                    required/>
           </div>
           <div className="field">
-            <label className="label">Hasło:</label>
+            <label className="label">Hasło</label>
             <input className="input"
                    type="password"
                    name="password"
@@ -55,7 +55,7 @@ class Register extends Component {
                    required/>
           </div>
           <div className="field">
-            <label className="label">Data urodzenia:</label>
+            <label className="label">Data urodzenia</label>
             <input className="input"
                    type="text"
                    name="birthDate"
