@@ -73,7 +73,6 @@ class HallForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Form>
         <div className="hall-form">

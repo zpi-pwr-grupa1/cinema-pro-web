@@ -5,7 +5,7 @@ import splitEvery from "ramda/es/splitEvery";
 import './index.scss';
 import {client, movieGroup} from "services/api";
 import FontIcon from 'material-ui/FontIcon';
-import {SelectField, DropDownMenu} from 'material-ui';
+import {SelectField, DropDownMenu, RaisedButton, TextField} from 'material-ui';
 import MenuItem from 'material-ui/MenuItem';
 
 const iconStyles = {
@@ -25,6 +25,12 @@ const names = [
   'Kelly Snyder',
 ];
 
+const styles = {
+  customWidth: {
+    width: 300,
+  }
+}
+
 class ClientInfo extends Component {
   constructor(props) {
     super(props);
@@ -34,12 +40,10 @@ class ClientInfo extends Component {
         email: '',
         password: '',
         birthDate: '',
-        values: [],
-      },
-      data: {
         groups: [],
       },
-      clientId: "a2c14cbe-5e7b-4abf-a081-751cda31a9fa",
+      groups: [],
+      clientId: "4f358d56-9877-4a35-959b-1a68a405465f",
     };
   }
 
@@ -47,14 +51,13 @@ class ClientInfo extends Component {
     movieGroup.all()
       .then(response => {
         this.setState({
-          data: {
-            groups: response.data
-          }
+          groups: response.data
         })
       })
 
     client.get(this.clientId)
       .then(response => {
+        console.log(response)
         this.setState({
           ...this.state,
           form: response.data
@@ -66,10 +69,15 @@ class ClientInfo extends Component {
     return this.state.clientId;
   }
 
-  handleChange = (event, index, values) => this.setState({form: {values:values}});
+  handleChange = (event, index, values) => {
+    this.setState({ form: {
+      ...this.state.form,
+      groups: values
+    }});
+  }
 
   menuItems(values) {
-    return this.state.data.groups.map((group) => (
+    return this.state.groups.map((group) => (
       <MenuItem
         key={group.id}
         insetChildren={true}
@@ -80,8 +88,23 @@ class ClientInfo extends Component {
     ));
   }
 
+  onInputChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ form: {
+      ...this.state.form,
+      [name]: value,
+    }});
+  }
+
+  onHandleClick = () => {
+    client.update(this.state.form)
+      .then(() => {
+        this.setState()
+      })
+  }
+
   render() {
-    const {values} = this.state.form;
+    const {groups} = this.state.form;
     return (
       <Page>
         <div>
@@ -96,24 +119,36 @@ class ClientInfo extends Component {
             <div className="client-info-txt">
               <p className="types">Informacje o koncie:</p>
               <p></p>
-              <p className="headingsp">Id:</p>
+              <p className="headingsp">Identyfikator:</p>
               <p>{this.state.clientId}</p>
               <p className="headingsp">Email:</p>
-              <p>{this.state.form.email}</p>
-              <p className="headingsp">Birth date:</p>
+              <TextField
+                name="email"
+                fullWidth={true}
+                floatingLabelFixed={true}
+                onChange={this.onInputChange}
+                value={this.state.form.email}
+              />
+              <p className="headingsp">Data urodzenia:</p>
               <p>{this.state.form.birthDate}</p>
+              <p className="headingsp">Grupy:</p>
+              {this.state.form.groups.map((group) =>
+                <p key={group.id}>{group.label}</p>
+              )}
             </div>
             <div className="client-info-img">
-              <p className="types">Grupy:</p>
+              <p className="types">Ulubione typy filmów:</p>
 
               <SelectField
                 multiple={true}
                 hintText="Select a name"
-                value={values}
+                value={groups}
                 onChange={this.handleChange}
+                style={styles.customWidth}
               >
-                {this.menuItems(values)}
+                {this.menuItems(groups)}
               </SelectField>
+              <RaisedButton className="add-btn" fullWidth={false} label='Edytuj' onClick={this.onHandleClick}/>
             </div>
           </div>
         </div>

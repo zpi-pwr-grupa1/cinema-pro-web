@@ -21,6 +21,7 @@ class MovieInfo extends Component {
         imgURL: '',
         director: '',
         movieCast: '',
+        groups: [],
       },
     };
   }
@@ -56,7 +57,9 @@ class MovieInfo extends Component {
           </section>
           <div className="movie-info-wrapper">
             <div className="movie-info-txt">
-              <p className="types">Science-Fiction</p>
+              {this.state.form.groups.map((group) =>
+                <p key={group.id} className="types">{group.label}</p>
+              )}
               <p>Czas trwania: {this.state.form.runTime} min. / Od lat: {this.state.form.age} / Produkcja: {this.state.form.country}</p>
               <p className="headingsp">Premiera:</p>
               <p>{this.state.form.polishReleaseDate} (Polska), {this.state.form.worldReleaseDate} (Świat)</p>

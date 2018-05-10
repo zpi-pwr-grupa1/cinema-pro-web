@@ -11,6 +11,10 @@ class Hall extends Component {
     super(props);
 
     this.state = {
+      form: {
+        columns: "",
+        rows: "",
+      },
       halls: [],
       isEdited: false,
       hallEdited: null,
@@ -21,9 +25,21 @@ class Hall extends Component {
   componentDidMount() {
     hall.allForCinema(this.cinemaId)
       .then(response => {
+        console.log(response)
         this.setState({
           ...this.state,
           halls: response.data
+        })
+      })
+  }
+
+  rowAndColumns(id) {
+    hall.getColumnsAndRows(id)
+      .then(response => {
+        console.log(response)
+        this.setState({
+          ...this.state,
+          form: response.data
         })
       })
   }
@@ -50,7 +66,6 @@ class Hall extends Component {
   }
 
   render() {
-    console.log(this.state)
     if (this.state.isEdited) {
       return <div className="container">
         <RaisedButton className="add-button" label="Powrót do listy" onClick={() => this.changeToEdit()} />
@@ -88,8 +103,8 @@ class Hall extends Component {
                     <TableRowColumn>{hall.seats.length}</TableRowColumn>
                     <TableRowColumn className="is-pulled-right">
                       <button className="btn button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
-											<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć tę salę?"
-																	onConfirm={() => this.onDelete(hall.id)} okText="Tak" cancelText="Nie">
+                      <Popconfirm placement="bottom" title="Czy napewno chcesz usunąć tę salę?"
+                                  onConfirm={() => this.onDelete(hall.id)} okText="Tak" cancelText="Nie">
                         <button className="btn button edit-btn">Usuń</button>
                       </Popconfirm>
                     </TableRowColumn>

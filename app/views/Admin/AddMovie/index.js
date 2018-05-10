@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {Snackbar, TextField} from 'material-ui';
-import RaisedButton from 'material-ui/RaisedButton';
+import {Snackbar, TextField, SelectField, RaisedButton, MenuItem} from 'material-ui';
 import './index.scss'
 
-import {movie} from 'services/api';
+import {movie, movieGroup} from 'services/api';
 import Page from 'components/Page';
 import Form from 'components/FormElements/Form';
 import {Link} from "react-router-dom";
@@ -22,6 +21,9 @@ const styles = {
   underlineStyle: {
     borderColor: "#FF4081",
   },
+  customWidth: {
+    width: 300,
+  }
 };
 
 class AddMovie extends Component {
@@ -40,7 +42,9 @@ class AddMovie extends Component {
         imgURL: '',
         director: '',
         movieCast: '',
+        groups: [],
       },
+      groups: [],
       snackbar: false,
       error: '',
     };
@@ -64,6 +68,13 @@ class AddMovie extends Component {
   }
 
   componentDidMount() {
+    movieGroup.all()
+      .then(response => {
+        this.setState({
+          groups: response.data
+        })
+      })
+
     if(!this.movieId) {
       return;
     }
@@ -79,6 +90,13 @@ class AddMovie extends Component {
 
   get movieId() {
     return this.props.match.params.id;
+  }
+
+  handleChange = (event, index, values) => {
+    this.setState({ form: {
+      ...this.state.form,
+      groups: values
+    }});
   }
 
   onHandleClick = () => {
@@ -98,7 +116,20 @@ class AddMovie extends Component {
       }});
   }
 
+  menuItems(values) {
+    return this.state.groups.map((group) => (
+      <MenuItem
+        key={group.id}
+        insetChildren={true}
+        checked={values && values.indexOf(group) > -1}
+        value={group}
+        primaryText={group.label}
+      />
+    ));
+  }
+
   render() {
+    const {groups} = this.state.form;
     return (
       <Page>
         <div>
@@ -241,6 +272,16 @@ class AddMovie extends Component {
                   underlineFocusStyle={styles.underlineStyle}
                   floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
                 />
+                <p className="add-types">Typ filmu:</p>
+                <SelectField
+                  multiple={true}
+                  hintText="Select a name"
+                  value={groups}
+                  onChange={this.handleChange}
+                  style={styles.customWidth}
+                >
+                {this.menuItems(groups)}
+              </SelectField>
                 <RaisedButton className="btn add_button" label={this.movieId ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick} />
               </div>
             </Form>

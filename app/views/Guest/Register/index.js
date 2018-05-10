@@ -37,7 +37,7 @@ class Register extends Component {
       <div className="page-container register">
         <form className="">
           <div className="field">
-            <label className="label">Podaj email:</label>
+            <label className="label">Email</label>
             <input className="input"
                    type="email"
                    name="email"
@@ -46,7 +46,7 @@ class Register extends Component {
                    required/>
           </div>
           <div className="field">
-            <label className="label">Podaj hasło:</label>
+            <label className="label">Hasło</label>
             <input className="input"
                    type="password"
                    name="password"
@@ -55,19 +55,13 @@ class Register extends Component {
                    required/>
           </div>
           <div className="field">
-            <label className="label">Podaj datę urodzenia:</label>
+            <label className="label">Data urodzenia</label>
             <input className="input"
                    type="text"
                    name="birthDate"
                    value={this.state.form.birthDate}
                    onChange={this.onInputChange}
                    required/>
-          </div>
-          <div className="field">
-            <label className="label">Wybierz ulubione typy filmów:</label>
-            <input className="input"
-                   type="text"
-                   name="groups"/>
           </div>
 
           <button type="button" className="button" onClick={this.onHandleClick}>Zarejestruj</button>
