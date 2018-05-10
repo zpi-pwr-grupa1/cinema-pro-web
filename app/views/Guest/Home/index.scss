@@ -3,7 +3,7 @@
 .home-view {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 115px);
+  min-height: calc(100vh - 100px) !important;
   justify-content: center;
   align-items: center;
   background-image: url("/assets/images/cinema.jpeg");
@@ -28,6 +28,7 @@
       font-weight: bold;
       text-align: center;
       margin-bottom: 30px;
+      color: white;
     }
 
     .cinema-list {

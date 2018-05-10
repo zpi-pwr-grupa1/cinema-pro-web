@@ -4,7 +4,7 @@ import {List, ListItem} from 'material-ui/List';
 import {MuiThemeProvider} from "material-ui";
 import {cinema} from "services/api";
 
-class Home extends Component {
+class Repertoire extends Component {
 
   constructor(props) {
     super(props);
@@ -32,7 +32,7 @@ class Home extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="page-container home-view">
+        <div className="page-container repertoire">
 
           <div className="box">
             <h1>Wybierz kino</h1>
@@ -55,4 +55,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Repertoire;

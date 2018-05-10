@@ -37,7 +37,8 @@
     "react-datepicker": "^1.4.1",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
-    "react-x-editable": "0.0.9-beta"
+    "react-x-editable": "0.0.9-beta",
+    "react-transition-group": "latest"
   },
   "devDependencies": {
     "babel": "^6.23.0",

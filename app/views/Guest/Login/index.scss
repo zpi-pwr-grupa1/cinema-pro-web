@@ -3,12 +3,12 @@
 .login {
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 115px);
+    //height: calc(100vh - 115px);
     justify-content: center;
     align-items: center;
     background-repeat: no-repeat;
     background-size: 100% 50%;
-    filter: drop-shadow( 0 0 15px #000 );
+    filter: drop-shadow( 0 0 5px #000 );
 
     form {
         height: 300px;

@@ -35,7 +35,7 @@ class Register extends Component {
   render() {
     return (
       <div className="page-container register">
-        <form className="effect5">
+        <form className="">
           <div className="field">
             <label className="label">Podaj email:</label>
             <input className="input"

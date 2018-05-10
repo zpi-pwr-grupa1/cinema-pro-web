@@ -37,7 +37,7 @@ class Login extends Component {
   render() {
     return (
       <div className="page-container login">
-        <form className="effect5" action="javascript:() => false;" noValidate>
+        <form className="" action="javascript:() => false;" noValidate>
           <div className="field">
             <label className="label">Email</label>
             <input className="input"

@@ -1,6 +1,12 @@
 .sidebar {
+	min-width: 170px;
+	width: 170px;
+	/* min-height: 100vh; */
+	height: 1px;
+	float: left;
+	
 	> div {
-		margin-top: 60px;
+		margin-top: 45px;
 		background: #fafafa!important;
 
 		> div:first-child {
