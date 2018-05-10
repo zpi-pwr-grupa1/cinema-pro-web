@@ -58,7 +58,7 @@ class Login extends Component {
                    required/>
           </div>
 
-          <button className="button" onClick={() => this.handleSubmit()}>Wyślij</button>
+          <button className="button" onClick={() => this.handleSubmit()}>Zaloguj</button>
 
         </form>
       </div>
