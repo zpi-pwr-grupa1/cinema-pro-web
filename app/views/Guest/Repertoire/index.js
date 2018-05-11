@@ -35,7 +35,7 @@ class Repertoire extends Component {
 					<section className="hero is-light">
 						<div className="hero-body">
 							<div className="container">
-								<h1 className="title">Repertuar</h1>
+								<h1 className="title">W dniu</h1>
 							</div>
 						</div>
 					</section>
@@ -45,7 +45,7 @@ class Repertoire extends Component {
               {
                 this.state.showings
                   .map((showing, key) =>
-                    <div key={showing.id} className="tile">
+                    <div key={showing.id} className="tile  hvr-grow">
 											<div className="has-text-centered">
 												<img src={avatarImg} />
 											</div>

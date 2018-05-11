@@ -10,12 +10,18 @@
       border-radius: 5px;
       padding: 5px;
       
+      &.hvr-grow:hover {
+        transform: scale(1.02);
+        transition-duration: 0.6s;
+      }
+      
       img {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
       }
       
       > div {
+        align-self: center;
         width: 33%;
       }
       
