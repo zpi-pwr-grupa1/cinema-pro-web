@@ -102,7 +102,7 @@ class Tickets extends Component {
 												disabled={!auth.user}
 											/>
 										</div>
-										<div className="price column">
+										<div className="price column is-inline-flex">
 											<Editable
 												className="is-inline-block"
 												onInputChange={this.onFormEdit.bind(this, 'price', ticket)} 
@@ -122,21 +122,27 @@ class Tickets extends Component {
 										</div>
 									</div>
 								)}
-							<div className="columns">
-								<div className="name column has-text-right">
-									<input name="name" value={this.state.newTicketType.name} onChange={this.onInputChange}/>
+
+							{auth.user &&
+								<div className="columns">
+									<div className="name column has-text-right">
+										<input name="name" value={this.state.newTicketType.name} onChange={this.onInputChange}/>
+									</div>
+									<div className="price column">
+										<input name="price" value={this.state.newTicketType.price} onChange={this.onInputChange}/>
+										zł
+										<i className="material-icons add" onClick={this.onAdd.bind(this)}>add_circle</i>
+									</div>
 								</div>
-								<div className="price column">
-									<input name="price" value={this.state.newTicketType.price} onChange={this.onInputChange}/>
-									zł
-									<i className="material-icons add" onClick={this.onAdd.bind(this)}>add_circle</i>
+							}
+
+							{auth.user &&
+								<div className="columns">
+									<div className="column has-text-centered">
+										<RaisedButton className="is-center" label="Zaaplikuj zmiany" onClick={this.submit.bind(this)}/>
+									</div>
 								</div>
-							</div>
-							<div className="columns">
-								<div className="column has-text-centered">
-									<RaisedButton className="is-center" label="Zaaplikuj zmiany" onClick={this.submit.bind(this)} />
-								</div>
-							</div>
+							}
 						</div>
 					</div>
 

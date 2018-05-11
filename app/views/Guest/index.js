@@ -6,12 +6,14 @@ import Home from "views/Guest/Home";
 import Login from "views/Guest/Login";
 import Repertoire from "views/Guest/Repertoire";
 import Register from "views/Guest/Register";
+import Tickets from "views/Shared/Tickets";
 
 const Views = (props) => (
   <Switch>
 
     <Route exact path="/login" component={Login} />
     <Route exact path="/repertoire" component={Repertoire} />
+    <Route exact path="/tickets" component={Tickets} />
     
     <Route exact path='/register' component={Register} />
 
