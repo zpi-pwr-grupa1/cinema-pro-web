@@ -1,6 +1,10 @@
 @import "~bulma";
 
 .repertoire {
+  
+  .container {
+    margin-top: 20px;
+  }
 
   .list {
     .tile {
@@ -23,6 +27,7 @@
       > div {
         align-self: center;
         width: 33%;
+        flex-direction: column;
       }
       
       .showings-info {
@@ -30,7 +35,7 @@
         display: flex;
         
         > b {
-          display: block
+          display: block;
         }
       }
     }
