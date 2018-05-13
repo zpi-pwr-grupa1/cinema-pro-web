@@ -1,13 +1,17 @@
 .movie-info-wrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row;
   margin: 30px;
 }
 
+.movie-info-txt {
+  padding-left: 200px;
+  max-width: 50%;
+}
+
 .movie-info-img {
   width: 50%;
-  align-self: flex-end;
   text-align: center;
 }
 

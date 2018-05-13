@@ -47,7 +47,7 @@ class Repertoire extends Component {
                   .map((showing, key) =>
                     <div key={showing.id} className="tile  hvr-grow">
 											<div className="has-text-centered">
-												<img src={avatarImg} />
+												<img src={showing.movie.imgURL} />
 											</div>
 											<div className="movie-info">
 												<div>{showing.movie.title}</div>												
