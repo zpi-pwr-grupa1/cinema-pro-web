@@ -13,7 +13,11 @@ const Header = (props) => (
 					<div className="user-tabs"> 
 						<Link to={'/login'} ><button className="button is-dark is-inverted is-outlined">Zaloguj się</button></Link>
 						<Link to={'/register'} ><button className="button is-dark is-inverted is-outlined id-grouped">Załóż konto</button></Link>
-					</div> : <div></div>}
+					</div> : 
+          <div className="user-tabs">
+              <button className="button is-dark is-inverted is-outlined is-invisible">Zaloguj się</button>
+              <button className="button is-dark is-inverted is-outlined id-grouped is-invisible">Załóż konto</button>
+          </div>}
 
 				{
 					cinema.current ?

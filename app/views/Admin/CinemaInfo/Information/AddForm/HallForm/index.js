@@ -5,7 +5,7 @@ import {hall, cinema} from 'services/api';
 import Form from 'components/FormElements/Form';
 
 const hideAutoFillColorStyle = {
-  WebkitBoxShadow: '0 0 0 1000px white inset'
+
 };
 const hintStyle = {
   zIndex: '1'
