@@ -7,6 +7,7 @@ import Page from 'components/Page';
 import Cinema from './Information/Cinema';
 import Showtime from './Information/Showtime';
 import Hall from './Information/Hall';
+import Employee from './Information/Employee';
 import {Popconfirm} from "antd";
 
 const styles = {
@@ -93,6 +94,7 @@ class CinemaInfo extends Component {
             <Tab label="Szczegóły" value="a" style={styles.tabtab}><Cinema id={this.cinemaId} /></Tab>
             <Tab label="Seanse" value="b" style={styles.tabtab} ><Showtime id={this.cinemaId} /></Tab>
             <Tab label="Sale" value="c" style={styles.tabtab} ><Hall id={this.cinemaId} /></Tab>
+            <Tab label="Pracownicy" value="d" style={styles.tabtab} ><Employee id={this.cinemaId} /></Tab>
           </Tabs>
         </div>
         </div>

@@ -18,15 +18,11 @@ const adminNav = [{
   name: "Lista filmów",
   url: "/admin/movies/"
 },{
-  key: 3,
-  name: "Lista pracowników",
-  url: "/admin/employees/"
-},{
-	key: 4,
+	key: 3,
 	name: "Cennik biletów",
 	url: "/admin/tickets/"
 }, {
-  key: 5,
+  key: 4,
   name: "Wyloguj",
   url: "",
   method: (context) => auth.logout()

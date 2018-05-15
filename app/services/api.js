@@ -60,7 +60,7 @@ export const showing = {
     ),
     allPlannedForCinema: (id) => (
         axios.get(`/cinema/get/${id}/showings/planned`)
-    )
+    ) 
 }
 
 export const hall = {
@@ -123,6 +123,9 @@ export const employee = {
     ),
     modify: (data) => (
         axios.put('/employee/modify', data)
+    ),
+    allForCinema: (id) => (
+        axios.get(`/cinema/get/${id}/employees`)
     ),
 };
 
