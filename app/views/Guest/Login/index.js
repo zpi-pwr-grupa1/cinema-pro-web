@@ -9,7 +9,7 @@ class Login extends Component {
     super(props);
     this.state = {
       form: {
-        username: 'user@example.com',
+        email: 'client@example.com',
         password: 'haslo123',
       }
     };
@@ -29,7 +29,7 @@ class Login extends Component {
     return user.login(this.state.form)
       .then(data => {
         auth.authenticate(data);
-        this.props.history.push('/admin');
+        this.props.history.push('/');
       })
       .catch(err => alert('server respond with err: ' + err))
   }
@@ -42,8 +42,8 @@ class Login extends Component {
             <label className="label">Email</label>
             <input className="input"
                    type="text"
-                   name="username"
-                   value={this.state.form.username}
+                   name="email"
+                   value={this.state.form.email}
                    onChange={this.onInputChange}
                    required/>
           </div>

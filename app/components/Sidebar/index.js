@@ -8,7 +8,7 @@ import {auth} from "services/auth";
 
 const SideBar = (props) => {
 
-	if (!auth.user) {
+	if (!auth.hasAuthority('ADMIN')) {
 		return ''
 	}
 	return (

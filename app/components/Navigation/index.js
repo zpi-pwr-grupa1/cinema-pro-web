@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import "./styles.scss"
 import {auth} from "services/auth";
 
-const adminNav = [{
+const nav = [{
   key: 0,
   name: 'Strona główna',
   url: "/admin/"
@@ -28,15 +28,11 @@ const adminNav = [{
   method: (context) => auth.logout()
 }];
 
-const navigations = {
-  admin: adminNav
-};
-
 const Navigation = (props, context) => {
   return (
     <div className="navigation-wrapper">
-      {navigations[props.role].map((element) => (
-        auth.user && <div key={element.key} className="navigation-item">
+      {nav.map((element) => ( 
+        <div key={element.key} className="navigation-item">
           <MuiThemeProvider>
             {
               element.url ?

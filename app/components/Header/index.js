@@ -9,14 +9,15 @@ const Header = (props) => (
   <MuiThemeProvider>
     <div className="header-container">
       <div>
-				{!auth.user ?
+				{!auth.isLogged() ?
 					<div className="user-tabs"> 
 						<Link to={'/login'} ><button className="button is-dark is-inverted is-outlined">Zaloguj się</button></Link>
 						<Link to={'/register'} ><button className="button is-dark is-inverted is-outlined id-grouped">Załóż konto</button></Link>
 					</div> : 
-          <div className="user-tabs">
-              <button className="button is-dark is-inverted is-outlined is-invisible">Zaloguj się</button>
-              <button className="button is-dark is-inverted is-outlined id-grouped is-invisible">Załóż konto</button>
+          <div className="user-tabs user-info">
+            <span>{auth.getEmail()}</span>
+            {!auth.hasAuthority('ADMIN') && <span className="authority">{auth.getAuthority()}</span>}
+						{!auth.hasAuthority('ADMIN') && <button className="button is-small" onClick={() => auth.logout()}>Wyloguj się</button>}
           </div>}
 
 				{
@@ -25,7 +26,7 @@ const Header = (props) => (
 							<NavLink exact to="/home" className="my-button is-inverted">Strona główna</NavLink>
 							<NavLink exact to="/repertoire" className="my-button is-inverted">Repertuar</NavLink>
 							<NavLink exact to="/tickets" className="my-button is-inverted">Cennik</NavLink>
-							<NavLink exact to="/repeire" className="my-button is-inverted">O nas</NavLink>
+							<NavLink exact to="/about_us" className="my-button is-inverted">O nas</NavLink>
 						</div> : ""
 				}
       </div>
