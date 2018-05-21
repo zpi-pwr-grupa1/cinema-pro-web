@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {MuiThemeProvider, Snackbar, TextField, RaisedButton } from 'material-ui';
 import './index.scss'
-import { hall } from 'services/api';
-import { cinema } from 'services/api';
+import { hall, cinema } from 'services/api';
 
 import Page from 'components/Page';
 import Input from 'components/FormElements/Input';
@@ -46,7 +45,7 @@ class AddHall extends Component {
   }
 
   onHandleClick = () => {
-    hall.new(this.state.form)
+    cinema.addHallToCinema(this.state.form)
       .then((response) => this.setState({
         ...this.state,
         snackbar: true

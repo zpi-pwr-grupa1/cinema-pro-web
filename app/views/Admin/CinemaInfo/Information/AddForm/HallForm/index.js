@@ -27,14 +27,18 @@ class HallForm extends Component {
     this.state = {
       form: {
         hallNumber: "",
+        columns: "",
+        rows: "",
         cinema: {},
       },
+      cinemaId: this.props.cinemaId,
+      hallNumber: "",
       error: '',
     };
   }
 
   componentDidMount() {
-    cinema.get(this.props.cinemaId)
+    cinema.get(this.state.cinemaId)
       .then(response => {
         this.setState({
           ...this.state,
@@ -44,13 +48,24 @@ class HallForm extends Component {
         })
       })
 
-    if(!this.props.form) {
+    if(!this.hallId) {
       return;
-    }
-    return this.setState({ form: {
+    } 
+    else {
+      hall.getColumnsAndRows(this.hallId)
+        .then((response) => {
+          console.log(response)
+          this.setState({
+            ...this.state,
+            form: response.data,
+          })
+        })
+
+      return this.setState({ form: {
         ...this.state.form,
-        hallNumber: this.props.form.hallNumber
+          hallNumber: this.state.form.hallNumber,
       }});
+    }
   }
 
   onInputChange = (event) => {
@@ -62,17 +77,21 @@ class HallForm extends Component {
   }
 
   onHandleClick = () => {
-    cinema.addHallToCinema(this.props.cinemaId, {
-      hallNumber: this.state.form.hallNumber
-    }).then((response) => {
-      console.log(response)
-      this.setState({
-        ...this.state
-      })
+    cinema.addHallToCinema(this.state.cinemaId, this.state.form.columns, this.state.form.rows, this.state.form.hallNumber)
+      .then(() => {
+        this.setState()
     })
   }
 
+  get hallId() {
+    if(!this.props.form) {
+      return;
+    }
+    return this.props.form.id;
+  }
+
   render() {
+    console.log(this.state)
     return (
       <Form>
         <div className="hall-form">
@@ -89,28 +108,29 @@ class HallForm extends Component {
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <TextField
-            name="seatRow"
-            floatingLabelText="Liczba rzędów:"
+            name="columns"
+            floatingLabelText="Liczba kolumn:"
             fullWidth={true}
             floatingLabelFixed={true}
             onChange={this.onInputChange}
+            value={this.state.form.columns}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
           <TextField
-            name="seatColumn"
-            floatingLabelText="Liczba kolumn:"
+            name="rows"
+            floatingLabelText="Liczba rzędów:"
             fullWidth={true}
             floatingLabelFixed={true}
             onChange={this.onInputChange}
+            value={this.state.form.rows}
             inputStyle={hideAutoFillColorStyle}
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
-
           <RaisedButton className="btn add_button" label={this.props.form ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick}/>
         </div>
       </Form>

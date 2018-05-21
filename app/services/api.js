@@ -25,8 +25,8 @@ export const cinema = {
     modify: (data) => (
         axios.put('/cinema/modify', data)
     ),
-    addHallToCinema: (id, data) => (
-        axios.put(`/cinema/${id}/put/hall`, data)
+    addHallToCinema: (id, columns, rows, hallNumber) => (
+        axios.put(`/cinema/${id}/put/hall/${columns}/${rows}`, {hallNumber})
     ),
 };
 

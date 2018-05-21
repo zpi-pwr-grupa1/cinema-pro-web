@@ -98,6 +98,7 @@ class EmployeeForm extends Component {
           snackbar: true
         }))
       }
+    this.props.history.back()
   }
 
   get employeeId() {

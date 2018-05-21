@@ -33,17 +33,6 @@ class Hall extends Component {
       })
   }
 
-  rowAndColumns(id) {
-    hall.getColumnsAndRows(id)
-      .then(response => {
-        console.log(response)
-        this.setState({
-          ...this.state,
-          form: response.data
-        })
-      })
-  }
-
   changeToEdit(hall) {
     this.setState({
       isEdited: !this.state.isEdited,
