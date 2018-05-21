@@ -17,7 +17,7 @@ const Header = (props) => (
           <div className="user-tabs user-info">
             <span>{auth.getEmail()}</span>
             {!auth.hasAuthority('ADMIN') && <span className="authority">{auth.getAuthority()}</span>}
-						{!auth.hasAuthority('ADMIN') && <button className="button is-small" onClick={() => auth.logout()}>Wyloguj się</button>}
+						{!auth.hasAuthority('ADMIN') &&<button className="button is-dark is-inverted is-outlined id-grouped" onClick={() => auth.logout()}>Wyloguj się</button>}
           </div>}
 
 				{
