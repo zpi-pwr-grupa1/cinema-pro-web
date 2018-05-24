@@ -5,6 +5,7 @@ import {cinema} from "services/cinema";
 import Page from "components/Page";
 import {groupBy} from "ramda";
 import avatarImg from "assets/images/avatar.png";
+import {Link} from "react-router-dom";
 
 class Repertoire extends Component {
 
@@ -56,9 +57,11 @@ class Repertoire extends Component {
 												<div>{showing.movie.runTime} min</div>												
 											</div>
 											<div className="showings-info">
-												<b>10:10</b>
-												<b>13:30</b>
-												<b>19:50</b>
+                        <Link to={'/repertoire/reservation/' + showing.id} >
+  												<b>10:10</b>
+                        </Link>
+  												<b>13:30</b>
+  												<b>19:50</b>
 											</div>
                     </div>
                 )

@@ -67,6 +67,9 @@ export const hall = {
     all: () => (
         axios.get('/hall/get/all')
     ),
+    get: (id) => (
+        axios.get(`/hall/get/${id}`)
+    ),
     update: (data) => (
         axios.post('/hall/update', data)
     ),

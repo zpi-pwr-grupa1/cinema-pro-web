@@ -1,0 +1,37 @@
+.home-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.screen {
+  width: 500px;
+  height: 10px;
+  background-color: black;
+  margin: 10px auto 50px;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.btn-grp {
+  margin: 0 auto;
+}
+
+.seats-btn {
+  margin: 5px;
+  width: 250px;
+}
+
+.reservation-movie-info {
+  width: 500px;
+  margin: 50px auto 10px;
+  text-align: center;
+  padding-top: 10px;
+}
