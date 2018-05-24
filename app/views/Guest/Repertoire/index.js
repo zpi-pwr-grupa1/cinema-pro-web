@@ -4,13 +4,19 @@ import {showing} from "services/api";
 import {cinema} from "services/cinema";
 import Page from "components/Page";
 import {groupBy} from "ramda";
-import avatarImg from "assets/images/avatar.png";
+import moment from 'moment';
 import {Link} from "react-router-dom";
+
+const daysAhead = 7;
 
 class Repertoire extends Component {
 
 	state = {
 		showings: [],
+		dates: Array
+						.from(Array(daysAhead).keys())
+						.map(number => moment().add(number, 'days')),
+		selectedDate: moment(),
 	}
   
   constructor(props) {
@@ -18,14 +24,24 @@ class Repertoire extends Component {
   }
 
   componentDidMount() {
-		showing
-      .allForCinema(cinema.current.id)
+		this.setShowings()	
+  }
+  
+  setShowings() {
+		return showing
+			.allForCinemaWithDate(cinema.current.id, this.state.selectedDate)
 			.then(response => {
 				this.setState({
 					showings: response.data,
 				})
 			})
-  }
+	}
+  
+  selectDate(date) {
+		this.setState({
+			selectedDate: date,
+		}, () => this.setShowings())
+	}
   
   groupByMovie = groupBy((showing) => showing.movie.id)
 
@@ -33,10 +49,21 @@ class Repertoire extends Component {
     return (
 			<Page>
         <div className="repertoire">
-					<section className="hero is-light">
+					<section className="header hero is-light">
 						<div className="hero-body">
 							<div className="container">
-								<h1 className="title">W dniu</h1>
+								<div className="dates">
+									{
+										this.state.dates.map(date =>
+												<div key={date.day()}
+														 onClick={() => this.selectDate(date)} 
+														 className={this.state.selectedDate.day() === date.day() ? 'date active' : 'date'} >
+													<span>{date.format('DD.MM')}</span>
+													<span>{date.locale('pl').format('ddd')}</span>
+												</div>
+										)
+									}
+								</div>
 							</div>
 						</div>
 					</section>
@@ -66,6 +93,9 @@ class Repertoire extends Component {
                     </div>
                 )
               }
+							{
+								!this.state.showings.length && <div className="has-text-centered">Brak seansów w wybranym dniu</div>
+							}
               
             </div>
           </div>

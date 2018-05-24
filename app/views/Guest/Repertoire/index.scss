@@ -2,11 +2,37 @@
 
 .repertoire {
   
+  .header {
+    .dates {
+      align-self: center;
+      
+      .date {
+        text-align: center;
+        cursor: pointer;
+        padding: 10px;
+        margin: 0 7px;
+        display: inline-block;
+        border-radius: 5px;
+        background: white;
+        
+        &.active {
+          background: #363636;
+          color: white;
+          font-weight: bold;
+          cursor: default;
+        }
+        
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+  
   .list {
     .tile {
       margin-top: 10px;
       width: 100%;
-      //border: 1px solid black;
       border-radius: 5px;
       background: #F5F5F5;
       padding: 5px;

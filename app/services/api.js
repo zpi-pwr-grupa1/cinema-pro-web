@@ -63,7 +63,10 @@ export const showing = {
     ),
     allPlannedForCinema: (id) => (
         axios.get(`/cinema/get/${id}/showings/planned`)
-    ) 
+    ),
+    allForCinemaWithDate: (id, date) => (
+			axios.get(`/cinema/get/${id}/showings/${date.format('YYYY-MM-DD')}`)
+		)
 }
 
 export const hall = {
