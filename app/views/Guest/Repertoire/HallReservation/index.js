@@ -5,7 +5,7 @@ import splitEvery from "ramda/es/splitEvery";
 import reduce from "ramda/es/reduce";
 import './index.scss';
 import FontIcon from 'material-ui/FontIcon';
-import {hall} from 'services/api';
+import {hall, showing} from 'services/api';
 import {Link} from "react-router-dom";
 import Checkbox from 'material-ui/Checkbox';
 import {RaisedButton} from 'material-ui';
@@ -39,40 +39,50 @@ class HallReservation extends Component {
         rows: 0,
         columns: 0,
       },
-      showing: {
-
-      },
       seats: {},
-      hallId: "2a13a875-a310-4109-9914-1df9c117b86b"
+      hallId: "",
     };
   }
 
   componentDidMount() {
-    hall.get(this.state.hallId)
-      .then((response) => {
-        console.log('asd', response)
-        // FOr checkbox purposes
-        const seatIds = reduce((acc, seat) => Object.assign(acc, { [seat.id]: false }), {}, response.data.seats);
-        this.setState({
-          ...this.state,
-          seats: seatIds,
-          form: response.data
-        })
-      })
-
-    hall.getColumnsAndRows(this.state.hallId)
-      .then((response) => {
+    showing.get(this.showingId)
+      .then(response => {
         console.log(response)
         this.setState({
           ...this.state,
-          hall: response.data
+          showing: response.data,
+          hallId: response.data.hall.id
+        });
+        hall.get(response.data.hall.id)
+        .then((response) => {
+          console.log('asd', response)
+          // FOr checkbox purposes
+          const seatIds = reduce((acc, seat) => Object.assign(acc, { [seat.id]: false }), {}, response.data.seats);
+          this.setState({
+            ...this.state,
+            seats: seatIds,
+            form: response.data
+          });
+        });
+        hall.getColumnsAndRows(response.data.hall.id)
+        .then((response) => {
+          console.log(response)
+          this.setState({
+            ...this.state,
+            hall: response.data
+          })
         })
-      })
+      });
   }
 
   handleChange = event => {
     this.setState({ seats: { [event.target.name]: event.target.checked }});
   };
+
+  get showingId() {
+    return this.props.match.params.id;
+  }
+
 
   render() {
     return (

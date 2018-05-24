@@ -46,6 +46,9 @@ export const movie = {
 };
 
 export const showing = {
+    get: (id) => (
+        axios.get(`/showing/get/${id}`)
+    ),
     all: () => (
         axios.get('/showing/get/all')
     ),
