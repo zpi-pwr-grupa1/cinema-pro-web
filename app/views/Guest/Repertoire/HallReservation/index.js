@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react';
 import Page from 'components/Page';
 import splitEvery from "ramda/es/splitEvery";
@@ -9,6 +8,7 @@ import {hall, showing} from 'services/api';
 import {Link} from "react-router-dom";
 import Checkbox from 'material-ui/Checkbox';
 import {RaisedButton} from 'material-ui';
+import moment from 'moment';
 
 const iconStyles = {
   fontSize: 150,
@@ -39,6 +39,10 @@ class HallReservation extends Component {
         rows: 0,
         columns: 0,
       },
+      showing: {
+        movie: {},
+        hall: {},
+      },
       seats: {},
       hallId: "",
     };
@@ -55,7 +59,6 @@ class HallReservation extends Component {
         });
         hall.get(response.data.hall.id)
         .then((response) => {
-          console.log('asd', response)
           // FOr checkbox purposes
           const seatIds = reduce((acc, seat) => Object.assign(acc, { [seat.id]: false }), {}, response.data.seats);
           this.setState({
@@ -66,7 +69,6 @@ class HallReservation extends Component {
         });
         hall.getColumnsAndRows(response.data.hall.id)
         .then((response) => {
-          console.log(response)
           this.setState({
             ...this.state,
             hall: response.data
@@ -88,7 +90,10 @@ class HallReservation extends Component {
     return (
       <Page>
         <div className="container">
-        <div className="reservation-movie-info">"Nazwa filmu" "Numer sali" "Godzina seansu"</div>
+        <div className="reservation-movie-info">
+            <p>{this.state.showing.movie.title} {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+            <p>Sala: {this.state.form.hallNumber}</p>
+        </div>
         <div className="screen">EKRAN</div>
           <div className="home-wrapper">
           {this.state.hall.rows > 0 &&
@@ -116,7 +121,7 @@ class HallReservation extends Component {
             <p>Miejsca wolne:</p><Checkbox checked={false} disabled/> 
             <p>Miejsca zajęte:</p><Checkbox checked={true} disabled />
             <p>Miejsca wybrane:</p><Checkbox checked={true} />
-        </div>
+          </div>
       </Page>
     )
   }

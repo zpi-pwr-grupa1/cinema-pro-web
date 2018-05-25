@@ -6,6 +6,15 @@ import Page from "components/Page";
 import {groupBy} from "ramda";
 import moment from 'moment';
 import {Link} from "react-router-dom";
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const styles = {
+  flatbtn: {
+    fontSize: 20,
+  },
+};
 
 const daysAhead = 7;
 
@@ -17,6 +26,8 @@ class Repertoire extends Component {
 						.from(Array(daysAhead).keys())
 						.map(number => moment().add(number, 'days')),
 		selectedDate: moment(),
+    cinema: {},
+    open: false,
 	}
   
   constructor(props) {
@@ -42,10 +53,37 @@ class Repertoire extends Component {
 			selectedDate: date,
 		}, () => this.setShowings())
 	}
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+  actionButton = (showingId) => (
+    <RaisedButton
+      label="Rezerwuj/ Kup bilet"
+      primary={true}
+      onClick={() => this.props.history.push(`/repertoire/reservation/` + showingId)}
+      labelStyle={styles.flatbtn}
+    />
+  );
   
   groupByMovie = groupBy((showing) => showing.movie.id)
 
   render() {
+    console.log(this.state)
+    const actions = [
+      <RaisedButton
+        label="Rezerwuj/ Kup bilet"
+        primary={true}
+        onClick={this.handleClose}
+        labelStyle={styles.flatbtn}
+      />,
+    ];
+
     return (
 			<Page>
         <div className="repertoire">
@@ -67,7 +105,6 @@ class Repertoire extends Component {
 							</div>
 						</div>
 					</section>
-
 					<div className="container">
             <div className="list">
               {
@@ -84,13 +121,41 @@ class Repertoire extends Component {
 												<div>{showing.movie.runTime} min</div>												
 											</div>
 											<div className="showings-info">
-                        <Link to={'/repertoire/reservation/' + showing.id} >
+                        <div onClick={this.handleOpen} className="div-hoverhand">
   												<b>10:10</b>
-                        </Link>
+                        </div>
   												<b>13:30</b>
   												<b>19:50</b>
-											</div>
-                    </div>
+                        <Dialog
+                          actions={this.actionButton(showing.id)}
+                          modal={false}
+                          open={this.state.open}
+                          onRequestClose={this.handleClose}
+                        >
+                          <div className="movie-info-wrapper">
+                            <div className="movie-info-img">
+                              <div className="imgimg">
+                                <img className="poster" src={showing.movie.imgURL} />
+                              </div>
+                            </div>
+                            <div className="movie-info-txt">
+                              <h2>{showing.movie.title}</h2>
+                              {showing.movie.groups.map((group) =>
+                                <p key={group.id} className="types">{group.label}</p>
+                              )}
+                              <p>Czas trwania: {showing.movie.runTime} min. </p>
+                              <p>Od lat: {showing.movie.age} </p>
+                              <p>Produkcja: {showing.movie.country}</p>
+                              <p>.............................................</p>
+                              <p className="headingsp2">Kino:</p>
+                              <p className="types2">{cinema.current.name}</p>
+                              <p className="headingsp2">Data:</p>
+                              <p className="types2">{moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+                            </div>
+                          </div>
+                        </Dialog>
+                      </div>
+                  </div>
                 )
               }
 							{
@@ -99,8 +164,6 @@ class Repertoire extends Component {
               
             </div>
           </div>
-          
-          
         </div>
       </Page>
     )
