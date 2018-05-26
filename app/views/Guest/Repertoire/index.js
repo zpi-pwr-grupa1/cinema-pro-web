@@ -64,7 +64,7 @@ class Repertoire extends Component {
 
   actionButton = (showingId) => (
     <RaisedButton
-      label="Rezerwuj/ Kup bilet"
+      label="Zarezerwuj miejsca"
       primary={true}
       onClick={() => this.props.history.push(`/repertoire/reservation/` + showingId)}
       labelStyle={styles.flatbtn}
@@ -75,15 +75,6 @@ class Repertoire extends Component {
 
   render() {
     console.log(this.state)
-    const actions = [
-      <RaisedButton
-        label="Rezerwuj/ Kup bilet"
-        primary={true}
-        onClick={this.handleClose}
-        labelStyle={styles.flatbtn}
-      />,
-    ];
-
     return (
 			<Page>
         <div className="repertoire">
