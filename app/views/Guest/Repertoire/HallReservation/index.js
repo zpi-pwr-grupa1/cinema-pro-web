@@ -127,7 +127,7 @@ class HallReservation extends Component {
     ];
     return (
       <Page>
-        <div className="container">
+        <div className="container reservation">
         <Dialog
           title="REZERWACJA"
           actions={actions}
