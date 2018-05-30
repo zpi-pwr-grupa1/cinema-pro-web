@@ -5,10 +5,9 @@ import {cinema} from "services/cinema";
 import Page from "components/Page";
 import {groupBy} from "ramda";
 import moment from 'moment';
-import {Link} from "react-router-dom";
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import {CircularProgress} from "material-ui";
 
 const styles = {
   flatbtn: {
@@ -17,11 +16,13 @@ const styles = {
 };
 
 const daysAhead = 7;
+const groupByMovie = groupBy(showing => showing.movie.title)
 
 class Repertoire extends Component {
 
 	state = {
-		showings: [],
+		showings: {},
+		showingsLoading: true,
 		dates: Array
 						.from(Array(daysAhead).keys())
 						.map(number => moment().add(number, 'days')),
@@ -42,8 +43,10 @@ class Repertoire extends Component {
 		return showing
 			.allForCinemaWithDate(cinema.current.id, this.state.selectedDate)
 			.then(response => {
+				
 				this.setState({
-					showings: response.data,
+					showings: groupByMovie(response.data),
+					showingsLoading: false,
 				})
 			})
 	}
@@ -71,10 +74,7 @@ class Repertoire extends Component {
     />
   );
   
-  groupByMovie = groupBy((showing) => showing.movie.id)
-
   render() {
-    console.log(this.state)
     return (
 			<Page>
         <div className="repertoire">
@@ -97,28 +97,39 @@ class Repertoire extends Component {
 						</div>
 					</section>
 					<div className="container">
+						
+						{
+							this.state.showingsLoading && 
+								<div className="circle-progress has-text-centered">
+									<CircularProgress />
+								</div>
+						}
+						
             <div className="list">
               {
-                this.state.showings
-                  .map((showing, key) =>
-                    <div key={showing.id} className="tile  hvr-grow">
+                Object.entries(this.state.showings)
+                  .map(([title, showings], index) =>
+                    <div key={showings[0].movie.id} className="tile  hvr-grow">
 											<div className="has-text-centered">
-												<img src={showing.movie.imgURL} />
+												<img src={showings[0].movie.imgURL} />
 											</div>
 											<div className="movie-info">
-												<div>{showing.movie.title}</div>												
+												<div>{title}</div>												
 												<div>12 lat</div>												
-												<div>{showing.movie.groups.map((g, i) => `${g.label}${i+1 !== showing.movie.groups.length ? ',':''} `)}</div>												
-												<div>{showing.movie.runTime} min</div>												
+												<div>{showings[0].movie.groups.map((g, i) => `${g.label}${i+1 !== showings[0].movie.groups.length ? ',':''} `)}</div>												
+												<div>{showings[0].movie.runTime} min</div>												
 											</div>
 											<div className="showings-info">
-                        <div onClick={this.handleOpen} className="div-hoverhand">
-  												<b>10:10</b>
-                        </div>
-  												<b>13:30</b>
-  												<b>19:50</b>
+												{
+													showings.map(showing =>
+														<div key={showing.id} onClick={this.handleOpen} className="div-hoverhand">
+															<b>{moment(showing.screeningStart).format("hh:mm")}</b>
+														</div>
+													)
+													
+												}
                         <Dialog
-                          actions={this.actionButton(showing.id)}
+                          actions={this.actionButton(showings[0].id)}
                           modal={false}
                           open={this.state.open}
                           onRequestClose={this.handleClose}
@@ -126,22 +137,22 @@ class Repertoire extends Component {
                           <div className="movie-info-wrapper">
                             <div className="movie-info-img">
                               <div className="imgimg">
-                                <img className="poster" src={showing.movie.imgURL} />
+                                <img className="poster" src={showings[0].movie.imgURL} />
                               </div>
                             </div>
                             <div className="movie-info-txt">
-                              <h2>{showing.movie.title}</h2>
-                              {showing.movie.groups.map((group) =>
+                              <h2>{showings[0].movie.title}</h2>
+                              {showings[0].movie.groups.map((group) =>
                                 <p key={group.id} className="types">{group.label}</p>
                               )}
-                              <p>Czas trwania: {showing.movie.runTime} min. </p>
-                              <p>Od lat: {showing.movie.age} </p>
-                              <p>Produkcja: {showing.movie.country}</p>
+                              <p>Czas trwania: {showings[0].movie.runTime} min. </p>
+                              <p>Od lat: {showings[0].movie.age} </p>
+                              <p>Produkcja: {showings[0].movie.country}</p>
                               <p>.............................................</p>
                               <p className="headingsp2">Kino:</p>
                               <p className="types2">{cinema.current.name}</p>
                               <p className="headingsp2">Data:</p>
-                              <p className="types2">{moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+                              <p className="types2">{moment(showings[0].screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
                             </div>
                           </div>
                         </Dialog>
@@ -150,7 +161,7 @@ class Repertoire extends Component {
                 )
               }
 							{
-								!this.state.showings.length && <div className="has-text-centered">Brak seansów w wybranym dniu</div>
+								!this.state.showingsLoading && !Object.entries(this.state.showings).length && <div className="has-text-centered">Brak seansów w wybranym dniu</div>
 							}
               
             </div>
