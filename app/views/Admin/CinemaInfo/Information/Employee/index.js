@@ -40,8 +40,8 @@ class Employee extends Component {
       employeeEdited: null,
     };
   }
-
-  componentDidMount() {
+  
+  initEmployees() {
     employee.allForCinema(this.state.cinemaId)
       .then(response => {
         this.setState({
@@ -51,12 +51,18 @@ class Employee extends Component {
       })
   }
 
+  componentDidMount() {
+    this.initEmployees()
+  }
+
   changeToEdit(employee) {
+    this.initEmployees()
     this.setState({
       isEdited: !this.state.isEdited,
       employeeEdited: employee
     })
   }
+
 
   render() {
     if (this.state.isEdited) {

@@ -80,6 +80,7 @@ class HallForm extends Component {
     cinema.addHallToCinema(this.state.cinemaId, this.state.form.columns, this.state.form.rows, this.state.form.hallNumber)
       .then(() => {
         this.setState()
+        this.props.back()
     })
   }
 
@@ -91,7 +92,6 @@ class HallForm extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Form>
         <div className="hall-form">
@@ -131,7 +131,7 @@ class HallForm extends Component {
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
           />
-          <RaisedButton className="btn add_button" label={this.props.form ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick}/>
+          <RaisedButton className="btn add_button" label={'Dodaj'} onClick={this.onHandleClick}/>
         </div>
       </Form>
     )

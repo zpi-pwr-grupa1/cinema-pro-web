@@ -35,6 +35,7 @@ class EmployeeForm extends Component {
         telephone: "",
         email: "",
         startingDateOfEmployment: "",
+        password: "",
         cinema: {},
       },
       data: {
@@ -89,16 +90,17 @@ class EmployeeForm extends Component {
       employee.modify(this.state.form)
         .then((response) => this.setState({
           ...this.state,
-          snackbar: true
+          snackbar: true,
         }))
+      this.props.back()
     } else {
       employee.update(this.state.form)
         .then((response) => this.setState({
           ...this.state,
-          snackbar: true
+          snackbar: true,
         }))
       }
-    this.props.history.back()
+    this.props.back()
   }
 
   get employeeId() {
@@ -236,6 +238,32 @@ class EmployeeForm extends Component {
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+          />
+          <TextField
+            name="password"
+            floatingLabelText="Haslo:"
+            fullWidth={true}
+            floatingLabelFixed={true}
+            onChange={this.onInputChange}
+            value={this.state.form.password}
+            inputStyle={hideAutoFillColorStyle}
+            hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            type="password"
+          />
+          <TextField
+            name="password"
+            floatingLabelText="Powtórz haslo:"
+            fullWidth={true}
+            floatingLabelFixed={true}
+            onChange={this.onInputChange}
+            value={this.state.form.password}
+            inputStyle={hideAutoFillColorStyle}
+            hintStyle={hintStyle}
+            underlineFocusStyle={styles.underlineStyle}
+            floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            type="password"
           />
 
           <RaisedButton className="btn add_button" label={this.props.form ? 'Edytuj' : 'Dodaj'} onClick={this.onHandleClick}/>

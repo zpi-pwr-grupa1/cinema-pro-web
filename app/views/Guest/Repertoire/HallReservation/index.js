@@ -41,6 +41,7 @@ class HallReservation extends Component {
         movie: {},
         hall: {},
       },
+      hallSeats: [],
       seats: {},
       hallId: "",
       open: false,
@@ -65,7 +66,16 @@ class HallReservation extends Component {
             seats: seatIds,
             form: response.data,
           });
-          this.state.form.seats.sort(this.compare);
+          // this.state.form.seats.sort(this.compare);
+        });
+
+        showing.getSeats(this.showingId)
+          .then(response => {
+            console.log(response)
+            this.setState({
+              ...this.state,
+              hallSeats: response.data
+          });
         });
 
         hall.getColumnsAndRows(response.data.hall.id)
@@ -88,9 +98,9 @@ class HallReservation extends Component {
   }
 
   compare(a, b) {
-    if (a.seatColumn < b.seatColumn)
+    if (a.seatRow < b.seatRow)
       return -1;
-    if (a.seatColumn > b.seatColumn)
+    if (a.seatRow > b.seatRow)
       return 1;
     return 0;
   }
@@ -112,7 +122,6 @@ class HallReservation extends Component {
   };
 
   render() {
-    console.log(this.state)
     const actions = [
       <FlatButton
         label="Anuluj"
@@ -148,7 +157,7 @@ class HallReservation extends Component {
           <div className="screen">EKRAN</div>
             <div className="home-wrapper">
             {this.state.hall.rows > 0 &&
-            Object.keys(this.state.seats).length > 0 && splitEvery(this.state.hall.rows, this.state.form.seats)
+            Object.keys(this.state.hallSeats).length > 0 && splitEvery(this.state.hall.rows, this.state.hallSeats)
               .map((rows, index) =>
                 <div key={index}>
                   {rows
@@ -156,7 +165,6 @@ class HallReservation extends Component {
                       <Checkbox
                         key={seat.id}
                         name={seat.id}
-                        label={seat.seatColumn}
                         checked={this.state.seats[seat.id]}
                         onChange={this.handleChange}
                         style={styles.checkbox}

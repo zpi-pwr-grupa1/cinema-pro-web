@@ -22,7 +22,7 @@ class Hall extends Component {
     };
   }
 
-  componentDidMount() {
+  initHalls() {
     hall.allForCinema(this.cinemaId)
       .then(response => {
         console.log(response)
@@ -33,7 +33,12 @@ class Hall extends Component {
       })
   }
 
+  componentDidMount() {
+    this.initHalls()
+  }
+
   changeToEdit(hall) {
+    this.initHalls()
     this.setState({
       isEdited: !this.state.isEdited,
       hallEdited: hall
@@ -91,7 +96,6 @@ class Hall extends Component {
                     <TableRowColumn>{hall.seats.reduce((p, c) => c.seatColumn > p.seatColumn ? c : p).seatColumn+1}</TableRowColumn>
                     <TableRowColumn>{hall.seats.length}</TableRowColumn>
                     <TableRowColumn className="is-pulled-right">
-                      <button className="btn button edit-btn" onClick={() => this.changeToEdit(hall)}>Edytuj</button>
                       <Popconfirm placement="bottom" title="Czy napewno chcesz usunąć tę salę?"
                                   onConfirm={() => this.onDelete(hall.id)} okText="Tak" cancelText="Nie">
                         <button className="btn button edit-btn">Usuń</button>
