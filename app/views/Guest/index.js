@@ -9,6 +9,7 @@ import HallReservation from "views/Guest/Repertoire/HallReservation";
 import Register from "views/Guest/Register";
 import Tickets from "views/Shared/Tickets";
 import AboutUs from "views/Guest/AboutUs";
+import MovieInfo from "views/Admin/MovieInfo";
 
 const Views = (props) => (
   <Switch>
@@ -19,8 +20,9 @@ const Views = (props) => (
     <Route exact path="/tickets" component={Tickets} />
     <Route exact path="/about_us" component={AboutUs} />
     <Route exact path='/register' component={Register} />
+		<Route path='/movie/info/:id' component={MovieInfo} />
 
-    <Route exact path='/' component={Home} />
+      <Route exact path='/' component={Home} />
 
   </Switch>
 );

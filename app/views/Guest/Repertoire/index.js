@@ -8,6 +8,7 @@ import moment from 'moment';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CircularProgress} from "material-ui";
+import {Link} from "react-router-dom";
 
 const styles = {
   flatbtn: {
@@ -57,8 +58,11 @@ class Repertoire extends Component {
 		}, () => this.setShowings())
 	}
 
-  handleOpen = () => {
-    this.setState({open: true});
+  handleOpen = (showing) => {
+    this.setState({
+			open: true,
+			dialogShowing: showing,
+    });
   };
 
   handleClose = () => {
@@ -111,7 +115,9 @@ class Repertoire extends Component {
                   .map(([title, showings], index) =>
                     <div key={showings[0].movie.id} className="tile  hvr-grow">
 											<div className="has-text-centered">
-												<img src={showings[0].movie.imgURL} />
+												<Link to={"/admin/movies/info/"+showings[0].movie.id} key={showings[0].movie.id}>
+													<img src={showings[0].movie.imgURL} />
+												</Link>
 											</div>
 											<div className="movie-info">
 												<div>{title}</div>												
@@ -121,40 +127,43 @@ class Repertoire extends Component {
 											</div>
 											<div className="showings-info">
 												{
-													showings.map(showing =>
-														<div key={showing.id} onClick={this.handleOpen} className="div-hoverhand">
-															<b>{moment(showing.screeningStart).format("hh:mm")}</b>
+													showings.sort((a, b) => a.screeningStart - b.screeningStart).map(showing =>
+														<div key={showing.id} onClick={() => this.handleOpen(showing)} className="div-hoverhand">
+															<b>{moment(showing.screeningStart).format("HH:mm")}</b>
 														</div>
 													)
 													
 												}
                         <Dialog
-                          actions={this.actionButton(showings[0].id)}
+                          actions={this.actionButton(this.state.dialogShowing)}
                           modal={false}
                           open={this.state.open}
                           onRequestClose={this.handleClose}
                         >
-                          <div className="movie-info-wrapper">
-                            <div className="movie-info-img">
-                              <div className="imgimg">
-                                <img className="poster" src={showings[0].movie.imgURL} />
-                              </div>
-                            </div>
-                            <div className="movie-info-txt">
-                              <h2>{showings[0].movie.title}</h2>
-                              {showings[0].movie.groups.map((group) =>
-                                <p key={group.id} className="types">{group.label}</p>
-                              )}
-                              <p>Czas trwania: {showings[0].movie.runTime} min. </p>
-                              <p>Od lat: {showings[0].movie.age} </p>
-                              <p>Produkcja: {showings[0].movie.country}</p>
-                              <p>.............................................</p>
-                              <p className="headingsp2">Kino:</p>
-                              <p className="types2">{cinema.current.name}</p>
-                              <p className="headingsp2">Data:</p>
-                              <p className="types2">{moment(showings[0].screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
-                            </div>
-                          </div>
+													{
+														this.state.dialogShowing &&
+															<div className="movie-info-wrapper">
+																<div className="movie-info-img">
+																	<div className="imgimg">
+																		<img className="poster" src={this.state.dialogShowing.movie.imgURL} />
+																	</div>
+																</div>
+																<div className="movie-info-txt">
+																	<h2>{this.state.dialogShowing.movie.title}</h2>
+																	{this.state.dialogShowing.movie.groups.map((group) =>
+																		<p key={group.id} className="types">{group.label}</p>
+																	)}
+																	<p>Czas trwania: {this.state.dialogShowing.movie.runTime} min. </p>
+																	<p>Od lat: {this.state.dialogShowing.movie.age} </p>
+																	<p>Produkcja: {this.state.dialogShowing.movie.country}</p>
+																	<p>.............................................</p>
+																	<p className="headingsp2">Kino:</p>
+																	<p className="types2">{cinema.current.name}</p>
+																	<p className="headingsp2">Data:</p>
+																	<p className="types2">{moment(this.state.dialogShowing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+																</div>
+															</div>
+													}
                         </Dialog>
                       </div>
                   </div>
