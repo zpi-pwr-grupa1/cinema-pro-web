@@ -92,15 +92,21 @@ class EmployeeForm extends Component {
           ...this.state,
           snackbar: true,
         }))
-      this.props.back()
+        .catch(error => {
+          console.log(error.response)
+          alert("Wypełnij poprawnie formularz. Wszystkie pola muszą być wypełnione zgodnie z ich opisem.")
+        });
     } else {
       employee.update(this.state.form)
         .then((response) => this.setState({
           ...this.state,
           snackbar: true,
         }))
-      }
-    this.props.back()
+        .catch(error => {
+          console.log(error.response)
+          alert("Wypełnij poprawnie formularz. Wszystkie pola muszą być wypełnione zgodnie z ich opisem.")
+        });
+    }
   }
 
   get employeeId() {
@@ -239,6 +245,7 @@ class EmployeeForm extends Component {
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            hintText="yyyy-mm-dd"
           />
           <TextField
             name="password"

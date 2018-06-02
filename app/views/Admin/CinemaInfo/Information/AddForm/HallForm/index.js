@@ -81,7 +81,11 @@ class HallForm extends Component {
       .then(() => {
         this.setState()
         this.props.back()
-    })
+      })
+      .catch(error => {
+        console.log(error.response)
+        alert("Wypełnij poprawnie formularz. Wszystkie pola muszą zawierać liczbę.")
+      });
   }
 
   get hallId() {

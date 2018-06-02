@@ -30,7 +30,7 @@ class AboutUs extends Component {
 
   setCinema() {
     return cinema
-      .get("b7a464c0-11ef-4cc5-98e2-6a0aef00d095")
+      .get("5d21d460-c949-4dd9-8396-56b5af951598")
       .then(response => {
         this.setState({
           form: response.data

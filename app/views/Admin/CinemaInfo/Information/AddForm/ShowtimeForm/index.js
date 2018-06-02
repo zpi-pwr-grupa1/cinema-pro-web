@@ -100,6 +100,10 @@ class ShowtimeForm extends Component {
 				this.setState()
 				this.props.back()
 			})
+      .catch(error => {
+        console.log(error.response)
+        alert("Nie można dodać seansu.")
+      });
 	}
 
   render() {

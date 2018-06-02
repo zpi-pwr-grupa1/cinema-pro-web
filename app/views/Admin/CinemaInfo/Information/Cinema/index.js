@@ -19,7 +19,8 @@ class Cinema extends Component {
         city: '',
         telephone: '',
         email: '',
-        description: ''
+        description: '',
+        imgUrl: '',
       },
       snackbar: false,
       error: '',
@@ -30,6 +31,7 @@ class Cinema extends Component {
     if(this.cinemaId) {
       cinema.get(this.cinemaId)
         .then(response => {
+          console.log(response)
           this.setState({
             ...this.state,
             form: response.data
@@ -69,10 +71,12 @@ class Cinema extends Component {
             <span className="label">Email:</span>
             <Editable onInputChange={this.onInputChange.bind(this, 'email')} dataType="text" showButtons={false} mode="inline" value={this.state.form.email}/>
             <span className="label">Ulica:</span>
-            <Editable onInputChange={this.onInputChange.bind(this, 'streeet')} dataType="text" showButtons={false} mode="inline" value={this.state.form.street}/>
+            <Editable onInputChange={this.onInputChange.bind(this, 'street')} dataType="text" showButtons={false} mode="inline" value={this.state.form.street}/>
             <Editable onInputChange={this.onInputChange.bind(this, 'streetNumber')} dataType="text" showButtons={false} mode="inline" value={this.state.form.streetNumber}/>
             <Editable onInputChange={this.onInputChange.bind(this, 'city')} dataType="text" showButtons={false} mode="inline" value={this.state.form.city}/>
-            <Editable onInputChange={this.onInputChange.bind(this, 'postCode')} dataType="text" showButtons={false} mode="inline" value={this.state.form.postCode}/>
+            <Editable onInputChange={this.onInputChange.bind(this, 'postCode')} dataType="text" showButtons={false} mode="inline" value={this.state.form.postCode || 'dupa'}/>
+            <span className="label">Zdjęcie:</span>
+            <Editable onInputChange={this.onInputChange.bind(this, 'imgUrl')} dataType="text" showButtons={false} mode="inline" value={this.state.form.imgUrl}/>
             <RaisedButton className="edit" label="Edytuj" onClick={() => this.submit()} />
           </div>
           <div className="cinema-info-img">

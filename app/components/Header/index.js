@@ -23,7 +23,6 @@ const Header = (props) => (
 				{
 					cinema.current ?
 						<div className="tabs">
-							<NavLink exact to="/home" className="my-button is-inverted">Strona główna</NavLink>
 							<NavLink exact to="/repertoire" className="my-button is-inverted">Repertuar</NavLink>
 							<NavLink exact to="/tickets" className="my-button is-inverted">Cennik</NavLink>
 							<NavLink exact to="/about_us" className="my-button is-inverted">O nas</NavLink>

@@ -105,7 +105,10 @@ class AddMovie extends Component {
         ...this.state,
         snackbar: true
       }))
-    this.cleanForm();
+      .catch(error => {
+        console.log(error.response)
+        alert("Nie można dodać/edytować filmu.")
+      });
   }
 
   onInputChange = (event) => {

@@ -23,6 +23,9 @@ class MovieList extends Component {
 					movies: response.data
 				})
 			})
+      .catch(error => {
+        console.log(error.response)
+      });
   }
 
   onDelete(id) {
@@ -32,6 +35,10 @@ class MovieList extends Component {
         ...this.state,
         movies: this.state.movies.filter(m => m.id !== id),
       }))
+      .catch(error => {
+        console.log(error.response)
+        alert("Nie można usunąć filmu.")
+      });
   }
 
   render() {

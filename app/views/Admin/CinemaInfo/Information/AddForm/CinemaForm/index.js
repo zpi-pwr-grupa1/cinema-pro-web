@@ -53,6 +53,10 @@ class CinemaForm extends Component {
         ...this.state,
         snackbar: true
       }))
+      .catch(error => {
+        console.log(error.response)
+        alert("Uzupełnij wszystkie wymagagne pola.")
+      });
   }
 
   onInputChange = (event) => {

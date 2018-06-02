@@ -84,6 +84,9 @@ class AddCinema extends Component {
         ...this.state,
         snackbar: true
       }))
+      .catch(error => {
+        console.log(error.response)
+      });
     this.cleanForm();
   }
 
