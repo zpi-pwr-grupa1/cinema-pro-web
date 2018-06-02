@@ -149,7 +149,7 @@ class Repertoire extends Component {
 																	</div>
 																</div>
 																<div className="movie-info-txt">
-																	<h2>{this.state.dialogShowing.movie.title}</h2>
+																	<h1>{this.state.dialogShowing.movie.title}</h1>
 																	{this.state.dialogShowing.movie.groups.map((group) =>
 																		<p key={group.id} className="types">{group.label}</p>
 																	)}
