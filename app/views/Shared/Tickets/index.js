@@ -99,7 +99,7 @@ class Tickets extends Component {
 												showButtons={false}
 												mode="inline"
 												value={ticket.name}
-												disabled={!auth.user}
+												disabled={!auth.hasAuthority('ADMIN')}
 											/>
 										</div>
 										<div className="price column is-inline-flex">
@@ -110,10 +110,10 @@ class Tickets extends Component {
 												showButtons={false} 
 												mode="inline" 
 												value={ticket.price}
-												disabled={!auth.user}
+												disabled={!auth.hasAuthority('ADMIN')}
 											/>
 											zł
-											{auth.user &&
+											{auth.hasAuthority('ADMIN') &&
 											<Popconfirm placement="bottom" title="Czy napewno chcesz usunąć ten bilet?"
 																	onConfirm={() => this.onDelete(ticket.id)} okText="Tak" cancelText="Nie">
 												<i className="delete has-text-danger"/>
@@ -123,7 +123,7 @@ class Tickets extends Component {
 									</div>
 								)}
 
-							{auth.user &&
+							{auth.hasAuthority('ADMIN') &&
 								<div className="columns">
 									<div className="name column has-text-right">
 										<input name="name" value={this.state.newTicketType.name} onChange={this.onInputChange}/>
@@ -136,7 +136,7 @@ class Tickets extends Component {
 								</div>
 							}
 
-							{auth.user &&
+							{auth.hasAuthority('ADMIN') &&
 								<div className="columns">
 									<div className="column has-text-centered">
 										<RaisedButton className="is-center" label="Zaaplikuj zmiany" onClick={this.submit.bind(this)}/>

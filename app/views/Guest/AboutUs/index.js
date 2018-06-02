@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Page from 'components/Page';
 import './index.scss';
 import {cinema} from 'services/api';
+import {cinema as c} from "services/cinema";
 
 class AboutUs extends Component {
 
@@ -30,7 +31,7 @@ class AboutUs extends Component {
 
   setCinema() {
     return cinema
-      .get("b7a464c0-11ef-4cc5-98e2-6a0aef00d095")
+      .get(c.current.id)
       .then(response => {
         this.setState({
           form: response.data

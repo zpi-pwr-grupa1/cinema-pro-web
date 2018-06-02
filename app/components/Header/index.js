@@ -10,11 +10,11 @@ const Header = (props) => (
     <div className="header-container">
       <div>
 				{!auth.isLogged() ?
-					<div className="user-tabs"> 
+					<div className="user-tabs" style={{'justifyContent': 'center'}}> 
 						<Link to={'/login'} ><button className="button is-dark is-inverted is-outlined">Zaloguj się</button></Link>
 						<Link to={'/register'} ><button className="button is-dark is-inverted is-outlined id-grouped">Załóż konto</button></Link>
 					</div> : 
-          <div className="user-tabs user-info">
+          <div className="user-tabs user-info" style={{'justifyContent': auth.hasAuthority('ADMIN') ? 'flex-start' : 'center'}}>
             <span>{auth.getEmail()}</span>
             {!auth.hasAuthority('ADMIN') && <span className="authority">{auth.getAuthority()}</span>}
 						{!auth.hasAuthority('ADMIN') &&<button className="button is-dark is-inverted is-outlined id-grouped" onClick={() => auth.logout()}>Wyloguj się</button>}
