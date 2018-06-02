@@ -5,6 +5,7 @@ import Header from 'components/Header';
 import SideBar from 'components/Sidebar';
 
 import Views from "views/Guest/index";
+import Footer from "components/Footer";
 
 class DefaultLayout extends Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class DefaultLayout extends Component {
         sidebar={ <SideBar isOpen={this.state.sidebarOpen} /> }
         header={ <Header toggleSidebar={this.toggleSidebar} /> }
         views={ <Views /> }
-      />
+				footer={ <Footer/> }
+			/>
     )
   }
 }

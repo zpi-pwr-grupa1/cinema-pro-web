@@ -9,7 +9,8 @@ import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CircularProgress} from "material-ui";
 import {Link} from "react-router-dom";
-
+import {auth} from "services/auth";
+import ReactTooltip from 'react-tooltip'
 const styles = {
   flatbtn: {
     fontSize: 20,
@@ -127,10 +128,18 @@ class Repertoire extends Component {
 											</div>
 											<div className="showings-info">
 												{
-													showings.sort((a, b) => a.screeningStart - b.screeningStart).map(showing =>
-														<div key={showing.id} onClick={() => this.handleOpen(showing)} className="div-hoverhand">
-															<b>{moment(showing.screeningStart).format("HH:mm")}</b>
-														</div>
+													showings
+														.map(showing =>
+															auth.isLogged()
+															 	?  <div key={showing.id} onClick={() => this.handleOpen(showing)} className="div-hoverhand">
+																		<b>{moment(showing.screeningStart).format("HH:mm")}</b>
+																	</div>
+																: <div key={showing.id}>
+																		<b data-tip data-for={`reservation${showing.id}`}>{moment(showing.screeningStart).format("HH:mm")}</b>
+																	<ReactTooltip id={`reservation${showing.id}`} type='info'>
+																		Musisz być zalogowany aby móc dokonać rezerwacji
+																	</ReactTooltip>
+																	</div>
 													)
 													
 												}
