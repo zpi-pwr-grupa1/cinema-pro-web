@@ -4,6 +4,7 @@ import './index.scss'
 
 import {movie} from 'services/api';
 import Page from 'components/Page';
+import {auth} from "services/auth";
 
 class MovieInfo extends Component {
   constructor(props) {
@@ -70,7 +71,11 @@ class MovieInfo extends Component {
               <p className="headingsp">Opis filmu:</p>
               <p>{this.state.form.storyline}</p>
               <div className="arrow">
-              <Link to="/admin/movies"><i className="material-icons">keyboard_arrow_left</i>Powrót do listy</Link>
+                {
+                  auth.hasAuthority('ADMIN')
+									  ? <Link to="/admin/movies"><i className="material-icons">keyboard_arrow_left</i>Powrót do listy</Link> 
+									  : <Link to="/repertoire"><i className="material-icons">keyboard_arrow_left</i>Powrót do repertuarów</Link> 
+								}
               </div>
             </div>
             <div className="movie-info-img">

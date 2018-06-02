@@ -8,6 +8,7 @@ import moment from 'moment';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 import {CircularProgress} from "material-ui";
+import {Link} from "react-router-dom";
 
 const styles = {
   flatbtn: {
@@ -114,7 +115,9 @@ class Repertoire extends Component {
                   .map(([title, showings], index) =>
                     <div key={showings[0].movie.id} className="tile  hvr-grow">
 											<div className="has-text-centered">
-												<img src={showings[0].movie.imgURL} />
+												<Link to={"/admin/movies/info/"+showings[0].movie.id} key={showings[0].movie.id}>
+													<img src={showings[0].movie.imgURL} />
+												</Link>
 											</div>
 											<div className="movie-info">
 												<div>{title}</div>												
