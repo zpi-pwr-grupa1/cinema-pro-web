@@ -4,6 +4,7 @@ import './index.scss'
 import {cinema} from 'services/api';
 import Editable from 'react-x-editable';
 import {Snackbar} from "material-ui";
+import ReactTooltip from 'react-tooltip'
 
 class Cinema extends Component {
 
@@ -71,10 +72,22 @@ class Cinema extends Component {
             <span className="label">Email:</span>
             <Editable onInputChange={this.onInputChange.bind(this, 'email')} dataType="text" showButtons={false} mode="inline" value={this.state.form.email}/>
             <span className="label">Ulica:</span>
-            <Editable onInputChange={this.onInputChange.bind(this, 'street')} dataType="text" showButtons={false} mode="inline" value={this.state.form.street}/>
-            <Editable onInputChange={this.onInputChange.bind(this, 'streetNumber')} dataType="text" showButtons={false} mode="inline" value={this.state.form.streetNumber}/>
-            <Editable onInputChange={this.onInputChange.bind(this, 'city')} dataType="text" showButtons={false} mode="inline" value={this.state.form.city}/>
-            <Editable onInputChange={this.onInputChange.bind(this, 'postCode')} dataType="text" showButtons={false} mode="inline" value={this.state.form.postCode || 'dupa'}/>
+            <span data-tip data-for='street'><Editable onInputChange={this.onInputChange.bind(this, 'street')} dataType="text" showButtons={false} mode="inline" value={this.state.form.street}/></span>
+            <ReactTooltip id='street' type='error'>
+              <span>nazwa ulicy</span>
+            </ReactTooltip>
+            <span data-tip data-for='streetNumber'><Editable onInputChange={this.onInputChange.bind(this, 'streetNumber')} dataType="text" showButtons={false} mode="inline" value={this.state.form.streetNumber}/></span>
+            <ReactTooltip id='streetNumber' type='error'>
+              <span>nr lokalu</span>
+            </ReactTooltip>
+            <span data-tip data-for='city'><Editable onInputChange={this.onInputChange.bind(this, 'city')} dataType="text" showButtons={false} mode="inline" value={this.state.form.city}/></span>
+             <ReactTooltip id='city' type='error'>
+              <span>miasto</span>
+            </ReactTooltip>
+            <span data-tip data-for='postCode'><Editable onInputChange={this.onInputChange.bind(this, 'postCode')} dataType="text" showButtons={false} mode="inline" value={this.state.form.postCode || 'xx-xxx'}/></span>
+            <ReactTooltip id='postCode' type='error'>
+              <span>kod pocztowy</span>
+            </ReactTooltip>
             <span className="label">Zdjęcie:</span>
             <Editable onInputChange={this.onInputChange.bind(this, 'imgUrl')} dataType="text" showButtons={false} mode="inline" value={this.state.form.imgUrl}/>
             <RaisedButton className="edit" label="Edytuj" onClick={() => this.submit()} />

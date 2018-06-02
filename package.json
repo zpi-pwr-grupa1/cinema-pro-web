@@ -38,6 +38,7 @@
     "react-datepicker": "^1.4.1",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
+    "react-tooltip": "^3.6.0",
     "react-transition-group": "latest",
     "react-x-editable": "0.0.9-beta"
   },
