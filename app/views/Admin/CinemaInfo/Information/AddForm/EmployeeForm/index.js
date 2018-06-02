@@ -142,6 +142,7 @@ class EmployeeForm extends Component {
             hintStyle={hintStyle}
             underlineFocusStyle={styles.underlineStyle}
             floatingLabelFocusStyle={styles.floatingLabelFocusStyle}
+            required
           />
           <TextField
             name="surname"
