@@ -52,11 +52,14 @@
     .user-tabs {
       display: flex;
       flex-flow: column;
-
-      justify-content: flex-end;
+      
       padding: 10px 0;
       width: 290px;
 
+      &.justify-center {
+        justify-content: center;
+      }
+      
       button {
         width: 125px;
         margin-top: 2px;
