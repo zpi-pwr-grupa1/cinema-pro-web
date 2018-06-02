@@ -136,7 +136,7 @@ class Repertoire extends Component {
 																	</div>
 																: <div key={showing.id}>
 																		<b data-tip data-for={`reservation${showing.id}`}>{moment(showing.screeningStart).format("HH:mm")}</b>
-																	<ReactTooltip id={`reservation${showing.id}`} type='info'>
+																	<ReactTooltip effect='solid' id={`reservation${showing.id}`} type='info'>
 																		Musisz być zalogowany aby móc dokonać rezerwacji
 																	</ReactTooltip>
 																	</div>
@@ -144,7 +144,7 @@ class Repertoire extends Component {
 													
 												}
                         <Dialog
-                          actions={this.actionButton(this.state.dialogShowing)}
+                          actions={this.actionButton(this.state.dialogShowing && this.state.dialogShowing.id)}
                           modal={false}
                           open={this.state.open}
                           onRequestClose={this.handleClose}

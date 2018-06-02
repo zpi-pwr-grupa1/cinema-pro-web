@@ -158,3 +158,9 @@ export const movieGroup = {
         axios.get('/movieGroup/get/all')
     ),
 };
+
+export const reservation = {
+	book: (form) => (
+		axios.post('/reservation/book', form)
+	),
+};

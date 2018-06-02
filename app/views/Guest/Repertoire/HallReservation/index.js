@@ -1,14 +1,10 @@
-
 import React, {Component} from 'react';
 import Page from 'components/Page';
 import splitEvery from "ramda/es/splitEvery";
-import reduce from "ramda/es/reduce";
 import './index.scss';
-import FontIcon from 'material-ui/FontIcon';
-import {hall, showing} from 'services/api';
-import {Link} from "react-router-dom";
+import {reservation, showing, ticketType} from 'services/api';
 import Checkbox from 'material-ui/Checkbox';
-import {RaisedButton, Dialog, FlatButton} from 'material-ui';
+import {Dialog, DropDownMenu, FlatButton, MenuItem, RaisedButton} from 'material-ui';
 import moment from 'moment';
 
 const iconStyles = {
@@ -25,92 +21,90 @@ const styles = {
 };
 
 class HallReservation extends Component {
+	state = {
+		reservations: [],
+		showing: null,
+		ticketTypes: null,
+		open: false,
+	};
+  
   constructor(props) {
     super(props);
-
-    this.state = {
-      form: {
-        hallNumber: 0,
-        seats: [],
-      },
-      hall: {
-        rows: 0,
-        columns: 0,
-      },
-      showing: {
-        movie: {},
-        hall: {},
-      },
-      hallSeats: [],
-      seats: {},
-      hallId: "",
-      open: false,
-    };
   }
 
   componentDidMount() {
-    showing.get(this.showingId)
-      .then(response => {
+    
+    Promise
+			.all([
+				showing.get(this.showingId),
+				showing.getSeats(this.showingId),
+				ticketType.all(),
+			])
+      .then(([
+          { data: showing },
+          { data: seats }, 
+					{ data: ticketTypes }
+        ]
+      ) => {
         this.setState({
-          ...this.state,
-          showing: response.data,
-          hallId: response.data.hall.id
+          showing: {
+            ...showing,
+            hall: {
+              ...showing.hall,
+              seats: seats.sort((a, b) => a.seatColumn - b.seatColumn || a.seatRow - b.seatRow)
+            }
+          },
+					ticketTypes,
         });
-
-        hall.get(response.data.hall.id)
-        .then((response) => {
-          // FOr checkbox purposes
-          const seatIds = reduce((acc, seat) => Object.assign(acc, { [seat.id]: false }), {}, response.data.seats);
-          this.setState({
-            ...this.state,
-            seats: seatIds,
-            form: response.data,
-          });
-          // this.state.form.seats.sort(this.compare);
-        });
-
-        showing.getSeats(this.showingId)
-          .then(response => {
-            console.log(response)
-            this.setState({
-              ...this.state,
-              hallSeats: response.data
-          });
-        });
-
-        hall.getColumnsAndRows(response.data.hall.id)
-        .then((response) => {
-          this.setState({
-            ...this.state,
-            hall: response.data
-          })
-        })
-
       });
   }
 
-  handleChange = event => {
-    this.setState({ seats: { [event.target.name]: event.target.checked }});
+  handleChange = (seat, event) => {
+  	const seatRef = this.state.showing.hall.seats.find(s => s.id === seat.id)
+		seatRef.takenByMe = !seatRef.takenByMe 
+		
+		this.setState({
+			showing: { 
+				...this.state.showing,
+				hall: {
+					...this.state.showing.hall,
+					seats: this.state.showing.hall.seats
+				}},
+				reservations: seatRef.takenByMe 
+					? [
+							...this.state.reservations,
+							{seat: seatRef}
+						]
+					: this.state.reservations.filter(r => r.seat.id !== seatRef.id)
+		});
   };
+  
+  onTicketTypeChange(reservation, event, index, value) {
+  	reservation.ticketType = value
+		return this.setState({ 
+			reservations: this.state.reservations,
+		});
+	}
 
   get showingId() {
     return this.props.match.params.id;
   }
 
-  compare(a, b) {
-    if (a.seatRow < b.seatRow)
-      return -1;
-    if (a.seatRow > b.seatRow)
-      return 1;
-    return 0;
-  }
-
   ShowAlertWithDelay = () => {
-    alert("Miejsca zostały zarezerwowane.")
-    setTimeout(function() { 
-      this.setState({open: false});
-      this.props.history.push(`/repertoire`);
-    }.bind(this), 500);
+		reservation
+			.book({reservations: [
+					...this.state.reservations.map(r => ({
+						seatId: r.seat.id,
+						ticketTypeId: r.ticketType.id,
+					}))
+				]})
+			.then(() => {
+				alert("Miejsca zostały zarezerwowane.")
+				setTimeout(function() {
+					this.setState({open: false});
+					this.props.history.push(`/repertoire`);
+				}.bind(this), 500);
+			})
   }
 
   handleOpen = () => {
@@ -136,51 +130,71 @@ class HallReservation extends Component {
     ];
     return (
       <Page>
-        <div className="container reservation">
-        <Dialog
-          title="REZERWACJA"
-          actions={actions}
-          modal={false}
-          open={this.state.open}
-          onRequestClose={this.handleClose}
-          titleStyle={{textAlign: "center"}}
-        >
-          <p className="confirm-txt">Film: {this.state.showing.movie.title}</p>
-          <p className="confirm-txt">Sala: {this.state.form.hallNumber}</p>
-          <p className="confirm-txt">Miejsca: 3, 4, 5</p>
-          <p className="confirm-txt">Data i godzina seansu: {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
-        </Dialog>
-          <div className="reservation-movie-info">
-              <p>{this.state.showing.movie.title} {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
-              <p>Sala: {this.state.form.hallNumber}</p>
-          </div>
-          <div className="screen">EKRAN</div>
-            <div className="home-wrapper">
-            {this.state.hall.rows > 0 &&
-            Object.keys(this.state.hallSeats).length > 0 && splitEvery(this.state.hall.rows, this.state.hallSeats)
-              .map((rows, index) =>
+				{this.state.showing &&
+				<div className="container reservation">
+					<Dialog
+						title="REZERWACJA"
+						actions={actions}
+						modal={false}
+						open={this.state.open}
+						onRequestClose={this.handleClose}
+						titleStyle={{textAlign: "center"}}
+					>
+						<p className="confirm-txt">Film: {this.state.showing.movie.title}</p>
+						{/*<p className="confirm-txt">Sala: {this.state.form.hallNumber}</p>*/}
+						<p className="confirm-txt">Miejsca: 3, 4, 5</p>
+						<p className="confirm-txt">Data i godzina
+							seansu: {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+					</Dialog>
+					<div className="reservation-movie-info">
+						<p>{this.state.showing.movie.title} {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+						{/*<p>Sala: {this.state.form.hallNumber}</p>*/}
+					</div>
+					<div className="screen">EKRAN</div>
+					<div className="home-wrapper">
+						{splitEvery(
+						  this.state.showing.hall.seats.reduce((p, c) => c.seatRow > p.seatRow ? c : p).seatRow + 1, 
+              this.state.showing.hall.seats
+            ).map((rows, index) =>
                 <div key={index}>
-                  {rows
-                    .map(seat =>
-                      <Checkbox
-                        key={seat.id}
-                        name={seat.id}
-                        checked={this.state.seats[seat.id]}
-                        onChange={this.handleChange}
-                        style={styles.checkbox}
-                        color="primary"
-                      />
-                  )}
+                  {rows.map(seat =>
+										<Checkbox
+											key={seat.id}
+											name={seat.id}
+											onCheck={() => this.handleChange(seat, event)}
+											checked={seat.taken || seat.takenByMe}
+											disabled={seat.taken}
+											style={styles.checkbox}
+											color="primary"
+										/>
+                    )}
                 </div>
-              )}
-            </div>
-            <div className="btn-grp">
-              <RaisedButton className="seats-btn" label="Zarezerwuj" onClick={this.handleOpen} />
-            </div>
-              <p>Miejsca wolne:</p><Checkbox checked={false} disabled/> 
-              <p>Miejsca zajęte:</p><Checkbox checked={true} disabled />
-              <p>Miejsca wybrane:</p><Checkbox checked={true} />
-        </div>
+                )}
+					</div>
+					<div className="bookings has-text-centered">
+						{
+							this.state.reservations
+								.map(reservation => 
+									<div key={reservation.seat.id}>
+										<span>rząd: {reservation.seat.seatRow}</span>
+										<span>kolumna: {reservation.seat.seatColumn}</span>
+										<DropDownMenu maxHeight={300} value={reservation.ticketType} onChange={this.onTicketTypeChange.bind(this, reservation)}>
+											{this.state.ticketTypes.map(tt =>
+												<MenuItem style={{width: '300px'}} value={tt} label={tt.name} key={tt.id} primaryText={tt.name}  />
+											)}
+										</DropDownMenu>
+									</div>
+								)
+						}
+					</div>
+					<div className="btn-grp">
+						<RaisedButton className="seats-btn" label="Zarezerwuj" onClick={this.handleOpen}/>
+					</div>
+					<p>Miejsca wolne:</p><Checkbox checked={false} disabled/>
+					<p>Miejsca zajęte:</p><Checkbox checked={true} disabled/>
+					<p>Miejsca wybrane:</p><Checkbox checked={true}/>
+				</div>
+				}
       </Page>
     )
   }
