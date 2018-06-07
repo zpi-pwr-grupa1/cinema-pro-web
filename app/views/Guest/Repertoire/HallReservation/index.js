@@ -92,7 +92,9 @@ class HallReservation extends Component {
 
   ShowAlertWithDelay = () => {
 		reservation
-			.book({reservations: [
+			.book({
+				showingId: this.showingId,
+				reservations: [
 					...this.state.reservations.map(r => ({
 						seatId: r.seat.id,
 						ticketTypeId: r.ticketType.id,

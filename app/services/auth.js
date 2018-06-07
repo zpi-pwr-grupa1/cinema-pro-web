@@ -12,8 +12,9 @@ export const auth = {
     let ut = JSON.parse(localStorage.getItem(auth_storage))
     if (ut) {
       this.auth = ut
-    }
-  },
+			Object.assign(axios.defaults, {headers: {authorization: ut.token}})
+		}
+	},
 
   authenticate(response) {
 		this.auth = {
