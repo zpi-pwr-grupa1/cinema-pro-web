@@ -151,6 +151,9 @@ export const client = {
     get: (id) => (
         axios.get(`/client/get/${id}`)
     ),
+    getReservations: (id) => (
+        axios.get(`/client/get/${id}/reservations`)
+    ),
 };
 
 export const movieGroup = {
