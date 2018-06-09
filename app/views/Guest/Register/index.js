@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import * as axios from "axios";
 import {client} from 'services/api';
 import './index.scss'
+import DatePicker from "react-datepicker";
+import moment from "moment";
 
 class Register extends Component {
 
@@ -12,7 +13,7 @@ class Register extends Component {
       form: {
         email: "",
         password: "",
-        birthDate: "",
+        birthDate: null,
       }
     };
   }
@@ -32,12 +33,29 @@ class Register extends Component {
     }});
   }
 
+	dateChange (value) {
+		return this.setState({ form: {
+				...this.state.form,
+				birthDate: value
+			}});
+	}
+	
+	isFormInvalid() {
+  	return !this.state.form.birthDate || !this.state.form.password || !this.state.form.email || !this.validateEmail(this.state.form.email)
+	}
+	
+	validateEmail(email) {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
+	}
+	
+
   render() {
     return (
       <div className="page-container register">
         <form className="">
           <div className="field">
-            <label className="label">Email</label>
+            <label className="label">Email <span style={{color: 'red', marginLeft: '5px'}}>*</span></label>
             <input className="input"
                    type="email"
                    name="email"
@@ -46,7 +64,7 @@ class Register extends Component {
                    required/>
           </div>
           <div className="field">
-            <label className="label">Hasło</label>
+            <label className="label">Hasło <span style={{color: 'red', marginLeft: '5px'}}>*</span></label>
             <input className="input"
                    type="password"
                    name="password"
@@ -54,17 +72,27 @@ class Register extends Component {
                    onChange={this.onInputChange}
                    required/>
           </div>
-          <div className="field">
-            <label className="label">Data urodzenia</label>
-            <input className="input"
-                   type="text"
-                   name="birthDate"
-                   value={this.state.form.birthDate}
-                   onChange={this.onInputChange}
-                   required/>
-          </div>
+					<DatePicker
+						customInput={
+						  <div className="field">
+                <label className="label">Data urodzenia <span style={{color: 'red', marginLeft: '5px'}}>*</span></label>
+                <input className="input"
+                       type="text"
+                       name="birthDate"
+                       value={this.state.form.birthDate ? this.state.form.birthDate.format('YYYY-MM-DD') : ''}
+                       required/>
+              </div>
+						}
+						showMonthDropdown
+						showYearDropdown
+						dropdownMode="select"
+						showDisabledMonthNavigation
+						dateFormat="YYYY-MM-DD"
+						selected={this.state.form.birthDate}
+						onChange={this.dateChange.bind(this)}
+					/>
 
-          <button type="button" className="button" onClick={this.onHandleClick}>Zarejestruj</button>
+          <button type="button" className="button" disabled={this.isFormInvalid()} onClick={this.onHandleClick}>Zarejestruj</button>
 
         </form>
       </div>
