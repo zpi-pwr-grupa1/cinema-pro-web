@@ -52,6 +52,7 @@ class ShowtimeForm extends Component {
 			.then(([resM, resH]) =>
 				this.setState({
 					form: this.props.form ? {
+            id: this.props.form.id,
 						screeningStart: moment(this.props.form.screeningStart),
 						movie: resM.data.filter(m => m.id === this.props.form.movie.id)[0],
 						hall: resH.data.filter(h => h.id === this.props.form.hall.id)[0],
