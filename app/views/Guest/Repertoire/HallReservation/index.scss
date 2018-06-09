@@ -39,3 +39,9 @@
 .confirm-txt {
   font-weight: 700;
 }
+
+.hour-screening {
+  &:hover {
+    font-weight: bold;
+  }
+}

@@ -144,7 +144,17 @@ class HallReservation extends Component {
 					>
 						<p className="confirm-txt">Film: {this.state.showing.movie.title}</p>
 						{/*<p className="confirm-txt">Sala: {this.state.form.hallNumber}</p>*/}
-						<p className="confirm-txt">Miejsca: 3, 4, 5</p>
+						<p className="confirm-txt">Miejsca:</p>
+						{
+							this.state.reservations
+								.map(reservation =>
+									<div key={reservation.seat.id}>
+										<span>rząd: {reservation.seat.seatRow+1}</span>
+										<span style={{marginLeft: '5px'}}>kolumna: {reservation.seat.seatColumn+1}</span>
+										<span style={{marginLeft: '5px'}}>bilet: {reservation.ticketType && reservation.ticketType.name}</span>
+									</div>
+								)
+						}
 						<p className="confirm-txt">Data i godzina
 							seansu: {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
 					</Dialog>
@@ -178,8 +188,8 @@ class HallReservation extends Component {
 							this.state.reservations
 								.map(reservation => 
 									<div key={reservation.seat.id}>
-										<span>rząd: {reservation.seat.seatRow}</span>
-										<span>kolumna: {reservation.seat.seatColumn}</span>
+										<span>rząd: {reservation.seat.seatRow+1}</span>
+										<span>kolumna: {reservation.seat.seatColumn+1}</span>
 										<DropDownMenu maxHeight={300} value={reservation.ticketType} onChange={this.onTicketTypeChange.bind(this, reservation)}>
 											{this.state.ticketTypes.map(tt =>
 												<MenuItem style={{width: '300px'}} value={tt} label={tt.name} key={tt.id} primaryText={tt.name}  />
