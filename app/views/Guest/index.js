@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 import './styles.scss';
 import Home from "views/Guest/Home";
 import Login from "views/Guest/Login";
@@ -23,7 +23,6 @@ const Views = (props) => (
 		<Route path='/movie/info/:id' component={MovieInfo} />
 
       <Route exact path='/' component={Home} />
-
   </Switch>
 );
 

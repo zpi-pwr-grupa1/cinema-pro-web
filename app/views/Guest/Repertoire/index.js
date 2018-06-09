@@ -132,10 +132,10 @@ class Repertoire extends Component {
 														.map(showing =>
 															auth.isLogged()
 															 	?  <div key={showing.id} onClick={() => this.handleOpen(showing)} className="div-hoverhand">
-																		<b>{moment(showing.screeningStart).format("HH:mm")}</b>
+																		<span className="hour-screening">{moment(showing.screeningStart).format("HH:mm")}</span>
 																	</div>
 																: <div key={showing.id}>
-																		<b data-tip data-for={`reservation${showing.id}`}>{moment(showing.screeningStart).format("HH:mm")}</b>
+																		<span className="hour-screening" data-tip data-for={`reservation${showing.id}`}>{moment(showing.screeningStart).format("HH:mm")}</span>
 																	<ReactTooltip effect='solid' id={`reservation${showing.id}`} type='info'>
 																		Musisz być zalogowany aby móc dokonać rezerwacji
 																	</ReactTooltip>

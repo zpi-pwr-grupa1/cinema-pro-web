@@ -3,7 +3,7 @@
 .register {
     display: flex;
     flex-direction: row;
-    height: calc(100vh - 115px);
+    //height: calc(100vh - 115px);
     justify-content: center;
     align-items: center;
     background-repeat: no-repeat;
@@ -11,7 +11,7 @@
     filter: drop-shadow( 0 0 15px #000 );
 
     form {
-        height: 350px;
+        height: 420px;
         width: 400px;
         opacity: 0.9;
 
