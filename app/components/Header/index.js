@@ -23,7 +23,7 @@ const Header = (props) => (
 				{
 					cinema.current ?
 						<div className="tabs">
-              <NavLink exact to="/client/myreservations" className="my-button is-inverted">Moje Rezerwacje</NavLink>
+              {auth.hasAuthority('CLIENT') && <NavLink exact to="/client/myreservations" className="my-button is-inverted">Moje Rezerwacje</NavLink>}
               <NavLink exact to="/repertoire" className="my-button is-inverted">Repertuar</NavLink>
               <NavLink exact to="/tickets" className="my-button is-inverted">Cennik</NavLink>
 							<NavLink exact to="/about_us" className="my-button is-inverted">O nas</NavLink>

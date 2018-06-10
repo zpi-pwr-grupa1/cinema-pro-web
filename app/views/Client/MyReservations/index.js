@@ -17,7 +17,7 @@ class MyReservations extends Component {
   }
 
   componentDidMount() {
-    client.getReservations(this.state.clientID)
+    client.getReservations()
       .then(response => {
         console.log(response)
         this.setState({

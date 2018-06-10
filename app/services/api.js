@@ -151,8 +151,8 @@ export const client = {
     get: (id) => (
         axios.get(`/client/get/${id}`)
     ),
-    getReservations: (id) => (
-        axios.get(`/client/get/${id}/reservations`)
+    getReservations: () => (
+        axios.get(`/client/get/my/reservations`)
     ),
 };
 
