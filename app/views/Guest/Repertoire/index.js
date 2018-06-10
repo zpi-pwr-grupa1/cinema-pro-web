@@ -11,6 +11,8 @@ import {CircularProgress} from "material-ui";
 import {Link} from "react-router-dom";
 import {auth} from "services/auth";
 import ReactTooltip from 'react-tooltip'
+
+
 const styles = {
   flatbtn: {
     fontSize: 20,
@@ -60,6 +62,9 @@ class Repertoire extends Component {
 	}
 
   handleOpen = (showing) => {
+		if(this.timePassed(showing.screeningStart)) {
+			return
+		}
     this.setState({
 			open: true,
 			dialogShowing: showing,
@@ -78,6 +83,10 @@ class Repertoire extends Component {
       labelStyle={styles.flatbtn}
     />
   );
+  
+  timePassed = (time) => {
+  	return moment(time).isBefore(moment())
+	}
   
   render() {
     return (
@@ -131,7 +140,8 @@ class Repertoire extends Component {
 													showings
 														.map(showing =>
 															auth.isLogged()
-															 	?  <div key={showing.id} onClick={() => this.handleOpen(showing)} className="div-hoverhand">
+															 	?  <div key={showing.id} onClick={() => this.handleOpen(showing)} 
+																				className={this.timePassed(showing.screeningStart) ? "passed div-hoverhand" : "div-hoverhand"}>
 																		<span className="hour-screening">{moment(showing.screeningStart).format("HH:mm")}</span>
 																	</div>
 																: <div key={showing.id}>
