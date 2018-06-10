@@ -143,7 +143,6 @@ class HallReservation extends Component {
 						titleStyle={{textAlign: "center"}}
 					>
 						<p className="confirm-txt">Film: {this.state.showing.movie.title}</p>
-						{/*<p className="confirm-txt">Sala: {this.state.form.hallNumber}</p>*/}
 						<p className="confirm-txt">Miejsca:</p>
 						{
 							this.state.reservations
@@ -163,13 +162,19 @@ class HallReservation extends Component {
 						{/*<p>Sala: {this.state.form.hallNumber}</p>*/}
 					</div>
 					<div className="screen">EKRAN</div>
-					<div className="home-wrapper">
-						{splitEvery(
-						  this.state.showing.hall.seats.reduce((p, c) => c.seatRow > p.seatRow ? c : p).seatRow + 1, 
-              this.state.showing.hall.seats
-            ).map((rows, index) =>
-                <div key={index}>
-                  {rows.map(seat =>
+					<div className="columns">
+						<div className="column is-3 legend">
+							<p>Miejsca wolne:</p><Checkbox checked={false} disabled/>
+							<p>Miejsca zajęte:</p><Checkbox checked={true} disabled/>
+							<p>Miejsca wybrane:</p><Checkbox checked={true}/>
+						</div>
+						<div className="reservations column">
+							{splitEvery(
+								this.state.showing.hall.seats.reduce((p, c) => c.seatRow > p.seatRow ? c : p).seatRow + 1,
+								this.state.showing.hall.seats
+							).map((rows, index) =>
+								<div key={index}>
+									{rows.map(seat =>
 										<Checkbox
 											key={seat.id}
 											name={seat.id}
@@ -179,18 +184,20 @@ class HallReservation extends Component {
 											style={styles.checkbox}
 											color="primary"
 										/>
-                    )}
-                </div>
-                )}
+									)}
+								</div>
+							)}
+						</div>
+						<div className="column is-3"></div>
 					</div>
-					<div className="bookings has-text-centered">
+					<div className="bookings">
 						{
 							this.state.reservations
 								.map(reservation => 
-									<div key={reservation.seat.id}>
-										<span>rząd: {reservation.seat.seatRow+1}</span>
-										<span>kolumna: {reservation.seat.seatColumn+1}</span>
-										<DropDownMenu maxHeight={300} value={reservation.ticketType} onChange={this.onTicketTypeChange.bind(this, reservation)}>
+									<div className="booking has-text-centered" key={reservation.seat.id}>
+										<span style={{ alignSelf: 'center'}}>rząd: {reservation.seat.seatRow+1}</span>
+										<span style={{marginLeft: '5px', alignSelf: 'center'}}>kolumna: {reservation.seat.seatColumn+1}</span>
+										<DropDownMenu style={{width: '50%', padding: 0}} maxHeight={300} value={reservation.ticketType} onChange={this.onTicketTypeChange.bind(this, reservation)}>
 											{this.state.ticketTypes.map(tt =>
 												<MenuItem style={{width: '300px'}} value={tt} label={tt.name} key={tt.id} primaryText={tt.name}  />
 											)}
@@ -202,9 +209,6 @@ class HallReservation extends Component {
 					<div className="btn-grp">
 						<RaisedButton className="seats-btn" label="Zarezerwuj" onClick={this.handleOpen}/>
 					</div>
-					<p>Miejsca wolne:</p><Checkbox checked={false} disabled/>
-					<p>Miejsca zajęte:</p><Checkbox checked={true} disabled/>
-					<p>Miejsca wybrane:</p><Checkbox checked={true}/>
 				</div>
 				}
       </Page>
