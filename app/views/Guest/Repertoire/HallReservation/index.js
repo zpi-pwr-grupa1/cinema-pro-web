@@ -116,6 +116,12 @@ class HallReservation extends Component {
   handleClose = () => {
     this.setState({open: false});
   };
+  
+  isInvalid() {
+  	return this.state.reservations
+			.filter(r => !r.ticketType)
+			.length
+	}
 
   render() {
     const actions = [
@@ -142,7 +148,7 @@ class HallReservation extends Component {
 						onRequestClose={this.handleClose}
 						titleStyle={{textAlign: "center"}}
 					>
-						<p className="confirm-txt">Film: {this.state.showing.movie.title}</p>
+						<p className="confirm-txt">Film:</p>{this.state.showing.movie.title}
 						<p className="confirm-txt">Miejsca:</p>
 						{
 							this.state.reservations
@@ -155,15 +161,16 @@ class HallReservation extends Component {
 								)
 						}
 						<p className="confirm-txt">Data i godzina
-							seansu: {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
+							seansu: </p> {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}
 					</Dialog>
 					<div className="reservation-movie-info">
 						<p>{this.state.showing.movie.title} {moment(showing.screeningStart).format("YYYY-MM-DD  hh:mm")}</p>
-						{/*<p>Sala: {this.state.form.hallNumber}</p>*/}
 					</div>
 					<div className="screen">EKRAN</div>
 					<div className="columns">
 						<div className="column is-3 legend">
+							<p>Aby dokonać rezerwacji należy kliknąć w wybrane miejsce.</p>
+							<p style={{marginBottom: '10px'}}>Następnie dla każdego miejsca wybrać bilet z listy i kliknąć w przycisk ZAREZERWUJ</p>
 							<p>Miejsca wolne:</p><Checkbox checked={false} disabled/>
 							<p>Miejsca zajęte:</p><Checkbox checked={true} disabled/>
 							<p>Miejsca wybrane:</p><Checkbox checked={true}/>
@@ -188,7 +195,7 @@ class HallReservation extends Component {
 								</div>
 							)}
 						</div>
-						<div className="column is-3"></div>
+						<div className="column is-3 legend has-text-right"></div>
 					</div>
 					<div className="bookings">
 						{
@@ -206,9 +213,14 @@ class HallReservation extends Component {
 								)
 						}
 					</div>
-					<div className="btn-grp">
-						<RaisedButton className="seats-btn" label="Zarezerwuj" onClick={this.handleOpen}/>
-					</div>
+					{
+						this.state.reservations.length && 
+							<div className="btn-grp">
+								<button disabled={this.isInvalid()} className="button seats-btn" onClick={this.handleOpen}>
+									Zarezerwuj
+								</button>
+							</div> || ''
+					}
 				</div>
 				}
       </Page>
